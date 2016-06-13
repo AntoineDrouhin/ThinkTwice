@@ -1,0 +1,61 @@
+<div layout-fill flex layout="row" layout-align="start start">
+
+    <!-- Sidenav -->
+    <div flex="25" layout="column" id="sidenav" class="md-whiteframe-1dp" layout-fill>
+
+        <md-input-container flex>
+            <label>Recherche de CV</label>
+            <input ng-model="input">
+        </md-input-container>
+
+        <md-list style="height: 90%; overflow: auto">
+
+            <md-list-item class="md-3-line" ng-click="displayResume(resume)"
+                          ng-repeat="resume in resumes.toArray() | filter : input | orderBy : '-person.nom'"
+                          ng-class="{'active' : resume.person.name == current_resume.person.name}">
+
+                <img ng-if="resume.person.photo" ng-src="images/candidate/{{resume.person.photo}}" class="md-avatar" alt="{{resume.person.name}}"/>
+                <img ng-if="!resume.person.photo" ng-src="images/candidate/download.png" class="md-avatar" alt="Default" />
+
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{resume.person.name}}</h3>
+                    <h4 class="subText">{{resume.title | textLimit : 30}}</h4>
+                </div>
+
+            </md-list-item>
+
+        </md-list>
+
+        <div flex></div>
+
+    </div>
+    <!-- Action to hide or not Resume -->
+    <div layout="column">
+        <md-button ng-click="hide()" class="md-icon-button" id="hide" aria-label="Masquer sidenav">
+            <md-icon md-svg-src="images/icons/ic_keyboard_arrow_left_black_24px.svg"></md-icon>
+        </md-button>
+        <md-button ng-click="display()" class="md-icon-button" id="show" hide aria-label="Afficher sidenav">
+            <md-icon md-svg-src="images/icons/ic_keyboard_arrow_right_black_24px.svg"></md-icon>
+        </md-button>
+    </div>
+
+    
+    <!-- Display resume -->
+    <resume cv="current_resume" flex="auto" style="height:100%; overflow: auto"></resume>
+    <div id="nav_messages">
+        <md-button ng-if="current_resume" class="md-primary md-raised" ng-click="showAdvanced(current_resume.id)">
+            Contactez moi !
+        </md-button>
+        <md-list class="md-dense" ng-if="current_resume" resumeID="current_resume.id" flex>
+            <md-subheader class="md-no-sticky">Liste des messages</md-subheader>
+            <!--<md-list-item class="md-3-line" ng-repeat="msg in message">-->
+            <md-list-item class="md-3-line" ng-repeat="msg in message" ng-if="message.resume = resumeID">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{message.nom}}</h3>
+                    <h4>{{message.date}}</h4>
+                    <p>{{message.text}}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>

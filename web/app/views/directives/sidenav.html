@@ -1,0 +1,28 @@
+﻿<div flex="25" layout="column" id="sidenav" class="md-whiteframe-1dp" layout-fill>
+
+    <md-input-container flex>
+        <label>Recherche de CV</label>
+        <input ng-model="input">
+    </md-input-container>
+
+    <md-list style="height: 90%; overflow: auto">
+
+        <md-list-item class="md-3-line" ng-click="displayResume(resume)"
+                      ng-repeat="resume in resumes.toArray() | filter : input | orderBy : '-person.nom'"
+                      ng-class="{'active' : resume.person.name == current_resume.person.name}">
+
+            <img ng-if="resume.person.photo" ng-src="images/candidate/{{resume.person.photo}}" class="md-avatar" alt="{{resume.person.name}}" />
+            <img ng-if="!resume.person.photo" ng-src="images/candidate/download.png" class="md-avatar" alt="Default" />
+
+            <div class="md-list-item-text" layout="column">
+                <h3>{{resume.person.name}}</h3>
+                <h4 class="subText">{{resume.title | textLimit : 30}}</h4>
+            </div>
+
+        </md-list-item>
+
+    </md-list>
+
+    <div flex></div>
+
+</div>

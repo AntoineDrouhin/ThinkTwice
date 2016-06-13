@@ -1,0 +1,10 @@
+﻿<div class="free_line">
+    <h4>{{competence.type}}</h4>
+    <div layout="row" layout-padding layout-margin layout-wrap layout-align="start start">
+        <div flex="nogrow" ng-repeat="content in obj.content | orderBy : '-level'" class="content">
+            {{content.label}} 
+            <em ng-if="content.level">{{content.level | levelFormat}}</em>
+            <em ng-if="content.detail">{{content.detail}}</em>
+        </div>
+    </div>
+</div>

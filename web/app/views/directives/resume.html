@@ -1,0 +1,54 @@
+<div ng-show="toDisplay" id="resume">
+
+    <div id="entete" layout="row" layout-align="start start" flex>
+
+        <img ng-if="person.photo" ng-src="images/candidate/{{person.photo}}" alt="{{person.name}}" style="width:100px;height: 100px"/>
+        <img ng-if="!person.photo" ng-src="{{defaultAvatar}}" alt="Default" style="width:100px;height: 100px"/>
+
+        <div flex></div>
+
+        <div id="coord" layout="column" layout-align="end start">
+
+            <h2>{{person.name}}</h2>
+
+            <coordonnee-person coordonnee="person.contact"></coordonnee-person>
+
+        </div>
+
+    </div>
+
+    <h1>{{resume.resume.title}}</h1>
+
+    <div ng-if="resume.extra" class="extra">
+        {{resume.resume.extra}}
+    </div>
+
+    <div ng-if="resume.experiences">
+        <h3 class="activeClick">Experiences Professionnelles</h3>
+        <div class="resume_block">
+            <xp ng-repeat="exp in resume.experiences | orderBy : orderFn : -1 "></xp>
+        </div>
+    </div>
+
+    <div ng-if="resume.educations">
+        <h3>Formations</h3>
+
+        <div class="resume_block">
+            <xp ng-repeat="exp in resume.educations | orderBy : orderFn : -1 "></xp>
+        </div>
+    </div>
+
+    <div ng-if="resume.competencies">
+        <h3>Competences</h3>
+        <div class="resume_block">
+            <hobcomp ng-repeat="obj in resume.competencies"></hobcomp>
+        </div>
+    </div>
+
+    <div ng-if="resume.hobbies">
+        <h3>Loisirs</h3>
+        <div class="resume_block">
+            <hobcomp ng-repeat="obj in resume.hobbies"></hobcomp>
+        </div>
+    </div>
+</div>

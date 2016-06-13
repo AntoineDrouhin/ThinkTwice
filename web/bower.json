@@ -1,0 +1,29 @@
+{
+  "name": "myResume",
+  "version": "2",
+  "authors": [
+    "Laurent Breda"
+  ],
+
+  "description": "Exercice d'apprentissage Techno Web",
+
+  "license": "MIT",
+
+  "private": true,
+
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-ui-router": "~0.2.15",
+    "jquery": "~2.1",
+    "angular-material": "~1.0.0",
+    "moment": "~2.11.1"
+  }
+}

@@ -1,0 +1,17 @@
+﻿<div class="resume_line" layout="row" layout-align="start start">
+
+    <div class="date" flex="15">
+        {{exp.start | momentFormat: 'MMM YYYY'}} - <span ng-if="exp.end"> {{exp.end | momentFormat: 'MMM YYYY'}} </span>  <span ng-if="!exp.end">Aujourd'hui</span>
+    </div>
+
+    <div flex="5"></div>
+
+    <div class="content_cv" layout="column" flex="80">
+        <h4>{{exp.title}}</h4>
+        <h5 ng-if="exp.company">{{exp.company}} - {{exp.location}}</h5>
+        <h5 ng-if="exp.school">{{exp.school}} - {{exp.location}}</h5>
+        <ul>
+            <li ng-repeat="det in exp.description track by $index">{{det}}</li>
+        </ul>
+    </div>
+</div>
