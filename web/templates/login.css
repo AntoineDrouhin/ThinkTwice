@@ -1,0 +1,49 @@
+
+body {
+    background-color: lightgray;
+    padding-top: 3%;
+    font-family: Arial;
+    color: deeppink;
+}
+
+#loginForm {
+    background-color: #ffffff;
+    padding: 5%;
+    border-radius: 2%;
+}
+
+#loginButton {
+    background-color: deeppink;
+    margin: 0 5% 0 5%;
+    width: 90%;
+}
+
+#subscribeButton {
+    background-color: blueviolet;
+    margin-top: 5%;
+}
+
+.form-group {
+    margin-top: 5%;
+}
+
+#titleLogin {
+    font-weight: 300;
+    margin-bottom: 5%;
+}
+
+.titleTextLogin{
+    font-size: xx-large;
+}
+.subTitleLogin {
+    font-size: large;
+}
+
+.formTitle {
+    font-size: larger;
+    font-weight: 200;
+}
+
+#rememberMeBox {
+    background-color: blueviolet;
+}
