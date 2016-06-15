@@ -1,4 +1,40 @@
 
-body {
-    padding-top: 60px;
+.profilPicture {
+    height: auto;
+    width: 35%;
+}
+
+.profileArea {
+    border: 5px black;
+    border-radius: 10px;
+}
+
+.profileArea img{
+    float: left;
+}
+
+.profileArea ul{
+    margin-left: 35%;
+}
+
+.panel-heading {
+    background-color:  #da12b7!important;
+}
+
+.panel {
+    border-color: #da12b7;
+}
+
+.panel-body {
+    border-color: #da12b7;
+}
+
+.btn {
+    background-color: #da12b7!important;
+    color: white;
+    font-weight: 400;
+}
+
+#containerButton {
+    margin-bottom: 1%;
 }

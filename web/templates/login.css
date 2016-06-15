@@ -1,6 +1,6 @@
 
 body {
-    background-color: lightgray;
+    background-color:  #eeeeee;
     padding-top: 3%;
     font-family: Arial;
     color: deeppink;
@@ -13,13 +13,13 @@ body {
 }
 
 #loginButton {
-    background-color: deeppink;
+    background-color: #da12b7;
     margin: 0 5% 0 5%;
     width: 90%;
 }
 
 #subscribeButton {
-    background-color: blueviolet;
+    background-color:  #9612da;
     margin-top: 5%;
 }
 
@@ -45,5 +45,6 @@ body {
 }
 
 #rememberMeBox {
-    background-color: blueviolet;
+    background-color: #9612da;
 }
+
