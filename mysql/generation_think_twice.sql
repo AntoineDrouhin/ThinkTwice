@@ -21,18 +21,18 @@ create table loisir (
 
 drop table if exists profil;
 create table profil (
-	id mediumint not null auto_increment primary key
+	id mediumint not null auto_increment primary key,
 	universite_id mediumint,
 	job_id mediumint,
 	loisir_id mediumint,
-	foreign key (universite_id) references universite(id)
-	foreign key (job_id) references job(id)
+	foreign key (universite_id) references universite(id),
+	foreign key (job_id) references job(id),
 	foreign key (loisir_id) references loisir(id)
 );
 
 
-drop table if exists persone;
-create table persone (
+drop table if exists personne;
+create table personne (
 	id mediumint not null auto_increment primary key,
 	prenom varchar(255) not null,
 	nom varchar(255) not null,
@@ -50,8 +50,8 @@ drop table if exists ttmatch;
 create table ttmatch (
 	id mediumint not null auto_increment primary key,	
 	date_debut timestamp default current_timestamp,
-	person_id_1 medium int not null,
-	person_id_2 medium int not null,
+	person_id_1 mediumint not null,
+	person_id_2 mediumint not null,
 	foreign key (person_id_1) references personne(id),
 	foreign key (person_id_2) references personne(id)
 );
@@ -61,6 +61,6 @@ create table msg (
 	id mediumint not null auto_increment primary key,
 	txt longtext not null,
 	date_post timestamp default current_timestamp,
-	ttmatch_id medium int not null,
+	ttmatch_id mediumint not null,
 	foreign key (ttmatch_id) references ttmatch(id)
 );
