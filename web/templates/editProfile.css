@@ -1,0 +1,30 @@
+ img {
+    width: 30%;
+}
+
+
+#editform{
+    background-color: #ffffff;
+    padding: 5%;
+    border-radius: 2%;
+	float:center;
+	text-align:left;
+}
+
+#submitButton {
+    background-color: #da12b7;
+    margin: 0 5% 0 5%;
+    width: 30%;
+	float:left;
+}
+
+#cancelButton {
+    background-color:  #9612da;
+    margin: 0 5% 0 5%;
+	width:30%;
+	float:left;
+}
+
+.form-group {
+    margin-top: 5%;
+}
