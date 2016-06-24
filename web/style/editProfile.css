@@ -4,7 +4,6 @@
 
 
 #editform{
-    background-color: #ffffff;
     padding: 5%;
     border-radius: 2%;
 	float:center;
@@ -27,4 +26,12 @@
 
 .form-group {
     margin-top: 5%;
+}
+
+#mainContainer {
+	background-color:#ECECEC;
+	height:90%;
+	width:90%;
+	margin:5%;
+	border-radius:5%;
 }
