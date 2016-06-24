@@ -4,6 +4,6 @@ angular.module('myResumeApp')
     .directive('message', function(){
         return {
             restrict : 'E',
-            templateUrl : 'app/views/directives/message.html'
+            templateUrl : 'app/views/directives/old-message.html'
         }
     });

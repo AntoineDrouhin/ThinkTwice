@@ -4,7 +4,7 @@ angular.module('myResumeApp')
     .directive('resume', function (ConfigResumeApp) {
         return{
             restrict : 'E',
-            templateUrl : 'app/views/directives/resume.html',
+            templateUrl : 'app/views/directives/old-resume.html',
             scope : {
                 resume : '=cv'
             },

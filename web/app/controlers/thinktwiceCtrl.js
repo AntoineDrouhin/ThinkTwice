@@ -46,7 +46,7 @@ angular.module('myResumeApp')
                 $scope.current_messages = response.data;
                 $mdDialog.show({
                     controller : DialogController,
-                    templateUrl: '/app/views/directives/message.html',
+                    templateUrl: '/app/views/directives/old-message.html',
                     parent: angular.element(document.body),
                     clickOutsideToClose:true,
                     fullscreen: useFullScreen

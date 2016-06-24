@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('myResumeApp')
-    .directive('message-box', function(){
+    .directive('message-list', function(){
         return {
             restrict : 'E',
-            templateUrl : 'app/views/directives/message-box.html',
+            templateUrl : 'app/views/directives/old-msglst.html',
             scope : {
                 coordonnee : '='
             },

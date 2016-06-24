@@ -4,7 +4,7 @@ angular.module('myResumeApp')
     .directive('coordonneePerson', function () {
         return {
             restrict: 'E',
-            templateUrl: 'app/views/directives/coordonnee-person.html',
+            templateUrl: 'app/views/directives/old-coordonnee-person.html',
             scope: {
                 coordonnee: '='
             },
