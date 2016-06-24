@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myResumeApp',[
+angular.module('thinktwiceApp',[
     /**
      * Here declaration all external dependencies or
      */
@@ -14,9 +14,7 @@ angular.module('myResumeApp',[
             grant_type: 'password'
         },
         api_route  :'http://localhost:3000',
-        uri_resume : '/resumes',
-        uri_person : '/people',
-        uri_contact : '/contact',
-        uri_message : '/message'
-
+        uri_login : '/login',
+        uri_match : '/people',
+        uri_profile : '/profile'
     });
