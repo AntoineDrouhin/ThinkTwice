@@ -24,7 +24,7 @@ drop table if exists msg;
 drop table if exists origine_interet;
 
 
-CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date NOT NULL, taille int(10) NOT NULL, adresse text NOT NULL, cp mediumint(9) NOT NULL, ville varchar(255) NOT NULL, login varchar(255) NOT NULL, mdp text NOT NULL, situationFamilialeid int(10) NOT NULL, niveauEtudeid int(10) NOT NULL, origineid int(10) NOT NULL, universiteid int(10) NOT NULL, loisirid int(10) NOT NULL, metierid int(10) NOT NULL, sexeid int(10) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date NOT NULL, taille int(10) NOT NULL, adresse text NOT NULL, cp mediumint(9) NOT NULL, ville varchar(255) NOT NULL, login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamilialeid int(10) NOT NULL, niveauEtudeid int(10) NOT NULL, origineid int(10) NOT NULL, universiteid int(10) NOT NULL, loisirid int(10) NOT NULL, metierid int(10) NOT NULL, sexeid int(10) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
 CREATE TABLE facette (id varchar(2) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
 CREATE TABLE personne_facette (score int(10) NOT NULL, facetteid varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (facetteid, personneid));
 CREATE TABLE personnalite (id varchar(1) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
