@@ -9,9 +9,9 @@ var mongoose 	= require('mongoose'),
     Schema	 	= mongoose.Schema;
 
 
-var MetierSchema = new Schema({
+var FacetteSchema = new Schema({
     id       : int,
     libelle  : String
 });
 
-mongoose.model('metier', MetierSchema);
+mongoose.model('facette', FacetteSchema);

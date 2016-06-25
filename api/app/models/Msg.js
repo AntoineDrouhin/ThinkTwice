@@ -9,9 +9,11 @@ var mongoose 	= require('mongoose'),
     Schema	 	= mongoose.Schema;
 
 
-var MetierSchema = new Schema({
+var MsgSchema = new Schema({
     id       : int,
-    libelle  : String
+    txt  : String,
+    date_post : Date,
+    ttmatchid     : { type : Schema.Types.ObjectId, ref: 'ttmatch' }
 });
 
-mongoose.model('metier', MetierSchema);
+mongoose.model('msg', MsgSchema);

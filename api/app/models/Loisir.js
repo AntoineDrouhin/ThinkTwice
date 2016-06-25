@@ -14,4 +14,4 @@ var LoisirSchema = new Schema({
     libelle  : String
 });
 
-mongoose.model('Loisir', LoisirSchema);
+mongoose.model('loisir', LoisirSchema);
