@@ -6,4 +6,4 @@ angular.module('thinktwiceApp')
             restrict: 'E',
             templateUrl: 'app/views/directives/tchat-message.html'
         }
-    });
+    }); 

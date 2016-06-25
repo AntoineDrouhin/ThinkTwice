@@ -4,12 +4,12 @@
  * SERVICE config
  * Allow to access to the constant application
  */
-angular.module('myResumeApp')
-    .service('ConfigResumeApp', function(WEBAPP_CONFIG) {
+angular.module('thinktwiceApp')
+    .service('thinktwiceApp', function(WEBAPP_CONFIG) {
 
         /**
          * Main variable
-         * Use an extend to add to possibility to add some testing key
+         * Use an extend to adexd to possibility to add some testing key
          * @type {void|Object|*}
          */
         var parameters = angular.extend({}, WEBAPP_CONFIG);
