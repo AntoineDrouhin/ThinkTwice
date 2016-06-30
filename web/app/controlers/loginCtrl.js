@@ -27,4 +27,8 @@ angular.module('thinktwiceApp')
 
         };
 
+        $scope.inscription = function () {
+            document.location.href = "#/inscription";
+        }
+
     });

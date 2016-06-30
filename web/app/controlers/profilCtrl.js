@@ -14,7 +14,7 @@ angular.module('thinktwiceApp')
 
         }, function errorCallback(response){
             $scope.interet = {error: true};
-            alert("Erreur récupération facettes, reponse = " + response);
+            //alert("Erreur récupération facettes, reponse = " + response);
         });
 
         // Recuperer les questions
@@ -58,24 +58,34 @@ angular.module('thinktwiceApp')
             });
         };
 
-
         // gestion de personne
-        $scope.personne = {
-            "dateDeNaissance": "",
-            "taille" : 0,
-            "adresse" : "",
-            "cp" : "",
-            "ville": "",
-            "situationFamiliale" : "",
-            "niveauEtude" : 0,
-            "origine" : "",
-            "universite" : "",
-            "loisir" : "",
-            "metier" : "",
-            "sexe" : "",
-            "id_personne" : 0
-        };
 
+        // Recupere les informations de personne
+        $http({
+            method: 'GET',
+            url: 'http://0.0.0.0:3000/personne/' + idUser ,
+            data : $scope.personne
+        }).then(function successCallback(response){
+            $scope.personne = response;
+        }, function errorCallback(){
+            $scope.personne = {
+                "dateDeNaissance": "",
+                "taille" : 0,
+                "adresse" : "",
+                "cp" : "",
+                "ville": "",
+                "situationFamiliale" : "",
+                "niveauEtude" : 0,
+                "origine" : "",
+                "universite" : "",
+                "loisir" : "",
+                "metier" : "",
+                "sexe" : "",
+                "id_personne" : 0
+            };
+        });
+
+        // Fonction de validation du formulaire de personne
         $scope.postPersonne = function () {
 
             $http({
@@ -89,10 +99,11 @@ angular.module('thinktwiceApp')
             });
         };
 
+        // Recuperer l'interet
         $http({
-            method: 'POST',
-            url: WEBAPP_CONFIG.api_route + '/interet/' + idUser,
-            data : $scope.personne
+            method: 'GET',
+            url: 'http://0.0.0.0:3000/interet/' + idUser,
+            data : $scope.interet
         }).then(function successCallback(response){
             $scope.interet = response;
         }, function errorCallback(response){
@@ -110,11 +121,8 @@ angular.module('thinktwiceApp')
                 "origine3" : ""
             };
         });
-        $scope.interet = {
 
-        };
-
-        //gestion de interet
+        // Validation du formulaire d'interet
         $scope.postInteret = function () {
 
             $http({

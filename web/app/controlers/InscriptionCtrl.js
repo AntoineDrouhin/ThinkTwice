@@ -22,6 +22,8 @@ angular.module('thinktwiceApp')
                 url: 'http://0.0.0.0:3000/personne',
                 data : $scope.personne
             }).then(function successCallback(response){
+                swal("Success !!!", "L'equipe thinktwice vous souhaite la bienvenue", "success");
+                document.location.href = "#/login";
 
             }, function errorCallback(response){
                 console.log(response)

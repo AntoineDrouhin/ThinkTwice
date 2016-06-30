@@ -4,10 +4,11 @@ angular.module('thinktwiceApp')
     .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia){
 
         $scope.personne = {
-            prenom : 'Le KERSS',
-            dateDeNaissance : '1996/05/29',
-            situationFamiliale : 'Célibataire bien sûr...',
-            sexe : 'f'
+            prenom : "",
+            dateDeNaissance : "",
+            situationFamiliale : "",
+            sexe : 'm',
+            age : 8
         };
 
 
@@ -22,7 +23,5 @@ angular.module('thinktwiceApp')
         $scope.getAge = function(date) {
             return 2;
         }
-
-
 
     });
