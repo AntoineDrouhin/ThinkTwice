@@ -20,7 +20,7 @@ drop table if exists msg;
 
 
 
-CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date, taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universitei varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1), PRIMARY KEY (id));
+CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date, taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universite varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1), PRIMARY KEY (id));
 CREATE TABLE facette (id varchar(2) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE personne_facette (score int(10) NOT NULL, facetteid varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (facetteid, personneid),
   FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (facetteid) REFERENCES facette(id));
@@ -36,21 +36,6 @@ CREATE TABLE ttmatch (id int(10) NOT NULL AUTO_INCREMENT, date_debut date NOT NU
 FOREIGN KEY (personneid1) REFERENCES personne(id), FOREIGN KEY (personneid2) REFERENCES personne(id));
 CREATE TABLE msg (id int(10) NOT NULL AUTO_INCREMENT, txt longtext NOT NULL, date_post date NOT NULL, ttmatchid int(10) NOT NULL, PRIMARY KEY (id),
 FOREIGN KEY (ttmatchid) REFERENCES ttmatch(id));
---ALTER TABLE personne_facette ADD INDEX FKpersonne_f620685 (personneid), ADD CONSTRAINT FKpersonne_f620685 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE personne_facette ADD INDEX FKpersonne_f587277 (facetteid), ADD CONSTRAINT FKpersonne_f587277 FOREIGN KEY (facetteid) REFERENCES facette (id);
---ALTER TABLE personne_personalite ADD INDEX FKpersonne_p244485 (personneid), ADD CONSTRAINT FKpersonne_p244485 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE personne_personalite ADD INDEX FKpersonne_p233778 (personnaliteid), ADD CONSTRAINT FKpersonne_p233778 FOREIGN KEY (personnaliteid) REFERENCES personnalite (id);
---ALTER TABLE interet ADD INDEX FKinteret296933 (personneid), ADD CONSTRAINT FKinteret296933 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE interet ADD INDEX FKinteret330341 (facetteid), ADD CONSTRAINT FKinteret330341 FOREIGN KEY (facetteid) REFERENCES facette (id);
---ALTER TABLE interet ADD INDEX FKinteret847191 (facetteid2), ADD CONSTRAINT FKinteret847191 FOREIGN KEY (facetteid2) REFERENCES facette (id);
---ALTER TABLE interet ADD INDEX FKinteret847190 (facetteid3), ADD CONSTRAINT FKinteret847190 FOREIGN KEY (facetteid3) REFERENCES facette (id);
---ALTER TABLE question ADD INDEX FKquestion351915 (typeBaremeid), ADD CONSTRAINT FKquestion351915 FOREIGN KEY (typeBaremeid) REFERENCES typeBareme (id);
---ALTER TABLE question ADD INDEX FKquestion705288 (facetteid), ADD CONSTRAINT FKquestion705288 FOREIGN KEY (facetteid) REFERENCES facette (id);
---ALTER TABLE msg ADD INDEX FKmsg84838 (ttmatchid), ADD CONSTRAINT FKmsg84838 FOREIGN KEY (ttmatchid) REFERENCES ttmatch (id);
---ALTER TABLE ttmatch ADD INDEX FKttmatch503246 (personneid), ADD CONSTRAINT FKttmatch503246 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE ttmatch ADD INDEX FKttmatch108145 (personneid2), ADD CONSTRAINT FKttmatch108145 FOREIGN KEY (personneid2) REFERENCES personne (id);
-
-
 
 
 INSERT INTO facette (id,libelle) 
@@ -344,9 +329,3 @@ VALUES
 ('Je prefererais avoir la réputation de pardonner plutôt que celle d\'etre juste',2,'A6'),
 ('Avant de répondre à une question, j\'y reflechis à deux fois',2,'C6');
 
-INSERT INTO personne (prenom, nom, dateDeNaissance, taille, adresse, cp, ville, login, mdp, mail, situationFamiliale, niveauEtude, origine, universite, loisir, metier, sexe) 
-VALUES 
-('Geoffrey', 'Harrazi', '1994-06-04', 183, '20 rue des poneys', 95680, 'Montlignon', 'geoffrey','geoffrey', 'geoffreyharrazi@gmail.com', "Célibataire","5","Européen","Panthéon-Sorbonne","Lecture","Informaticien","M");
-INSERT INTO interet (age, taille, niveauEtude, sexe, facetteid1, facetteid2, facetteid3, personneid,origine1,origine2,origine3) 
-VALUES 
-(22,170,5,"F",1,2,3,1,"Asiatique","Européen","Africaine");
