@@ -6,9 +6,10 @@
 
 module.exports = function(router) {
     //------ LOAD CONTROLLER
-    var questionController = require('../controllers/question');
+    var questionController = require('../controllers/question'),
+        auth               = require('../helpers/auth');
 
     // -------- Retrieve all person from the database
-    router.get('/question',  questionController.getAll);
+    router.get('/question',  auth.isAuth, questionController.getAll);
 
 };

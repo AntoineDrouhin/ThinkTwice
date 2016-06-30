@@ -20,21 +20,15 @@ var     moment      = require('moment'),
  */
 QuestionController.getAll = function(req, res){
 
-    console.log("");
-
-    // requete geo
-    // id person, toute table question + réponse
     var query = "select * from question";
 
     var con = global.con();
     con.query(query,function(err,rows){
-        console.log(err);
         if(err){
+            Utils.info(err);
             res.status(200).json({error: true});
         }
-        console.log('Data received from Db:\n');
-        console.log(rows);
-
+        Utils.info("All questions are requested and sended to client.")
         res.status(200).json(rows);
 
     })

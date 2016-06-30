@@ -20,6 +20,9 @@ var compression     = require('compression'),
 // ----- Configuration
 var config          = require('./config');
 
+
+
+
 module.exports = function(app,db) {
     app.set('showStackError', true);
 
@@ -79,6 +82,7 @@ module.exports = function(app,db) {
         allowedOrigins  : config.allowedOrigins,
         headers         : ['X-Requested-With', 'Content-Type', 'Authorization']
     }));
+
 
 };
 

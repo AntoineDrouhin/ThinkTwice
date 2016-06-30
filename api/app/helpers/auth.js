@@ -1,8 +1,8 @@
 'use strict';
 
 // ----- Load dependencies
-var mongoose    = require('mongoose'),
-    Utils       = require('./appUtils');
+
+var     Utils       = require('./appUtils');
 /**
  * Check if the current user is authenticated
  * @param req
@@ -13,15 +13,22 @@ module.exports.isAuth = function(req, res, next){
 
     Utils.info('Check auth about user');
 
-    var    User    = mongoose.model('User');
+    if (true) {
+        next();
+    }
+    else {
+        res.status(401).json({message : 'user not found'});
+    }
 
-    // --- Find associated user in the database
-    User.findByToken(req.headers.authorization,function(err, result){
-        if(!err && result){
-            req.current_user = result;
-            next();
-        }else{
-            res.status(401).json({message : 'user not found'});
-        }
-    });
+    // var    User    = mongoose.model('User');
+    //
+    // // --- Find associated user in the database
+    // User.findByToken(req.headers.authorization,function(err, result){
+    //     if(!err && result){
+    //         req.current_user = result;
+    //         next();
+    //     }else{
+    //         res.status(401).json({message : 'user not found'});
+    //     }
+    // });
 };
