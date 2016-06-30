@@ -1,13 +1,10 @@
-/**
- * Created by Antoine on 24/06/2016.
- */
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
     .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia){
 
-        // TODO : Retrieve questions
 
+        // Recuperer les questions
         $http({
             method: 'GET',
             url: 'http://0.0.0.0:3000/question/'
@@ -17,7 +14,10 @@ angular.module('thinktwiceApp')
             $scope.profil_question = {error: true}
             alert("error Recuperation questions, reponse = " + response);
         });
-        
+
+
+        // Pousser les réponses au questionnaire
+        // TODO : gerer le cas ou on a pas répondu à tout
         $scope.pushData = function(){
             var data = {
                 id_personne : '',
@@ -44,7 +44,20 @@ angular.module('thinktwiceApp')
             }, function errorCallback(response){
                 console.log(response)
             });
-
         }
+        
+        //TODO : put
+        //d.dateDeNaissance,
+          //  d.taille,
+            //d.adresse,
+            //d.cp,
+            //d.ville,
+            //d.situationFamiliale,
+            //.niveauEtude,
+            //d.universite,
+            //d.loisir,
+            //d.metier,
+            //d.sexe,
+            //d.id_personne
 
     });
