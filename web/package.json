@@ -1,8 +1,10 @@
 {
-  "name" : "myResume",
-  "version" : "2",
-
+  "name": "myResume",
+  "version": "2",
   "authors": [
     "Laurent Breda"
-  ]
+  ],
+  "dependencies": {
+    "socket.io": "^1.4.8"
+  }
 }
