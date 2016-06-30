@@ -1,6 +1,3 @@
-/**
- * Created by aureliengarret on 30/06/2016.
- */
 
 var Personne = function (data) {
     this.data = data;

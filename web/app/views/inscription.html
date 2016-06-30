@@ -12,22 +12,22 @@
                 <input type="text" class="form-control" id="inputUsername" placeholder="Pseudo" ng-model="personne.login" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="inputPrenom" placeholder="Prénom" ng-model="personne.login" />
+                <input type="text" class="form-control" id="inputPrenom" placeholder="Prénom" ng-model="personne.prenom" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="inputNom" placeholder="Nom" ng-model="personne.login" />
+                <input type="text" class="form-control" id="inputNom" placeholder="Nom" ng-model="personne.nom" />
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" ng-model="personne.login" />
+                <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" ng-model="personne.mail" />
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" ng-model="personne.mdp" />
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="doublePassword" placeholder="Confirmer le Mot de passe" ng-model="personne.mdpconf"/>
+                <input type="password" class="form-control" id="doublePassword" placeholder="Confirmer le Mot de passe" ng-model="mdpconf"/>
             </div>
             <div class="form-group">
-                <button id="subscribeButton" class="btn btn-primary btn-block" ng-click="inscription(personne)">
+                <button id="subscribeButton" class="btn btn-primary btn-block" ng-click="inscription()">
                     Inscription
                 </button>
 
