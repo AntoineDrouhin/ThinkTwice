@@ -26,7 +26,8 @@ ReponseController.pushData = function(req, res){
     Utils.info("Form are pushed to the server.");
 
     if (req.body) {
-        ReponseController.calcFacette(req.body.id_personne, req.body.reponses);
+        //ReponseController.calcFacette(req.body.id_personne, req.body.reponses);
+        ReponseController.calcPersonnalite(req.body.id_personne, req.body.reponses);
     } else {
         Utils.info("No body present in pushed data.");
     }

@@ -2,10 +2,10 @@
  * Created by aureliengarret on 30/06/2016.
  */
 
-var Facette = function (id_personne, reponses) {
+var Facette = function (id_personne, reponses, next) {
     this.id_personne = id_personne;
     this.reponses = reponses;
-    //this.next = next;
+    this.next = next;
 }
 
 
@@ -69,19 +69,19 @@ Facette.prototype.calc = function () {
                 //insert dans personne_facette
                 var j = 0;
                 for (var val in mapFacette) {
+                    if (j < (tabFacette.length)) {
+                    } else {
+                        this.next($this.id_personne, $this.reponses);
+                    }
+                    j++;
                     query = "INSERT INTO personne_facette (score,facetteid,personneid) VALUES (?,?,?)";
                     var score = mapFacette[val];
                     con.query(query,[score, val, $this.id_personne],function(err,rows){
+                        var a = 1;
                         if(err){
                             Utils.info(err);
 
                         }
-
-
-                        if(j>=(tabFacette.length-1)){
-                            this.next($this.id_personne, $this.reponses);
-                        }
-                        j++;
                     })
 
                 }
