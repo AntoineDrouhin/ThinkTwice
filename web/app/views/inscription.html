@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-controller="inscriptionCtrl">
 <head>
     <meta charset="UTF-8">
     <title>ThinkTwice - Login</title>
@@ -23,17 +23,17 @@
             <div class="formTitle">Inscription</div>
             <div class="form-group">
                 <!-- <label for="inputUsername">Pseudo :</label> -->
-                <input type="text" class="form-control" id="inputUsername" placeholder="Pseudo" />
+                <input type="text" class="form-control" id="inputUsername" placeholder="Pseudo" ng-model="user.login" />
             </div>
             <div class="form-group">
                 <!-- <label for="inputPassword">Password :</label> -->
-                <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" />
+                <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" ng-model="user.password" />
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="doublePassword" placeholder="Confirmer le Mot de passe" />
+                <input type="password" class="form-control" id="doublePassword" placeholder="Confirmer le Mot de passe" ng-model="user.passwordconf" />
             </div>
             <div class="form-group">
-                <button id="loginButton" class="btn btn-primary btn-block">
+                <button id="loginButton" class="btn btn-primary btn-block" ng-click="inscription(user)">
                     Connexion
                 </button>
             </div>
