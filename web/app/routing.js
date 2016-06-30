@@ -2,7 +2,7 @@
 
 angular.module('thinktwiceApp')
     .config(function ($stateProvider,$urlRouterProvider) {
-        $urlrouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/login');
 
         $stateProvider
             .state('login', {
@@ -15,9 +15,14 @@ angular.module('thinktwiceApp')
                 templateUrl : 'app/views/match.html',
                 controller  : 'matchCtrl'
             })
-            .state('match', {
+            .state('profile', {
                 url         : '/profile',
                 templateUrl : 'app/views/profile.html',
+                controller  : 'profileCtrl'
+            })
+            .state('inscription', {
+                url         : '/inscription',
+                templateUrl : 'app/views/inscription.html',
                 controller  : 'profileCtrl'
             })
     });
