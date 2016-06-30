@@ -8,13 +8,13 @@ angular.module('thinktwiceApp')
         // Recuperer les interets
         $http({
             method: 'GET',
-            url: WEBAPP_CONFIG.api_route + '/interet'
+            url: WEBAPP_CONFIG.api_route + '/facette/'
         }).then(function successCallback(response){
             $scope.interet = response.data;
 
         }, function errorCallback(response){
             $scope.interet = {error: true};
-            alert("Erreur récupération interet, reponse = " + response);
+            alert("Erreur récupération facettes, reponse = " + response);
         });
 
         // Recuperer les questions
