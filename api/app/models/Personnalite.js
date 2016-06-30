@@ -9,7 +9,7 @@ var Personnalite = function (id_personne, reponses) {
 
 
 Personnalite.prototype.calc = function () {
-    //geoff calc
+    var a = 1;
     console.log("Calc Personnalite in progress...");
 }
 
