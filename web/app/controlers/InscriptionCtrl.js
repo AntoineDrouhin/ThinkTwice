@@ -5,19 +5,24 @@
 var current_resume;
 angular.module('thinktwiceApp')
     .controller('inscriptionCtrl', function($scope, $http, $mdDialog, $mdMedia){
-        $scope.monjson = {
-            ok : 'ok',
-            okk : 'okk'
+
+        $scope.personne = {
         };
 
-
-
-        $scope.inscription = function(personne) {
+        $scope.inscription = function(submit) {
             alert("entree ");
-            if(personne.prenom == null
-            || personne.nom == null
-            || personne.mdp == null){
-                alert("monene");
+
+            $scope.personne = angular.copy(submit);
+
+            if($scope.personne.hasOwnProperty("login")
+                && $scope.personne.hasOwnProperty("mdp")
+                && $scope.personne.hasOwnProperty("mdpconf")
+            ){
+                if($scope.personne.mdp == $scope.personne.mdpconf){
+                    
+                    
+                }
+                
             }
         }
 
