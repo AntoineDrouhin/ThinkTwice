@@ -9,49 +9,162 @@ drop table if exists facette;
 drop table if exists personne_facette;
 drop table if exists personnalite;
 drop table if exists personne_personnalite;
+drop table if exists situationFamiliale;
+drop table if exists niveauEtude;
 drop table if exists origine;
 drop table if exists interet;
 drop table if exists question;
 drop table if exists typeBareme;
+drop table if exists universite;
+drop table if exists loisir;
+drop table if exists metier;
+drop table if exists sexe;
 drop table if exists ttmatch;
 drop table if exists msg;
+drop table if exists origine_interet;
+
+
+CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date NOT NULL, taille int(10) NOT NULL, adresse text NOT NULL, cp mediumint(9) NOT NULL, ville varchar(255) NOT NULL, login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamilialeid int(10) NOT NULL, niveauEtudeid int(10) NOT NULL, origineid int(10) NOT NULL, universiteid int(10) NOT NULL, loisirid int(10) NOT NULL, metierid int(10) NOT NULL, sexeid int(10) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE facette (id varchar(2) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE personne_facette (score int(10) NOT NULL, facetteid varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (facetteid, personneid));
+CREATE TABLE personnalite (id varchar(1) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE personne_personnalite (score int(10), personnaliteid varchar(1) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (personnaliteid, personneid));
+CREATE TABLE situationFamiliale (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(25) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE niveauEtude (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE origine (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE interet (id int(10) NOT NULL AUTO_INCREMENT, age int(10), taille int(10), niveauEtudeid int(10), sexeid int(10) NOT NULL, facetteid varchar(2) NOT NULL, facetteid2 varchar(2) NOT NULL, facetteid3 varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE question (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, typeBaremeid int(10) NOT NULL, facetteid varchar(2) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE typeBareme (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE universite (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE loisir (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE metier (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE sexe (id int(10) NOT NULL AUTO_INCREMENT, code varchar(1) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE ttmatch (id int(10) NOT NULL AUTO_INCREMENT, date_debut date NOT NULL, personneid int(10) NOT NULL, personneid2 int(10) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE msg (id int(10) NOT NULL AUTO_INCREMENT, txt longtext NOT NULL, date_post date NOT NULL, ttmatchid int(10) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX (id));
+CREATE TABLE origine_interet (origineid int(10) NOT NULL, interetid int(10) NOT NULL, PRIMARY KEY (origineid, interetid));
+ALTER TABLE personne_facette ADD INDEX FKpersonne_f620685 (personneid), ADD CONSTRAINT FKpersonne_f620685 FOREIGN KEY (personneid) REFERENCES personne (id);
+ALTER TABLE personne_facette ADD INDEX FKpersonne_f587277 (facetteid), ADD CONSTRAINT FKpersonne_f587277 FOREIGN KEY (facetteid) REFERENCES facette (id);
+ALTER TABLE personne_personnalite ADD INDEX FKpersonne_p244485 (personneid), ADD CONSTRAINT FKpersonne_p244485 FOREIGN KEY (personneid) REFERENCES personne (id);
+ALTER TABLE personne_personnalite ADD INDEX FKpersonne_p359973 (personnaliteid), ADD CONSTRAINT FKpersonne_p359973 FOREIGN KEY (personnaliteid) REFERENCES personnalite (id);
+ALTER TABLE personne ADD INDEX FKpersonne474493 (situationFamilialeid), ADD CONSTRAINT FKpersonne474493 FOREIGN KEY (situationFamilialeid) REFERENCES situationFamiliale (id);
+ALTER TABLE personne ADD INDEX FKpersonne50289 (niveauEtudeid), ADD CONSTRAINT FKpersonne50289 FOREIGN KEY (niveauEtudeid) REFERENCES niveauEtude (id);
+ALTER TABLE personne ADD INDEX FKpersonne585214 (origineid), ADD CONSTRAINT FKpersonne585214 FOREIGN KEY (origineid) REFERENCES origine (id);
+ALTER TABLE interet ADD INDEX FKinteret296933 (personneid), ADD CONSTRAINT FKinteret296933 FOREIGN KEY (personneid) REFERENCES personne (id);
+ALTER TABLE interet ADD INDEX FKinteret330341 (facetteid), ADD CONSTRAINT FKinteret330341 FOREIGN KEY (facetteid) REFERENCES facette (id);
+ALTER TABLE interet ADD INDEX FKinteret847191 (facetteid2), ADD CONSTRAINT FKinteret847191 FOREIGN KEY (facetteid2) REFERENCES facette (id);
+ALTER TABLE interet ADD INDEX FKinteret847190 (facetteid3), ADD CONSTRAINT FKinteret847190 FOREIGN KEY (facetteid3) REFERENCES facette (id);
+ALTER TABLE question ADD INDEX FKquestion351915 (typeBaremeid), ADD CONSTRAINT FKquestion351915 FOREIGN KEY (typeBaremeid) REFERENCES typeBareme (id);
+ALTER TABLE question ADD INDEX FKquestion296330 (facetteid), ADD CONSTRAINT FKquestion296330 FOREIGN KEY (facetteid) REFERENCES facette (id);
+ALTER TABLE personne ADD INDEX FKpersonne894276 (universiteid), ADD CONSTRAINT FKpersonne894276 FOREIGN KEY (universiteid) REFERENCES universite (id);
+ALTER TABLE personne ADD INDEX FKpersonne25865 (loisirid), ADD CONSTRAINT FKpersonne25865 FOREIGN KEY (loisirid) REFERENCES loisir (id);
+ALTER TABLE personne ADD INDEX FKpersonne957630 (metierid), ADD CONSTRAINT FKpersonne957630 FOREIGN KEY (metierid) REFERENCES metier (id);
+ALTER TABLE personne ADD INDEX FKpersonne969610 (sexeid), ADD CONSTRAINT FKpersonne969610 FOREIGN KEY (sexeid) REFERENCES sexe (id);
+ALTER TABLE interet ADD INDEX FKinteret930014 (sexeid), ADD CONSTRAINT FKinteret930014 FOREIGN KEY (sexeid) REFERENCES sexe (id);
+ALTER TABLE msg ADD INDEX FKmsg84838 (ttmatchid), ADD CONSTRAINT FKmsg84838 FOREIGN KEY (ttmatchid) REFERENCES ttmatch (id);
+ALTER TABLE origine_interet ADD INDEX FKorigine_in226670 (origineid), ADD CONSTRAINT FKorigine_in226670 FOREIGN KEY (origineid) REFERENCES origine (id);
+ALTER TABLE origine_interet ADD INDEX FKorigine_in767238 (interetid), ADD CONSTRAINT FKorigine_in767238 FOREIGN KEY (interetid) REFERENCES interet (id);
+ALTER TABLE ttmatch ADD INDEX FKttmatch503246 (personneid), ADD CONSTRAINT FKttmatch503246 FOREIGN KEY (personneid) REFERENCES personne (id);
+ALTER TABLE ttmatch ADD INDEX FKttmatch108145 (personneid2), ADD CONSTRAINT FKttmatch108145 FOREIGN KEY (personneid2) REFERENCES personne (id);
+ALTER TABLE interet ADD INDEX FKinteret849336 (niveauEtudeid), ADD CONSTRAINT FKinteret849336 FOREIGN KEY (niveauEtudeid) REFERENCES niveauEtude (id);
 
 
 
+INSERT INTO loisir (libelle) 
+    VALUES ('Sport');
+	
+
+INSERT INTO loisir (libelle) 
+    VALUES ('Lecture');
+	
+	
+INSERT INTO loisir (libelle) 
+    VALUES ('Cinema');
+	
+
+INSERT INTO metier (libelle) 
+    VALUES 
+('Aéronautique Et Espace'),
+('Agriculture - Agroalimentaire'),
+('Agroalimentaire - Industries Alimentaires'),
+('Artisanat'),
+('Audiovisuel, Cinéma'),
+('Audit, Comptabilité, Gestion'),
+('Automobile'),
+('Banque, Assurance'),
+('Bâtiment, Travaux Publics'),
+('Biologie, Chimie, Pharmacie'),
+('Commerce, Distribution'),
+('Communication'),
+('Création, Métiers D art'),
+('Culture, Patrimoine'),
+('Défense, Sécurité'),
+('Documentation, Bibliothèque'),
+('Droit'),
+('Edition, Livre'),
+('Enseignement'),
+('Environnement'),
+('Ferroviaire'),
+('Foires, Salons Et Congrès'),
+('Fonction Publique'),
+('Hôtellerie, Restauration'),
+('Humanitaire'),
+('Immobilier'),
+('Industrie'),
+('Informatique, Télécoms, Web'),
+('Journalisme'),
+('Lgues'),
+('Marketing, Publicité'),
+('MédicalMode-Textile'),
+('Paramédical'),
+('Propreté Et Services Associés'),
+('Psychologie'),
+('Ressources Humaines'),
+('Sciences Humaines Et Sociales'),
+('Secrétariat'),
+('Social'),
+('Spectacle - Métiers De La Scène'),
+('Sport'),
+('Tourisme'),
+('Transport-Logistique');
 
 
-CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date, taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universitei varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1), PRIMARY KEY (id));
-CREATE TABLE facette (id varchar(2) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE personne_facette (score int(10) NOT NULL, facetteid varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (facetteid, personneid),
-  FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (facetteid) REFERENCES facette(id));
-CREATE TABLE personnalite (id varchar(1) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE personne_personnalite (score int(10), personnaliteid varchar(1) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (personnaliteid, personneid),
-FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (personnaliteid) REFERENCES personnalite(id));
-CREATE TABLE interet (id int(10) NOT NULL AUTO_INCREMENT, age int(10), taille int(10), niveauEtude int(10), sexe varchar(1), facetteid1 varchar(2) NOT NULL, facetteid2 varchar(2) NOT NULL, facetteid3 varchar(2) NOT NULL, personneid int(10) NOT NULL, origine1 varchar(255), origine2 varchar(255), origine3 varchar(255), PRIMARY KEY (id),
-FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (facetteid1) REFERENCES facette(id),FOREIGN KEY (facetteid2) REFERENCES facette(id),FOREIGN KEY (facetteid3) REFERENCES facette(id));
-CREATE TABLE typeBareme (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE question (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, typeBaremeid int(10) NOT NULL, facetteid varchar(2) NOT NULL, PRIMARY KEY (id),
-FOREIGN KEY (facetteid) REFERENCES facette(id),FOREIGN KEY (typeBaremeid) REFERENCES typeBareme(id));
-CREATE TABLE ttmatch (id int(10) NOT NULL AUTO_INCREMENT, date_debut date NOT NULL, personneid1 int(10) NOT NULL, personneid2 int(10) NOT NULL, PRIMARY KEY (id),
-FOREIGN KEY (personneid1) REFERENCES personne(id), FOREIGN KEY (personneid2) REFERENCES personne(id));
-CREATE TABLE msg (id int(10) NOT NULL AUTO_INCREMENT, txt longtext NOT NULL, date_post date NOT NULL, ttmatchid int(10) NOT NULL, PRIMARY KEY (id),
-FOREIGN KEY (ttmatchid) REFERENCES ttmatch(id));
---ALTER TABLE personne_facette ADD INDEX FKpersonne_f620685 (personneid), ADD CONSTRAINT FKpersonne_f620685 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE personne_facette ADD INDEX FKpersonne_f587277 (facetteid), ADD CONSTRAINT FKpersonne_f587277 FOREIGN KEY (facetteid) REFERENCES facette (id);
---ALTER TABLE personne_personalite ADD INDEX FKpersonne_p244485 (personneid), ADD CONSTRAINT FKpersonne_p244485 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE personne_personalite ADD INDEX FKpersonne_p233778 (personnaliteid), ADD CONSTRAINT FKpersonne_p233778 FOREIGN KEY (personnaliteid) REFERENCES personnalite (id);
---ALTER TABLE interet ADD INDEX FKinteret296933 (personneid), ADD CONSTRAINT FKinteret296933 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE interet ADD INDEX FKinteret330341 (facetteid), ADD CONSTRAINT FKinteret330341 FOREIGN KEY (facetteid) REFERENCES facette (id);
---ALTER TABLE interet ADD INDEX FKinteret847191 (facetteid2), ADD CONSTRAINT FKinteret847191 FOREIGN KEY (facetteid2) REFERENCES facette (id);
---ALTER TABLE interet ADD INDEX FKinteret847190 (facetteid3), ADD CONSTRAINT FKinteret847190 FOREIGN KEY (facetteid3) REFERENCES facette (id);
---ALTER TABLE question ADD INDEX FKquestion351915 (typeBaremeid), ADD CONSTRAINT FKquestion351915 FOREIGN KEY (typeBaremeid) REFERENCES typeBareme (id);
---ALTER TABLE question ADD INDEX FKquestion705288 (facetteid), ADD CONSTRAINT FKquestion705288 FOREIGN KEY (facetteid) REFERENCES facette (id);
---ALTER TABLE msg ADD INDEX FKmsg84838 (ttmatchid), ADD CONSTRAINT FKmsg84838 FOREIGN KEY (ttmatchid) REFERENCES ttmatch (id);
---ALTER TABLE ttmatch ADD INDEX FKttmatch503246 (personneid), ADD CONSTRAINT FKttmatch503246 FOREIGN KEY (personneid) REFERENCES personne (id);
---ALTER TABLE ttmatch ADD INDEX FKttmatch108145 (personneid2), ADD CONSTRAINT FKttmatch108145 FOREIGN KEY (personneid2) REFERENCES personne (id);
+INSERT INTO situationFamiliale (libelle) 
+VALUES 
+('Célibataire'),
+('Marié(e)'),
+('Divorcé(e)'),
+('Veuf(ve)');
 
+INSERT INTO universite (libelle) 
+VALUES 
+('Panthéon-Sorbonne'),
+('Descartes'),
+('Diderot');
 
+INSERT INTO niveauEtude (libelle) 
+VALUES 
+('Aucun'),
+('CAP/BEP'),
+('BAC'),
+('BAC+2, BTS, DUT'),
+('BAC+3 ou 4 : licence, maîtrise ou équivalent'),
+('BAC+4 ou 5 : master, doctorat, diplôme de grande école');
 
+INSERT INTO origine (libelle) 
+VALUES 
+('Européenne'),
+('Africaine'),
+('Asiatique'),
+('Arabe'),
+('Indienne'),
+('Hispanique'),
+('Autre ');
+
+INSERT INTO sexe (code,libelle) 
+VALUES 
+('O','Indifférent'),
+('M','Homme'),
+('F','Femme');
 
 INSERT INTO facette (id,libelle) 
 VALUES 
@@ -86,6 +199,7 @@ VALUES
 ('A6','Sensibilité'),
 ('C6','Délibération');
 
+
 INSERT INTO personnalite (id,libelle) 
 VALUES 
 ('N','Névrosisme'),
@@ -98,7 +212,6 @@ INSERT INTO typeBareme (libelle)
 VALUES 
 ('BaremeDecroissant'),
 ('BaremeCroissant');
-
 
 
 INSERT INTO question (libelle,typeBaremeid,facetteid) 
@@ -344,9 +457,14 @@ VALUES
 ('Je prefererais avoir la réputation de pardonner plutôt que celle d\'etre juste',2,'A6'),
 ('Avant de répondre à une question, j\'y reflechis à deux fois',2,'C6');
 
-INSERT INTO personne (prenom, nom, dateDeNaissance, taille, adresse, cp, ville, login, mdp, mail, situationFamiliale, niveauEtude, origine, universite, loisir, metier, sexe) 
+SET FOREIGN_KEY_CHECKS=0;
+INSERT INTO personne (prenom, nom, dateDeNaissance, taille, adresse, cp, ville, login, mdp, mail, situationFamilialeid, niveauEtudeid, origineid, universiteid, loisirid, metierid, sexeid) 
 VALUES 
-('Geoffrey', 'Harrazi', '1994-06-04', 183, '20 rue des poneys', 95680, 'Montlignon', 'geoffrey','geoffrey', 'geoffreyharrazi@gmail.com', "Célibataire","5","Européen","Panthéon-Sorbonne","Lecture","Informaticien","M");
-INSERT INTO interet (age, taille, niveauEtude, sexe, facetteid1, facetteid2, facetteid3, personneid,origine1,origine2,origine3) 
+('Geoffrey', 'Harrazi', '1994-06-04', 183, '20 rue des poneys', 95680, 'Montlignon', 'geoffrey','geoffrey', 'geoffreyharrazi@gmail.com', 1,1,1,1,3,28,2);
+INSERT INTO interet (age, taille, niveauEtudeid, sexeid, facetteid, facetteid2, facetteid3, personneid) 
 VALUES 
-(22,170,5,"F",1,2,3,1,"Asiatique","Européen","Africaine");
+(22,170,5,3,1,2,3,1);
+INSERT INTO origine_interet (origineid,interetid) 
+VALUES 
+(1,1),
+(2,1);
