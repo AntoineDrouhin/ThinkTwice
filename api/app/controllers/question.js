@@ -20,7 +20,7 @@ var     moment      = require('moment'),
  */
 QuestionController.getAll = function(req, res){
 
-    var query = "select * from question";
+    var query = "select id, libelle from question";
 
     var con = global.con();
     con.query(query,function(err,rows){
