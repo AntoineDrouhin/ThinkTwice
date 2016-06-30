@@ -1,18 +1,30 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia){
+    .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
+
+        // Recuperer les interets
+        $http({
+            method: 'GET',
+            url: WEBAPP_CONFIG.api_route + '/interet'
+        }).then(function successCallback(response){
+            $scope.interet = response.data;
+
+        }, function errorCallback(response){
+            $scope.interet = {error: true};
+            alert("Erreur récupération interet, reponse = " + response);
+        });
 
         // Recuperer les questions
         $http({
             method: 'GET',
-            url: 'http://0.0.0.0:3000/question/'
+            url: WEBAPP_CONFIG.api_route + '/question/'
         }).then(function successCallback(response) {
             $scope.profil_question = response.data;
         }, function errorCallback(response) {
-            $scope.profil_question = {error: true}
+            $scope.profil_question = {error: true};
             alert("error Recuperation questions, reponse = " + response);
         });
 
@@ -34,7 +46,7 @@ angular.module('thinktwiceApp')
 
             $http({
                 method: 'POST',
-                url: 'http://0.0.0.0:3000/reponse',
+                url: WEBAPP_CONFIG.api_route + '/reponse',
                 headers: {
                     'Content-Type': undefined
                 },
@@ -68,7 +80,7 @@ angular.module('thinktwiceApp')
 
             $http({
                 method: 'POST',
-                url: 'http://0.0.0.0:3000/personne/',
+                url: WEBAPP_CONFIG.api_route + '/personne/',
                 data : $scope.personne
             }).then(function successCallback(response){
 
@@ -79,7 +91,7 @@ angular.module('thinktwiceApp')
 
         $http({
             method: 'POST',
-            url: 'http://0.0.0.0:3000/interet/' + idUser,
+            url: WEBAPP_CONFIG.api_route + '/interet/' + idUser,
             data : $scope.personne
         }).then(function successCallback(response){
             $scope.interet = response;
@@ -107,11 +119,11 @@ angular.module('thinktwiceApp')
 
             $http({
                 method: 'DELETE',
-                url: 'http://0.0.0.0:3000/interet/' + idUser
+                url: WEBAPP_CONFIG.api_route + '/interet/' + idUser
             }).then(function successCallback(response){
                 $http({
                     method: 'POST',
-                    url: 'http://0.0.0.0:3000/interet/' + idUser,
+                    url: WEBAPP_CONFIG.api_route + '/interet/' + idUser,
                     data : $scope.personne
                 }).then(function successCallback(response){
 

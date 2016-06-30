@@ -11,9 +11,12 @@
 
 }
 
-#formProfil {
-    margin-bottom : 15%;
-}
+ #formProfil {
+     margin-bottom : 5%;
+ }
+ #formInteret {
+      margin-bottom : 15%;
+  }
 
 .formTitle {
     color: #da12b7;
