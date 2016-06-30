@@ -18,6 +18,21 @@ match(){
 
 
 getPersonneByInteret(value_age,value_taille,value_niveauEtudeId,value_sexeid,value_listOrigine_interet[]){
+	
+	// GET INFO PERSONNE + INTERET
+	SELECT p.id, p.prenom, p.nom, p.dateDeNaissance, p.taille, p.adresse, p.cp, p.ville, p.login, p.mail, p.situationFamilialeid, p.niveauEtudeid, p.origineid, p.universiteid, p.loisirid, p.metierid, p.sexeid,
+		i.id as id_interet, i.age as age_interet, i.taille as taille_interet, i.niveauEtudeid as niveauEtudeid_interet, i.sexeid as sexeid_interet, i.facetteid as facetteid_interet, i.facetteid2 as facetteid2_interet, i.facetteid3 as facetteid3_interet
+		FROM personne p, interet i
+		WHERE p.id = i.personneid AND
+		p.id = @idPersonne
+		
+		
+	// GET INFO PERSONNE + ORIGINE_INTERET
+	SELECT * 
+	FROM origine_interet
+	WHERE interet_id = @id_interet
+	
+	
 	DROP VIEW IF EXISTS view_personne_sexe+this.id;
 	DROP VIEW IF EXISTS view_personne_age+this.id;
 	DROP VIEW IF EXISTS view_personne_taille+this.id;

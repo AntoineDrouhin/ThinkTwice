@@ -20,14 +20,14 @@ drop table if exists msg;
 
 
 
-CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance date, taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universite varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1), PRIMARY KEY (id));
+CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance varchar(255), taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universite varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1), PRIMARY KEY (id));
 CREATE TABLE facette (id varchar(2) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE personne_facette (score int(10) NOT NULL, facetteid varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (facetteid, personneid),
   FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (facetteid) REFERENCES facette(id));
 CREATE TABLE personnalite (id varchar(1) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE personne_personnalite (score int(10), personnaliteid varchar(1) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (personnaliteid, personneid),
 FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (personnaliteid) REFERENCES personnalite(id));
-CREATE TABLE interet (id int(10) NOT NULL AUTO_INCREMENT, age int(10), taille int(10), niveauEtude int(10), sexe varchar(1), facetteid1 varchar(2) NOT NULL, facetteid2 varchar(2) NOT NULL, facetteid3 varchar(2) NOT NULL, personneid int(10) NOT NULL, origine1 varchar(255), origine2 varchar(255), origine3 varchar(255), PRIMARY KEY (id),
+CREATE TABLE interet (age int(10), taille int(10), niveauEtude int(10), sexe varchar(1), facetteid1 varchar(2) NOT NULL, facetteid2 varchar(2) NOT NULL, facetteid3 varchar(2) NOT NULL, personneid int(10) NOT NULL, origine1 varchar(255), origine2 varchar(255), origine3 varchar(255), PRIMARY KEY (personneid),
 FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (facetteid1) REFERENCES facette(id),FOREIGN KEY (facetteid2) REFERENCES facette(id),FOREIGN KEY (facetteid3) REFERENCES facette(id));
 CREATE TABLE typeBareme (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE question (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) NOT NULL, typeBaremeid int(10) NOT NULL, facetteid varchar(2) NOT NULL, PRIMARY KEY (id),
