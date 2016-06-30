@@ -17,12 +17,12 @@ angular.module('thinktwiceApp')
             })
             .state('profil', {
                 url         : '/profil',
-                templateUrl : 'app/views/profile.html',
-                controller  : 'profileCtrl'
+                templateUrl : 'app/views/profil.html',
+                controller  : 'profilCtrl'
             })
             .state('inscription', {
                 url         : '/inscription',
                 templateUrl : 'app/views/inscription.html',
-                controller  : 'profileCtrl'
+                controller  : 'inscriptionCtrl'
             })
     });
