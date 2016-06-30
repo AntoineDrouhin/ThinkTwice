@@ -24,7 +24,7 @@ QuestionController.getAll = function(req, res){
 
     // requete geo
     // id person, toute table question + réponse
-    var query = "select id, libelle from question";
+    var query = "select * from question";
 
     var con = global.con();
     con.query(query,function(err,rows){
