@@ -14,4 +14,6 @@ module.exports = function(router) {
 
     router.put('/personne', auth.isAuth, personneController.update);
 
+    router.get('/personne/:id', auth.isAuth, personneController.get);
+
 };

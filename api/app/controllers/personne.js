@@ -20,33 +20,63 @@ PersonneController.register = function(req, res){
 
     if (req.body) {
         var p = new Personne();
-        p.insert(req.body, res, PersonneController.registerCallBack);
+        p.insert(req.body, res, PersonneController.callBack);
     }
     else {
-        res.status(200).json({error: true});
+        res.status(400).json({error: true});
     }
 
 };
-
-PersonneController.registerCallBack = function(res, bool) {
-    res.status(200).json({error: bool});
-};
-
-
 
 PersonneController.update = function(req, res){
 
     if (req.body) {
         var p = new Personne();
-        p.update(req.body, res, PersonneController.updateCallBack);
+        p.update(req.body, res, PersonneController.callBack);
     }
     else {
-        res.status(200).json({error: true});
+        res.status(400).json({error: true});
     }
 
 };
 
-PersonneController.updateCallBack = function(res, bool) {
-    res.status(200).json({error: bool});
+PersonneController.get = function(req, res){
+
+    if (req.params.id) {
+        var con = global.con();
+
+        var query = "select * from personne where id =  ?";
+        con.query(query, req.params.id, function(err, rows) {
+            if (err) {
+                console.log(err);
+                res.status(400).json({error : true});
+                return;
+            }
+            if (!rows.length) {
+                res.status(400).json({error : true});
+                return;
+            }
+
+            res.status(200).json(rows);
+
+        })
+    }
+    else {
+        res.status(400).json({error: true});
+    }
+
 };
+
+PersonneController.callBack = function(res, bool) {
+    if (bool) {
+        res.status(200).json({error: bool});
+    } else {
+        res.status(400).json({error: bool});
+    }
+};
+
+
+
+
+
 
