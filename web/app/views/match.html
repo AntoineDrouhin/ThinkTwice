@@ -1,61 +1,58 @@
+<div ng-controller="matchCtrl">
+    <link rel="stylesheet" href="../style/match.css" />
 
-<link rel="stylesheet" href="../style/match.css" />
+    <!-- NAVBAR -->
+    <navbar></navbar>
 
-<!-- NAVBAR -->
-<navbar></navbar>
+    <!-- PROFIL -->
+    <div class="container">
+        <div class="profileArea col-md-6">
+                <img ng-if="personne.sexe=='m'" src="https://pixabay.com/static/uploads/photo/2012/04/13/21/07/user-33638_960_720.png" class="profilPicture img-fluid img-circle" alt="profil picture" />
+                <img ng-if="personne.sexe=='f'" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
 
-<!-- PROFIL -->
-<div class="container">
-    <div class="profileArea col-md-6">
-            <img ng-if="personne.sexe=='m'" src="https://pixabay.com/static/uploads/photo/2012/04/13/21/07/user-33638_960_720.png" class="profilPicture img-fluid img-circle" alt="profil picture" />
-            <img ng-if="personne.sexe=='f'" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
-
-        <ul class="list-group">
-            <li class="list-group-item">{{personne.prenom}}</li>
-            <li ng-if="personne.sexe=='m'" class="list-group-item">Homme</li>
-            <li ng-if="personne.sexe='f'" class="list-group-item">Femme</li>
-            <li class="list-group-item">{{ getAge({{ personne.dateDeNaissance }}) }} ans</li>
-            <li class="list-group-item">{{personne.situationFamiliale}}</li>
-        </ul>
+            <ul class="list-group">
+                <li class="list-group-item">{{personne.prenom}}</li>
+                <li ng-if="personne.sexe=='m'" class="list-group-item">Homme</li>
+                <li ng-if="personne.sexe=='f'" class="list-group-item">Femme</li>
+                <li class="list-group-item">{{personne.age}} ans</li>
+                <li class="list-group-item">{{personne.situationFamiliale}}</li>
+            </ul>
+        </div>
     </div>
-</div>
 
-<!-- ZAP -->
-<div id="containerButton" class="container">
-    <div id="zapBtn" class="col-md-3 col-md-offset-5">
-        <button class="btn">ZAPPER COMME JAMAIS</button>
+    <!-- ZAP -->
+    <div id="containerButton" class="container">
+        <div id="zapBtn" class="col-md-3 col-md-offset-5">
+            <button class="btn">ZAPPER COMME JAMAIS</button>
+        </div>
     </div>
-</div>
 
-<!-- CHAT -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                </div>
-                <div class="panel-body">
-                    <ul class="chat">
-                        <li ng-repeat="obj in match.msg">
-                        <tchatmsg></tchatmsg>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button class="btn btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
+    <!-- CHAT -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-comment"></span> Chat
+                    </div>
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li ng-repeat="obj in match.msg">
+                            <tchatmsg></tchatmsg>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm" id="btn-chat">
+                                    Send</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-</body>
-</html>
