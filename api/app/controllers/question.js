@@ -1,7 +1,10 @@
+/**
+ * Created by aureliengarret on 30/06/2016.
+ */
 // ======================================================
 // Person Main controller ===============================
 // ======================================================
-var PersonController = exports;
+var QuestionController = exports;
 
 
 //--------------------------------------- Module dependencies.
@@ -15,11 +18,13 @@ var     moment      = require('moment'),
  * @param req
  * @param res
  */
-PersonController.getAll = function(req, res){
+QuestionController.getAll = function(req, res){
 
-    console.log("Test bdd")
+    console.log("");
 
-    var query = "select * from loisir";
+    // requete geo
+    // id person, toute table question + réponse
+    var query = "select id, libelle from question";
 
     var con = global.con();
     con.query(query,function(err,rows){
@@ -33,25 +38,5 @@ PersonController.getAll = function(req, res){
         res.status(200).json(rows);
 
     })
-
-};
-
-/**
- * Find a specific person from database
- * @param req
- * @param res
- * @param next
- * @param id
- */
-PersonController.findPerson = function(req, res, next, id){
-
-
-};
-/**
- * Return person detail
- * @param req
- * @param res
- */
-PersonController.getPerson = function(req, res){
 
 };
