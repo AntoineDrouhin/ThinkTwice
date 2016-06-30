@@ -78,10 +78,10 @@ Facette.prototype.calc = function () {
                         }
 
 
-                        /*if(j>=(tabFacette.length-1)){
+                        if(j>=(tabFacette.length-1)){
                             this.next($this.id_personne, $this.reponses);
                         }
-                        j++;*/
+                        j++;
                     })
 
                 }

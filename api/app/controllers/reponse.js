@@ -27,14 +27,13 @@ ReponseController.pushData = function(req, res){
 
     if (req.body) {
         ReponseController.calcFacette(req.body.id_personne, req.body.reponses);
-        ReponseController.calcPersonnalite(req.body.id_personne, req.body.reponses);
     } else {
         Utils.info("No body present in pushed data.");
     }
 };
 
 ReponseController.calcFacette = function(p, data) {
-    var f = new Facette(p, data);
+    var f = new Facette(p, data, ReponseController.calcPersonnalite);
     f.calc();
 }
 
