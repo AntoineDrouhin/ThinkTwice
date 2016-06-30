@@ -14,4 +14,6 @@ module.exports = function(router) {
 
     router.delete('/interet', auth.isAuth, interetController.delete);
 
+    router.get('/interet/:personneid', auth.isAuth, interetController.get);
+
 };
