@@ -68,7 +68,7 @@ PersonneController.get = function(req, res){
 };
 
 PersonneController.callBack = function(res, bool) {
-    if (bool) {
+    if (!bool) {
         res.status(200).json({error: bool});
     } else {
         res.status(400).json({error: bool});

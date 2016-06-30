@@ -1,4 +1,6 @@
 
+var passwordHash = require('password-hash');
+
 var Personne = function (data) {
     this.data = data;
 }
@@ -10,9 +12,9 @@ Personne.prototype.insert = function (d, ret,  next) {
     console.log (d);
 
     var insert = "insert into personne(nom, prenom, login, mdp, mail) values (?,?,?,?,?)";
-
+    
     var con = global.con();
-    con.query(insert, [d.nom, d.prenom, d.login, d.mdp, d.mail], function(err, res) {
+    con.query(insert, [d.nom, d.prenom, d.login, passwordHash.generate(d.mdp), d.mail], function(err, res) {
         if (err) {
             console.log(err);
             next(ret, true);

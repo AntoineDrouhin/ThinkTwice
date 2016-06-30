@@ -9,8 +9,9 @@ var LoginController = exports;
 
 //--------------------------------------- Module dependencies.
 
-var     moment      = require('moment'),
-        Utils        = require('../helpers/appUtils');
+var     moment       = require('moment'),
+        Utils        = require('../helpers/appUtils'),
+        passwordHash = require('password-hash');
 
 
 
@@ -22,11 +23,16 @@ LoginController.connect = function(req, res){
     if (req.body) {
         var con = global.con();
 
-        var query = "select count(*) as isok, id from personne where login = ? and mdp = ?";
+        var query = "select count(*) as isok, id, mdp from personne where login = ?";
 
-        con.query(query, [req.body.login, req.body.mdp], function(err, rows) {
+        con.query(query, [req.body.login], function(err, rows) {
             if (err || !rows[0].isok) {
                 res.status(403).json({message : 'User not found'});
+            }
+
+            console.log(passwordHash.verify(req.body.mdp, rows[0].mdp));
+            if (!passwordHash.verify(req.body.mdp, rows[0].mdp)) {
+                res.status(403).json({message : 'Password false'});
             }
 
             var token = new Date().getTime();
