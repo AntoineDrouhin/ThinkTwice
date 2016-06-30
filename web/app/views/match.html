@@ -1,5 +1,5 @@
-    <link rel="stylesheet" href="../style/match.css" />
-    <link rel="stylesheet" href="../style/navbar.css" />
+
+<link rel="stylesheet" href="../style/match.css" />
 
 <!-- NAVBAR -->
 <navbar></navbar>
@@ -14,18 +14,8 @@
             <li class="list-group-item">{{personne.prenom}}</li>
             <li ng-if="personne.sexe=='m'" class="list-group-item">Homme</li>
             <li ng-if="personne.sexe='f'" class="list-group-item">Femme</li>
-            <li class="list-group-item">{{ getAge({{ personne.dateDeNaissance }}) }}</li>
+            <li class="list-group-item">{{ getAge({{ personne.dateDeNaissance }}) }} ans</li>
             <li class="list-group-item">{{personne.situationFamiliale}}</li>
-        </ul>
-    </div>
-    <div class="profileArea col-md-6">
-        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
-        <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
         </ul>
     </div>
 </div>
