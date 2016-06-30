@@ -18,7 +18,7 @@ Personne.prototype.insert = function (d, ret,  next) {
     con.query(insert, [d.nom, d.prenom, d.login, d.mdp, d.mail], function(err, res) {
         if (err) {
             console.log(err);
-            next(res, true);
+            next(ret, true);
             return;
         }
         next(ret, false);
@@ -26,8 +26,36 @@ Personne.prototype.insert = function (d, ret,  next) {
     });
 }
 
-Personne.prototype.fill = function(d) {
-    // pour le profil et completer la personne
+Personne.prototype.update = function(d, ret, next) {
+    console.log("update personne");
+    console.log (d);
+
+    var update = "update personne set dateDeNaissance = ?, taille = ?, adresse = ?, cp = ?, ville = ?, situationFamiliale = ?, niveauEtude = ?, origine = ?, universite = ?, loisir = ?, metier = ?, sexe = ? where id = ?";
+
+    var con = global.con();
+    con.query(update,
+                [d.dateDeNaissance,
+                d.taille,
+                d.adresse,
+                d.cp,
+                d.ville,
+                d.situationFamiliale,
+                d.niveauEtude,
+                    d.origine,
+                d.universite,
+                d.loisir,
+                d.metier,
+                d.sexe,
+                d.id_personne],
+                function(err, res) {
+                    if (err) {
+                        console.log(err);
+                        next(ret, true);
+                        return;
+                    }
+                    next(ret, false);
+                }
+    );
 }
 
 module.exports = Personne;

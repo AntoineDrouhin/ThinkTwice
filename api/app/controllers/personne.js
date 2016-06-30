@@ -16,11 +16,6 @@ var     moment      = require('moment'),
         Personne    = require("../models/personne.js");
 
 
-/**
- * Load all people
- * @param req
- * @param res
- */
 PersonneController.register = function(req, res){
 
     if (req.body) {
@@ -34,6 +29,24 @@ PersonneController.register = function(req, res){
 };
 
 PersonneController.registerCallBack = function(res, bool) {
+    res.status(200).json({error: bool});
+};
+
+
+
+PersonneController.update = function(req, res){
+
+    if (req.body) {
+        var p = new Personne();
+        p.update(req.body, res, PersonneController.updateCallBack);
+    }
+    else {
+        res.status(200).json({error: true});
+    }
+
+};
+
+PersonneController.updateCallBack = function(res, bool) {
     res.status(200).json({error: bool});
 };
 
