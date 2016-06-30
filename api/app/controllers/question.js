@@ -10,7 +10,7 @@ var QuestionController = exports;
 //--------------------------------------- Module dependencies.
 
 var     moment      = require('moment'),
-        Util        = require('../helpers/appUtils');
+        Utils        = require('../helpers/appUtils');
 
 
 /**
