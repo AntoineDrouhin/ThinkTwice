@@ -15,8 +15,8 @@ angular.module('thinktwiceApp')
                 templateUrl : 'app/views/match.html',
                 controller  : 'matchCtrl'
             })
-            .state('profile', {
-                url         : '/profile',
+            .state('profil', {
+                url         : '/profil',
                 templateUrl : 'app/views/profile.html',
                 controller  : 'profileCtrl'
             })
