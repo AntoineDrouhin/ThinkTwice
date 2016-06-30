@@ -2,10 +2,10 @@
  * Created by aureliengarret on 30/06/2016.
  */
 
-var Facette = function (id_personne, reponses, next) {
+var Facette = function (id_personne, reponses) {
     this.id_personne = id_personne;
     this.reponses = reponses;
-    this.next = next;
+    //this.next = next;
 }
 
 
@@ -78,10 +78,10 @@ Facette.prototype.calc = function () {
                         }
 
 
-                        if(j>=(tabFacette.length-1)){
+                        /*if(j>=(tabFacette.length-1)){
                             this.next($this.id_personne, $this.reponses);
                         }
-                        j++;
+                        j++;*/
                     })
 
                 }

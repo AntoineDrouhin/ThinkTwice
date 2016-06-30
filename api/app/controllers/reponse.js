@@ -26,12 +26,19 @@ ReponseController.pushData = function(req, res){
     Utils.info("Form are pushed to the server.");
 
     if (req.body) {
-        var f = new Facette(p, data);
-        f.calc();
-        var p = new Personnalite(p, data);
-        p.calc();
+        ReponseController.calcFacette(req.body.id_personne, req.body.reponses);
+        ReponseController.calcPersonnalite(req.body.id_personne, req.body.reponses);
     } else {
         Utils.info("No body present in pushed data.");
     }
 };
 
+ReponseController.calcFacette = function(p, data) {
+    var f = new Facette(p, data);
+    f.calc();
+}
+
+ReponseController.calcPersonnalite = function(p, data) {
+    var p = new Personnalite(p, data);
+    p.calc();
+}
