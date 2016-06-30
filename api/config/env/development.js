@@ -15,7 +15,8 @@ module.exports = {
         module  : 'mysql',
         url : "163.172.150.53",
         login : "ttrw",
-        pwd : "ttRocks123"
+        pwd : "ttRocks123",
+        database : "thinktwice"
     },
     // ---- Params Allowed Origins by environment
     allowedOrigins : [ 'localhost:*', '0.0.0.0:*','127.0.0.1:*']

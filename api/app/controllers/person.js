@@ -19,7 +19,7 @@ PersonController.getAll = function(req, res){
 
     console.log("Test bdd")
 
-    var query = "select * from thinktwice.loisir";
+    var query = "select * from loisir";
 
 
     var con = global.con();

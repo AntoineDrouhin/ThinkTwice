@@ -136,7 +136,8 @@ if ( cluster.isMaster )
             return mysql.createConnection({
                 host: config.db.url,
                 user: config.db.login,
-                password: config.db.pwd
+                password: config.db.pwd,
+                database :config.db.database
             });
         }
     }
