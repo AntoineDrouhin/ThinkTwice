@@ -5,10 +5,9 @@ var PersonController = exports;
 
 
 //--------------------------------------- Module dependencies.
-var mongoose 	= require('mongoose'),
-    Person 		= mongoose.model('Person'),
-    moment      = require('moment'),
-    Util        = require('../helpers/appUtils');
+
+var     moment      = require('moment'),
+        Util        = require('../helpers/appUtils');
 
 
 /**
@@ -18,15 +17,24 @@ var mongoose 	= require('mongoose'),
  */
 PersonController.getAll = function(req, res){
 
-    Util.info('Load all people');
+    console.log("Test bdd")
 
-    Person.find({}).populate('contact.address').exec(function(err, results){
+    var query = "select * from thinktwice.loisir";
+
+
+    var con = global.con();
+    con.query(query,function(err,rows){
+        console.log(err);
         if(err){
-            res.status(400).json({message : "Error Loading Person"})
-        }else{
-            res.status(200).json(results)
+            res.status(200).json({error: true});
         }
+        console.log('Data received from Db:\n');
+        console.log(rows);
+
+        res.status(200).json(rows);
+
     })
+
 };
 
 /**
@@ -38,21 +46,7 @@ PersonController.getAll = function(req, res){
  */
 PersonController.findPerson = function(req, res, next, id){
 
-    Util.info('Find person '+ id);
 
-    Person.findOne({_id : id}).populate('contact.address').exec(function(err, person){
-        // --- Manage error
-        if(err){
-            res.status(400).json({message : "Error Loading Person"});
-        }
-        // --- Maybe no one found
-        if(!person){
-            res.status(404).json({message : "Person not found"});
-        }else{
-            req.current_person = person;
-            next();
-        }
-    })
 };
 /**
  * Return person detail
@@ -60,7 +54,5 @@ PersonController.findPerson = function(req, res, next, id){
  * @param res
  */
 PersonController.getPerson = function(req, res){
-    Util.info('Get person '+ req.current_person);
 
-    res.status(200).json(req.current_person)
 };

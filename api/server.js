@@ -126,6 +126,22 @@ if ( cluster.isMaster )
         database = mongoose.connect(config.db.link);
     }
 
+    var con = false;
+
+    var mysql = require("mysql");
+    if(config.db.module == 'mysql') {
+
+        // First you need to create a connection to the db
+        con = function() {
+            return mysql.createConnection({
+                host: config.db.url,
+                user: config.db.login,
+                password: config.db.pwd
+            });
+        }
+    }
+
+    global.con = con;
 
 
     // Express settings

@@ -7,7 +7,7 @@ module.exports 	= {
     root			: rootPath,
     appRoot			: rootPath + '/app',
     port			: process.env.PORT || 3000,
-    db				: process.env.MONGOHQ_URL,
+    //db				: process.env.MONGOHQ_URL,
     templateEngine	: 'swig',
 
     // The secret is used to compute a session hash
