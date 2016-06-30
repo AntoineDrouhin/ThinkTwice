@@ -9,6 +9,14 @@
     border-radius: 10px;
 }
 
+.chat {
+
+    list-style-type: none;
+}
+.chat li {
+    list-style: none;
+}
+
 .profileArea img{
     float: left;
 }
