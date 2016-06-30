@@ -1,7 +1,7 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('matchCtrl', function($scope, Resumes, $http, $mdDialog, $mdMedia){
+    .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia){
 
         $scope.personne = {
             prenom : 'Le KERSS',

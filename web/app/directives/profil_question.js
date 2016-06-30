@@ -6,5 +6,6 @@ angular.module('thinktwiceApp')
         return {
             restrict : 'E',
             templateUrl : 'app/views/directives/profil_question.html'
+            
         }
     });

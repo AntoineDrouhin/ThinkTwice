@@ -30,7 +30,6 @@ QuestionController.getAll = function(req, res){
         }
         Utils.info("All questions are requested and sended to client.")
         res.status(200).json(rows);
-
     })
 
 };

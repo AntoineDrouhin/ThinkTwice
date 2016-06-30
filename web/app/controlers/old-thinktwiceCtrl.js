@@ -19,7 +19,6 @@ angular.module('myResumeApp')
                 $scope.current_resume = resume;
                 $scope.current_resume.person = person;
                 current_resume = $scope.current_resume
-
             })
         };
 
