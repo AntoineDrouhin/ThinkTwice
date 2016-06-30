@@ -10,3 +10,17 @@
 #photoProfil {
 
 }
+
+#formProfil {
+    margin-bottom : 15%;
+}
+
+.formTitle {
+    color: #da12b7;
+    font-size:200%;
+    text-shadow: #4F4D3F;
+}
+
+div.form-group span {
+    color : #da12b7;
+}

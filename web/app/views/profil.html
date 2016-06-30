@@ -13,6 +13,62 @@
 
 
             <!-- PERSONNE -->
+        <div id="infosProfil">
+            <div id="formProfil">
+                <div class="formTitle">Informations du profil</div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputmSexe" placeholder="Sexe" ng-model="personne.sexe"/>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" id="inputDateDeNaissance" placeholder="Date de naissance" ng-model="personne.login" />
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="inputTaille" placeholder="Taille" ng-model="personne.taille" />
+                </div>
+                <div class="form-group">
+                    <span>Situation amoureuse</span>
+                    <!--<input type="text" class="form-control" id="inputSituation" placeholder="Situation familiale" ng-model="personne.situationFamiliale" />-->
+                    <select class="form-control" id="inputSituation" placeholder="Situation familiale" ng-model="personne.situationFamiliale">
+                        <option value ="Célibataire">Célibataire</option>
+                        <option value ="En Couple">En Couple</option>
+                        <option value ="Marié">Marié</option>
+                        <option value ="Divorcé">Divorcé</option>
+                        <option value ="C'est compliqué">C'est compliqué</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputEtudes" placeholder="Niveau d'études" ng-model="personne.niveauEtude" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputUniversite" placeholder="Etablissement/Université" ng-model="personne.universite" />
+                </div>
+                <div class="form-group">
+                    <!--<input type="text" class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personne.origine" />-->
+                    <span>Origine ethnique</span>
+                    <select class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personne.origine">
+                        <option value ="Blanc/Caucasien">Blanc/Caucasien</option>
+                        <option value ="Noir/Africain">Noir/Africain</option>
+                        <option value ="Moyen Oriental">Moyen Oriental</option>
+                        <option value ="Asiatique">Asiatique</option>
+                        <option value ="Amérique Latine">Amérique Latine</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputmMetier" placeholder="Profession" ng-model="personne.metier"/>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-10 col-sm-2">
+                        <button id="submitInfos" class="btn btn-success" ng-click="updateProfil(personne)">
+                            Valider
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
 
             <!-- INTERET -->
 
