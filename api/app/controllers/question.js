@@ -26,7 +26,8 @@ QuestionController.getAll = function(req, res){
     con.query(query,function(err,rows){
         if(err){
             Utils.info(err);
-            res.status(200).json({error: true});
+            res.status(400).json({error: true});
+            return;
         }
         Utils.info("All questions are requested and sended to client.")
         res.status(200).json(rows);
