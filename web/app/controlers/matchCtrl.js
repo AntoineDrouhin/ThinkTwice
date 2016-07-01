@@ -11,7 +11,7 @@ angular.module('thinktwiceApp')
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
         }).then(function successCallback(response){
-            debugger;
+            
             $http({
                 method: 'GET',
                 url: WEBAPP_CONFIG.api_route + '/personne/' + response.data.matchPersonId

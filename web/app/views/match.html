@@ -7,8 +7,9 @@
     <!-- PROFIL -->
     <div class="container">
         <div class="profileArea col-md-6">
-                <img ng-if="personne.sexe=='m'" src="https://pixabay.com/static/uploads/photo/2012/04/13/21/07/user-33638_960_720.png" class="profilPicture img-fluid img-circle" alt="profil picture" />
-                <img ng-if="personne.sexe=='f'" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
+                <img ng-if="linkSrcImage" src="{{linkSrcImage}}" class="profilPicture img-fluid img-circle" alt="profil picture" />
+                <img ng-if="personne.sexe=='m' && linkSrcImage == false" src="https://pixabay.com/static/uploads/photo/2012/04/13/21/07/user-33638_960_720.png" class="profilPicture img-fluid img-circle" alt="profil picture" />
+                <img ng-if="personne.sexe=='f' && linkSrcImage == false" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
 
             <ul class="list-group">
                 <li class="list-group-item" ng-if="personne.prenom">{{personne.prenom}}</li>
