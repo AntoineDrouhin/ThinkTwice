@@ -46,7 +46,7 @@ TtmatchController.getMatch = function(req, res){
 
                 json = {
                     id : rows[0].id,
-                    matchProfilId : matchPersonId
+                    matchPersonId : matchPersonId
                 };
             }
 
