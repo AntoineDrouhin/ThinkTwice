@@ -73,7 +73,7 @@ Facette.prototype.calc = function () {
                     query = "INSERT INTO personne_facette (score,facetteid,personneid) VALUES (?,?,?)";
                     var score = mapFacette[val];
                     con.query(query,[score, val, $this.id_personne],function(err,rows){
-
+                        console.log(err);
                         if(err){
                             Utils.info(err);
 
