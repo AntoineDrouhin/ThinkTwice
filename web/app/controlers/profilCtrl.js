@@ -115,18 +115,18 @@ angular.module('thinktwiceApp')
         }, function errorCallback(){
             $scope.personne = {
                 "dateDeNaissance": "",
-                "taille" : 0,
+                "taille" : undefined ,
                 "adresse" : "",
                 "cp" : "",
                 "ville": "",
                 "situationFamiliale" : "",
-                "niveauEtude" : 0,
+                "niveauEtude" : undefined,
                 "origine" : "",
                 "universite" : "",
                 "loisir" : "",
                 "metier" : "",
                 "sexe" : "",
-                "id_personne" : 0
+                "id_personne" : undefined
             };
         });
 
@@ -154,9 +154,9 @@ angular.module('thinktwiceApp')
         }, function errorCallback(response){
             $scope.interet = {
                 "personneid" : "",
-                "age" : 0,
-                "taille" : 0,
-                "niveauEtude" :0,
+                "age" : undefined,
+                "taille" : undefined,
+                "niveauEtude" : undefined,
                 "sexe" : "",
                 "facetteid1" :"",
                 "facetteid2" : "",
