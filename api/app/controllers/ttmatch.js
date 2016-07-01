@@ -9,8 +9,8 @@ var TtmatchController = exports;
 //--------------------------------------- Module dependencies.
 
 var     moment          = require('moment'),
-    Utils           = require('../helpers/appUtils');
-Ttmatch    = require("../models/ttmatch.js");
+        Utils           = require('../helpers/appUtils'),
+        Ttmatch    = require("../models/ttmatch.js");
 
 
 
