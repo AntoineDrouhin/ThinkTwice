@@ -156,14 +156,11 @@
                 </div>
                 <div class="form-group">
                     <span>Sélectionnez 3 Facettes</span>
-                    <select class="form-control" id="interetFacette1" ng-model="interet.facetteid1" required>
-                        <option value="">Choisir une valeur</option>
+                    <select class="form-control" id="interetFacette1" ng-options="x.libelle for x in facette" ng-model="interet.facetteid1" required>
                     </select>
-                    <select class="form-control" id="interetFacette2" ng-model="interet.facetteid2" required>
-                        <option value="">Choisir une valeur</option>
+                    <select class="form-control" id="interetFacette2" ng-options="x.libelle for x in facette" ng-model="interet.facetteid2" required>
                     </select>
-                    <select class="form-control" id="interetFacette3" ng-model="interet.facetteid3" required>
-                        <option value="">Choisir une valeur</option>
+                    <select class="form-control" id="interetFacette3" ng-options="x.libelle for x in facette" ng-model="interet.facetteid3" required>
                     </select>
                 </div>
                 <div class="form-group">

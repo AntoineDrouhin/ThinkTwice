@@ -8,6 +8,7 @@ angular.module('thinktwiceApp')
 
         //GESTION IMAGE
             //Télécharger l'avatar
+
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/avatar/from/' + idUser
@@ -77,7 +78,7 @@ angular.module('thinktwiceApp')
             $scope.interet = response.data;
         }, function errorCallback(response){
             $scope.interet = {error: true};
-            //alert("Erreur récupération facettes, reponse = " + response);
+            // alert("Erreur récupération facettes, reponse = " + response);
         });
 
         // Recuperer les questions
@@ -88,7 +89,7 @@ angular.module('thinktwiceApp')
             $scope.profil_question = response.data;
         }, function errorCallback(response) {
             $scope.profil_question = {error: true};
-            alert("error Recuperation questions, reponse = " + response);
+            // alert("error Recuperation questions, reponse = " + response);
         });
 
         // Pousser les réponses au questionnaire
@@ -122,7 +123,7 @@ angular.module('thinktwiceApp')
 
         // gestion de personne
 
-        // Recupere les informations de personne
+        // Recuperer les informations de personne
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/personne/' + idUser,
@@ -168,6 +169,17 @@ angular.module('thinktwiceApp')
             });
         };
 
+        $http({
+            method: 'GET',
+            url: WEBAPP_CONFIG.api_route + '/facette',
+            data : $scope.personne
+        }).then(function successCallback(response){
+
+            $scope.facette = response.data;
+            
+        }, function errorCallback(){
+
+        });
         // Recuperer l'interet
 /*        $http({
             method: 'GET',
