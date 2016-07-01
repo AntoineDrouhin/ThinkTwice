@@ -16,7 +16,7 @@ drop table if exists typeBareme;
 drop table if exists ttmatch;
 drop table if exists msg;
 
-CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, token varchar(255), prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance varchar(255), taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universite varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1), PRIMARY KEY (id), UNIQUE (token), UNIQUE (login), UNIQUE (mail));
+CREATE TABLE personne (id int(10) NOT NULL AUTO_INCREMENT, token varchar(255), prenom varchar(255) NOT NULL, nom varchar(255) NOT NULL, dateDeNaissance varchar(255), taille int(10), adresse text, cp mediumint(9), ville varchar(255), login varchar(255) NOT NULL, mdp text NOT NULL, mail varchar(255) NOT NULL, situationFamiliale varchar(255), niveauEtude int(10), origine varchar(255), universite varchar(255), loisir varchar(255), metier varchar(255), sexe varchar(1),photoPath varchar(255), PRIMARY KEY (id), UNIQUE (token), UNIQUE (login), UNIQUE (mail));
 CREATE TABLE facette (id varchar(2) NOT NULL, libelle varchar(255) NOT NULL, PRIMARY KEY (id));
 CREATE TABLE personne_facette (score int(10) NOT NULL, facetteid varchar(2) NOT NULL, personneid int(10) NOT NULL, PRIMARY KEY (facetteid, personneid),
   FOREIGN KEY (personneid) REFERENCES personne(id),FOREIGN KEY (facetteid) REFERENCES facette(id));
