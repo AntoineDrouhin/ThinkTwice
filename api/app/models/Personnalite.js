@@ -38,8 +38,7 @@ Personnalite.prototype.calc = function () {
             for(var i = 0; i<rows.length;i++){
                 mapPerso[rows[i].id]=0;
             }
-            var a =1;
-
+            
             for(var i = 0; i<tabPersonne_facette.length;i++){
                 mapPerso[tabPersonne_facette[i].facetteid]= mapPerso[tabPersonne_facette[i].facetteid] + tabPersonne_facette[i].score;
             }
