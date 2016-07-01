@@ -63,7 +63,7 @@ angular.module('thinktwiceApp')
         // Recupere les informations de personne
         $http({
             method: 'GET',
-            url: 'http://0.0.0.0:3000/personne/' + idUser ,
+            url: WEBAPP_CONFIG.api_route + '/personne/' + idUser ,
             data : $scope.personne
         }).then(function successCallback(response){
             $scope.personne = response;
@@ -102,7 +102,7 @@ angular.module('thinktwiceApp')
         // Recuperer l'interet
         $http({
             method: 'GET',
-            url: 'http://0.0.0.0:3000/interet/' + idUser,
+            url: WEBAPP_CONFIG.api_route + '/interet/' + idUser,
             data : $scope.interet
         }).then(function successCallback(response){
             $scope.interet = response;

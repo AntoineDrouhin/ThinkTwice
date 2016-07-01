@@ -3,6 +3,11 @@ var current_resume;
 angular.module('thinktwiceApp')
     .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia){
 
+        var idUser = window.localStorage.getItem("thinktwice_userId");
+
+        
+
+
         $scope.personne = {
             dateDeNaissance : "",
             taille : 0,

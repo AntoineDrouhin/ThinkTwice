@@ -1,7 +1,7 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('loginCtrl', function($scope, $http, $mdDialog, $mdMedia){
+    .controller('loginCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
         $scope.personne = {
             "login" : "",
@@ -12,7 +12,7 @@ angular.module('thinktwiceApp')
 
             $http({
                 method: 'POST',
-                url: 'http://0.0.0.0:3000/login',
+                url: WEBAPP_CONFIG.api_route + '/login',
                 data: $scope.personne
             }).then(function successCallback(response){
 

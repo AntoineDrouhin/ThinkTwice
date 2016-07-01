@@ -2,7 +2,7 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('inscriptionCtrl', function($scope, $http, $mdDialog, $mdMedia){
+    .controller('inscriptionCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
         $scope.personne = {
             "nom" : "",
@@ -19,11 +19,11 @@ angular.module('thinktwiceApp')
         if ($scope.mdpconf == $scope.personne.mdp) {
             $http({
                 method: 'POST',
-                url: 'http://0.0.0.0:3000/personne',
+                url: WEBAPP_CONFIG.api_route +'/personne',
                 data : $scope.personne
             }).then(function successCallback(response){
                 swal("Success !!!", "L'equipe thinktwice vous souhaite la bienvenue", "success");
-                document.location.href = "#/login";
+                document.location.href = "#/profil";
 
             }, function errorCallback(response){
                 console.log(response)
