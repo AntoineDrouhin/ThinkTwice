@@ -10,7 +10,7 @@ module.exports = function(router) {
         auth              = require('../helpers/auth');
 
     // -------- Retrieve all person from the database
-    router.post('/personne', auth.isAuth, personneController.register);
+    router.post('/personne', personneController.register);
 
     router.put('/personne', auth.isAuth, personneController.update);
 
