@@ -13,12 +13,23 @@ module.exports.isAuth = function(req, res, next){
 
     Utils.info('Check auth about user');
 
-    if (true) {
-        next();
-    }
-    else {
-        res.status(401).json({message : 'user not found'});
-    }
+    var token = req.header.Authorization;
+    var query = "select count(*) as isAuth from personne where token = ?";
+    var con = global.con();
+
+    con.query(query, [token], function(err, rows) {
+        if (rows.length && rows[0].isAuth) {
+            if (new Date().getTime() - token <= 4*3600*1000) {
+                next();
+                return;
+            }
+        }
+        else {
+            res.status(401).json({message : 'user not found'});
+        }
+    });
+
+
 
     // var    User    = mongoose.model('User');
     //
