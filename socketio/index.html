@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      .profilPicture {
+        height: auto;
+        width: 35%;
+      }
+
+      .profileArea {
+        border: 5px black;
+        border-radius: 10px;
+      }
+
+      .chat {
+
+        list-style-type: none;
+      }
+      .chat li {
+        list-style: none;
+      }
+
+      .profileArea img{
+        float: left;
+      }
+
+      .profileArea ul {
+        margin-left: 35%;
+      }
+
+      .panel-heading {
+        background-color:  #da12b7!important;
+      }
+
+      .panel {
+        border-color: #da12b7;
+      }
+
+      .panel-body {
+        border-color: #da12b7;
+      }
+
+      .btn {
+        background-color: #da12b7!important;
+        color: white;
+        font-weight: 400;
+      }
+
+      #containerButton {
+        margin-bottom: 1%;
+      }
+
+      .even {
+        background : #e8e8e8;
+        padding : 5px;
+        border : 2px solid white;
+      }
+
+      .odd {
+        background : #fcdbf6;
+        padding : 5px;
+        text-align: right;
+      }
+
+      #messages {
+        height : 200px;
+        overflow-y : scroll;
+      }
+                                                                                                                                                                                                      <link rel="stylesheet" href="../style/match.css" />
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-comment"></span> Chat
+          </div>
+          <div class="panel-body">
+            <ul class="chat" id="messages">
+
+            </ul>
+          </div>
+          <div class="panel-footer">
+            <div class="input-group">
+              <input id="btn-input" type="text" class="form-control input-sm" placeholder="Tapez votre mot doux ici..." />
+                  <span class="input-group-btn" id="msg-input">
+                      <button class="btn btn-sm" id="btn-chat">
+                          Envoyer votre mot doux</button>
+                  </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <!--<ul id="messages"></ul>-->
+    <!--<form action="">-->
+      <!--<input id="m" autocomplete="off" /><button>Send</button>-->
+    <!--</form>-->
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      $('#btn-chat').click(function(){
+        socket.emit('chat message', $('#btn-input').val());
+        $('#btn-input').val('');
+        return false;
+      });
+
+      var odd = false;
+      socket.on('chat message', function(msg){
+          var cls ='even';
+//        if (odd) {
+//            cls = 'odd';
+//            odd = false;
+//        }
+//        odd = true;
+        $('#messages').append($('<li class="'+cls+'">').text(msg));
+
+      });
+    </script>
+  </body>
+</html>
