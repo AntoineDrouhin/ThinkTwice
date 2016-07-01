@@ -8,9 +8,10 @@ var Ttmatch = function (id_personne) {
 
 
 Ttmatch.prototype.matching = function () {
+    var json="";
     console.log("matching in progress...");
     console.log("personneid: ");
-
+    console.log(this.id_personne);
     var query = 'select * from personne p, interet i where p.id = i.personneid and p.id = ?';
     var con = global.con();
     var $this = this;
@@ -20,16 +21,27 @@ Ttmatch.prototype.matching = function () {
 
         }
         var tabPersonneInteret = rows;
+
+        console.log(tabPersonneInteret);
+        //ar ladate=new Date()
+        //var anneeEnCours =ladate.getFullYear();
+        //console.log(anneeEnCours);
+        //var dateOfBirth = new Date(tabPersonneInteret[0].dateDeNaissance.substring(5,9), tabPersonneInteret[0].dateDeNaissance.substring(2,4), tabPersonneInteret[0].dateDeNaissance.substring(0,2));
+        //console.log(dateOfBirth);
+        //var agePersonne = _calculateAge(dateOfBirth);
+        //console.log(agePersonne);
+
+        var tabPersonneInteret = rows;
         var paramQuery = new Array();
         console.log(tabPersonneInteret);
-        console.log(tabPersonneInteret[0].age);
+        //console.log(agePersonne);
         console.log(tabPersonneInteret[0].taille);
-        var ageMax = 999;
-        var ageMin = 0;
-        if(tabPersonneInteret[0].age != null){
-            ageMax = tabPersonneInteret[0].age + tabPersonneInteret[0].age * (15 / 100);
-            ageMin = tabPersonneInteret[0].age - (tabPersonneInteret[0].age * (15/100));
-        }
+        //var ageMax = 999;
+       // var ageMin = 0;
+        //if(agePersonne != null){
+        //    ageMax = tabPersonneInteret[0].age + tabPersonneInteret[0].age * (15 / 100);
+        //    ageMin = tabPersonneInteret[0].age - (tabPersonneInteret[0].age * (15/100));
+        //}
         var tailleMax = 999;
         var tailleMin = 0;
         if(tabPersonneInteret[0].taille != null){
@@ -42,8 +54,8 @@ Ttmatch.prototype.matching = function () {
 
         }
         paramQuery.push(tabPersonneInteret[0].sexe);
-        paramQuery.push(ageMin);
-        paramQuery.push(ageMax);
+        //paramQuery.push(ageMin);
+        //paramQuery.push(ageMax);
         paramQuery.push(tailleMin);
         paramQuery.push(tailleMax);
         paramQuery.push(niveauEtude);
@@ -54,15 +66,15 @@ Ttmatch.prototype.matching = function () {
         var queryOrigine='';
         if(tabPersonneInteret[0].origine1 != null){
             origine1 = tabPersonneInteret[0].origine1;
-             queryOrigine += ' AND ( origine1 = ? ';
+             queryOrigine += ' AND ( origine = ? ';
              paramQuery.push(origine1);
             if(tabPersonneInteret[0].origine2 != null){
                 origine2 = tabPersonneInteret[0].origine2;
-                 queryOrigine += ' OR origine2 = ? ';
+                 queryOrigine += ' OR origine = ? ';
                 paramQuery.push(origine2);
                 if(tabPersonneInteret[0].origine3 != null){
                     origine3 = tabPersonneInteret[0].origine3;
-                    queryOrigine += ' OR origine3 = ? ';
+                    queryOrigine += ' OR origine = ? ';
                     paramQuery.push(origine3);
                 }
             }
@@ -70,9 +82,12 @@ Ttmatch.prototype.matching = function () {
         }
 
 
-
-        query = 'select * from personne where sexe = ? AND (age >= ? OR age <= ? ) AND (taille >= ? OR taille <= ? ) AND niveauEtude >= ? ';
+        //AND (age >= ? OR age <= ? )
+        query = 'select * from personne where sexe = ? AND (taille >= ? OR taille <= ? ) AND niveauEtude >= ? ';
         query += queryOrigine;
+        //Pour pas que la personne match avec sois meme
+        paramQuery.push($this.id_personne);
+        query += ' AND id != ? '
         console.log(query);
         console.log(paramQuery);
         con.query(query,paramQuery,function(err,rows){
@@ -86,6 +101,8 @@ Ttmatch.prototype.matching = function () {
             console.log(rows);
 
             var tabRepPersonne = rows;
+            console.log(rows.length);
+            console.log(tabRepPersonne.length);
             query = 'select * from personne_personnalite where personneid=  ?';
             con.query(query,[$this.id_personne],function(err,rows){
                 console.log(err);
@@ -93,28 +110,77 @@ Ttmatch.prototype.matching = function () {
                     Utils.info(err);
 
                 }
-                var tabMatchPersonnalite;
+                var tabMatch = new Array();
                 var tabPersonnalite = rows;
-                var tabPersonnaliteRep = new Array();
-                query = 'select * from personne_personnalite where personneid=  ?';
-                for(var i =0; i<tabRepPersonne.length;i++){
+                console.log(tabPersonnalite);
+                var tabPersonnaliteRep;
+                if(tabRepPersonne.length>0){
+                    var paramQuery2 = new Array();
+                    query = 'select * from personne_personnalite where  1=1 ';
 
-                    con.query(query,[tabRepPersonne[i].id],function(err,rows){
+                    for(var i =0; i<tabRepPersonne.length;i++){
+                        query +=" AND "
+                        query += " personneid=  ? "
+                        paramQuery2.push(tabRepPersonne[i].id)
+
+                    }
+
+                    con.query(query,[paramQuery2],function(err,rows){
                         console.log(err);
+
                         if(err){
                             Utils.info(err);
 
                         }
-                        tabPersonnaliteRep.push(rows);
+                        console.log(rows);
+                        tabPersonnaliteRep=rows;
+                        var personneNotMatch = new Array();
+                        var k=0;
+                        for(var j =0; j<tabPersonnaliteRep.length;j++){
+
+                                console.log(j);
+                                if(k>tabPersonnalite.length){
+                                    k=0;
+
+                                }
+
+                                var personnaliteMax= tabPersonnalite[k].score + tabPersonnalite[k].score* (10 / 100);
+                                var personnaliteMin = tabPersonnalite[k].score - tabPersonnalite[k].score * (10 / 100);
+                                if(tabPersonnaliteRep[j].score < personnaliteMin || tabPersonnaliteRep[j].score > personnaliteMax){
+                                    personneNotMatch.push(tabPersonnaliteRep[j].id);
+                                }
+                            k++;
+                        }
+
+                        for(var i =0; i<tabRepPersonne.length;i++){
+                            for(var j =0; j<personneNotMatch.length;j++){
+                                if(tabRepPersonne[i].id==personneNotMatch[j]){
+                                    tabRepPersonne[i]=null;
+                                }
+                            }
+                        }
+                        ///////////////////////////////////////////////////////////////////////////////////////////////
+                        //TODO construire json Personne avec qui on a un match contenu dans ce tableau : tabRepPersonne
+                        ///////////////////////////////////////////////////////////////////////////////////////////////
+                        json +="{";
+                        for(var i =0; i<tabRepPersonne.length;i++){
+
+                            json +="\"match\" : \""
+                            json +=tabRepPersonne[i].id;
+                            json +"\","
+                        }
+                        json +="}";
                     })
+
+                }else{
+                    ///////////////////////////////////////////////////////////////////////////////////////////////
+                    //TODO construire json {"nomatch" : "true"}
+                    json += "{\"nomatch\" : \"true\"}";
+                    ///////////////////////////////////////////////////////////////////////////////////////////////
                 }
 
 
-                for(var i =0; i<tabPersonnaliteRep.length;i++){
-                    for(var i =0; i<tabPersonnaliteRep.length;i++){
 
-                    }
-                }
 
 
             })
@@ -122,6 +188,12 @@ Ttmatch.prototype.matching = function () {
     })
 
 }
+
+//function _calculateAge(birthday) { // birthday is a date
+//    var ageDifMs = Date.now() - birthday.getTime();
+//    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+//    return Math.abs(ageDate.getUTCFullYear() - 1970);
+//}
 
 
 module.exports = Ttmatch;

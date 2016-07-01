@@ -74,6 +74,10 @@ Facette.prototype.calc = function () {
                     var score = mapFacette[val];
                     con.query(query,[score, val, $this.id_personne],function(err,rows){
                         console.log(err);
+                        console.log($this.id_personne);
+                        console.log(tabFacette.length);
+                        console.log(j);
+                        console.log(mapFacette);
                         if(err){
                             Utils.info(err);
 
