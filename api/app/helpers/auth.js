@@ -13,8 +13,8 @@ module.exports.isAuth = function(req, res, next){
 
     Utils.info('Check auth about user');
 
-    console.log(req.header.Authorization);
-    var token = req.header.Authorization;
+    console.log(req.headers.authorization);
+    var token = req.headers.authorization;
     var query = "select count(*) as isAuth from personne where token = ?";
     var con = global.con();
 
