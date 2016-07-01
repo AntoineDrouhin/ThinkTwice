@@ -5,19 +5,28 @@ angular.module('thinktwiceApp')
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
 
-        debugger;
+
         // Aller chercher les informations sur la personne
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
         }).then(function successCallback(response){
+            debugger;
             $http({
                 method: 'GET',
-                url: WEBAPP_CONFIG.api_route + '/personne/' + idUser
+                url: WEBAPP_CONFIG.api_route + '/personne/' + response.data.matchPersonId
             }).then(function successCallback(response){
-                $scope.personne = response.data;
+                $scope.personne = response.data[0];
             }, function errorCallback(response){
 
+            });
+            $http({
+                method: 'GET',
+                url: WEBAPP_CONFIG.api_route + '/avatar/from/' + response.data.matchPersonId
+            }).then(function successCallback(response){
+                $scope.linkSrcImage = response.data.link;
+            }, function errorCallback(response){
+                $scope.linkSrcImage = '/images/placeholder.jpg';
             });
         }, function errorCallback(response){
             console.log(response);

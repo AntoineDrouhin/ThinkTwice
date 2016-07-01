@@ -128,8 +128,8 @@ angular.module('thinktwiceApp')
             url: WEBAPP_CONFIG.api_route + '/personne/' + idUser,
             data : $scope.personne
         }).then(function successCallback(response){
-            $scope.personne = response.data;
-           // $scope.personneTmp = angular.copy($scope.personne);
+            $scope.personne = response.data[0];
+            // $scope.personneTmp = angular.copy($scope.personne);
         }, function errorCallback(){
 
         });
@@ -139,10 +139,28 @@ angular.module('thinktwiceApp')
 
             $scope.personneTmp.personne_id = idUser;
 
+            var fakepersonne = {
+                "dateDeNaissance" : "",
+                "taille": 0,
+                "adresse": "",
+                "cp": "",
+                "ville": "",
+                "situationFamiliale": "",
+                "niveauEtude": 0,
+                "origine": "",
+                "universite": "",
+                "loisir": "",
+                "metier": "",
+                "sexe": "",
+                "id_personne": idUser
+            };
+
+            var p = $.extend(fakepersonne , $scope.personneTmp);
+
             $http({
                 method: 'PUT',
                 url: WEBAPP_CONFIG.api_route + '/personne/',
-                data : $scope.personneTmp
+                data : p
             }).then(function successCallback(response){
 
             }, function errorCallback(response){
