@@ -159,24 +159,21 @@ Ttmatch.prototype.matching = function () {
                                 }
                             }
                         }
-                        ///////////////////////////////////////////////////////////////////////////////////////////////
-                        //TODO construire json Personne avec qui on a un match contenu dans ce tableau : tabRepPersonne
-                        ///////////////////////////////////////////////////////////////////////////////////////////////
-                        json +="{";
-                        for(var i =0; i<tabRepPersonne.length;i++){
 
-                            json +="\"match\" : \""
-                            json +=tabRepPersonne[i].id;
-                            json +"\","
-                        }
-                        json +="}";
+                        console.log("Insert matching");
+                        var insert = "insert into ttmatch(personneid1, personneid2) values(?,?)";
+                        con.query(insert,[this.id_personne,tabRepPersonne[0].id],function(err,rows) {
+                            console.log("matching returns");
+                            console.log(rows);
+                        });
+
+
                     })
 
                 }else{
-                    ///////////////////////////////////////////////////////////////////////////////////////////////
-                    //TODO construire json {"nomatch" : "true"}
-                    json += "{\"nomatch\" : \"true\"}";
-                    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+                    return {"nomatch" : "true"};
+
                 }
 
 
