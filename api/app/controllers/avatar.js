@@ -22,10 +22,10 @@ AvatarController.upload = function (req, res) {
         extension = extension[extension.length - 1];
 
         //filename = req.icon_find._id + '_F.' + extension;  
-        filename = '0000_F.' + extension;
+        filename = req.dst + '_F.' + extension;
 
         // --- Create a path to the image 
-        var link = path.join(__dirname, '/../../data/icons/', filename);  
+        var link = path.join(__dirname, '/../../data/avatar/', filename);  
         fstream = fs.createWriteStream(link); 
         file.pipe(fstream);  
         fstream.on('close', function (error) { 
@@ -34,9 +34,19 @@ AvatarController.upload = function (req, res) {
                 res.status(400).json({message : error}); 
             }else{ 
                 // ----- Update the object to get the link 
-                req.icon_find.update({file : filename}).exec(function(err){ 
-                    res.status(200).json({link : global.config.app.url+ 'data/icons/'+filename}); 
-                }); 
+
+                var insert = "update personne set photoPath = ? where id = ?";
+
+                var con = global.con();
+
+                var relPath = 'data/avatar/'+filename;
+                con.query(insert,[relPath, req.dst], function(err, rows) {
+                    if (err) {
+                        res.status(400).json({error : true});
+                    }
+                    res.status(200).json({link : global.config.app.url+ relPath});
+                });
+
             }  
         }); 
     }); 

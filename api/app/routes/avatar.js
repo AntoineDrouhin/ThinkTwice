@@ -10,7 +10,11 @@ module.exports = function(router) {
         auth              = require('../helpers/auth');
 
     // -------- Retrieve all person from the database
-    router.post('/avatar', auth.isAuth, avatarController.upload);
+    router.post('/avatar/to/:id_dst', auth.isAuth, avatarController.upload);
+    router.param('id_dst', function(req,res,next,id){
+        req.dst = id;
+        next();
+    } );
 
 
 };
