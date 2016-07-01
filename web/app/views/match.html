@@ -11,11 +11,21 @@
                 <img ng-if="personne.sexe=='f'" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
 
             <ul class="list-group">
-                <li class="list-group-item">{{personne.prenom}}</li>
+                <li class="list-group-item" ng-if="personne.prenom">{{personne.prenom}}</li>
+                <li class="list-group-item"ng-if="personne.ville">Habite à {{personne.ville}}</li>
+                <li class="list-group-item" ng-if = "personne.situationFamiliale">{{personne.situationFamiliale}}</li>
+                <li class="list-group-item"ng-if="personne.niveauEtude">{{personne.niveauEtude}}</li>
+                <li class="list-group-item" ng-if="personne.loisir">{{personne.loisir}}</li>
+            </ul>
+        </div>
+        <div class="profileArea col-md-6">
+            <ul class="list-group">
                 <li ng-if="personne.sexe=='m'" class="list-group-item">Homme</li>
                 <li ng-if="personne.sexe=='f'" class="list-group-item">Femme</li>
-                <li class="list-group-item">{{personne.age}} ans</li>
-                <li class="list-group-item">{{personne.situationFamiliale}}</li>
+                <li class="list-group-item" ng-if="personne.poids">{{personne.poids}} ans</li>
+                <li class="list-group-item" ng-if="personne.taille">{{personne.taille}} cm</li>
+                <li class="list-group-item" ng-if="personne.origine">{{personne.origine}}</li>
+
             </ul>
         </div>
     </div>

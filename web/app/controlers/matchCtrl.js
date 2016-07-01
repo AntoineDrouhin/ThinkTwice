@@ -4,11 +4,19 @@ angular.module('thinktwiceApp')
     .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia){
 
         $scope.personne = {
-            prenom : "",
             dateDeNaissance : "",
+            taille : 0,
+            adresse : "",
+            cp : "",
+            ville: "",
             situationFamiliale : "",
-            sexe : 'm',
-            age : 8
+            niveauEtude : 0,
+            origine : "",
+            Universite : "",
+            loisir : "",
+            metier : "",
+            sexe : "",
+            id_personne : 0
         };
 
 
