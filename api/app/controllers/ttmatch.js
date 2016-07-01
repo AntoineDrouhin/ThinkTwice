@@ -23,6 +23,7 @@ TtmatchController.getMatch = function(req, res){
 
     if (req.params.id) {
 
+        //TODO mettre le dernier match (Ajouté condition WHERE DatE la plus récente)
         var query = "select id, personneid1, personneid2 from ttmatch where personneid1 = ? or personneid2 = ?";
 
         var con = global.con();
@@ -37,12 +38,11 @@ TtmatchController.getMatch = function(req, res){
 
             var json;
             if (!rows.length) {
-                json = TtmatchController.matching(req.body.id);
+                json = TtmatchController.matching(req.params.id);
                 return;
             }
             else {
                 var matchPersonId = rows[0].personneid1 == req.param.id ? rows[0].personneid2 : rows[0].personneid1;
-                TtmatchController.retMatch(id, matchProfilId);
 
                 json = {
                     id : id,
