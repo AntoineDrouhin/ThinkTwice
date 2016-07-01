@@ -5,7 +5,17 @@ angular.module('thinktwiceApp')
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
 
-        $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
+
+        $http({
+            method: 'GET',
+            url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch',
+            data : $scope.interet
+        }).then(function successCallback(response){
+            var user
+        }, function errorCallback(response){
+
+        });
+
 
         $scope.personne = {
             dateDeNaissance : "",

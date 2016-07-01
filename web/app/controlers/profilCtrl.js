@@ -3,6 +3,8 @@ var current_resume;
 angular.module('thinktwiceApp')
     .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
 
+        $scope.personne = {};
+
         //GESTION IMAGE
         /**
          *
@@ -107,35 +109,24 @@ angular.module('thinktwiceApp')
         // Recupere les informations de personne
         $http({
             method: 'GET',
-            url: WEBAPP_CONFIG.api_route + '/personne/' + idUser ,
+            url: WEBAPP_CONFIG.api_route + '/personne/' + idUser,
             data : $scope.personne
         }).then(function successCallback(response){
-            $scope.personne = response;
+            $scope.personne = response.data;
+           // $scope.personneTmp = angular.copy($scope.personne);
         }, function errorCallback(){
-            $scope.personne = {
-                "dateDeNaissance": "",
-                "taille" : undefined ,
-                "adresse" : "",
-                "cp" : "",
-                "ville": "",
-                "situationFamiliale" : "",
-                "niveauEtude" : undefined,
-                "origine" : "",
-                "universite" : "",
-                "loisir" : "",
-                "metier" : "",
-                "sexe" : "",
-                "id_personne" : undefined
-            };
+
         });
 
         // Fonction de validation du formulaire de personne
         $scope.postPersonne = function () {
 
+            $scope.personneTmp.personne_id = idUser;
+
             $http({
-                method: 'POST',
+                method: 'PUT',
                 url: WEBAPP_CONFIG.api_route + '/personne/',
-                data : $scope.personne
+                data : $scope.personneTmp
             }).then(function successCallback(response){
 
             }, function errorCallback(response){
@@ -144,7 +135,7 @@ angular.module('thinktwiceApp')
         };
 
         // Recuperer l'interet
-        $http({
+/*        $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/interet/' + idUser,
             data : $scope.interet
@@ -165,7 +156,7 @@ angular.module('thinktwiceApp')
                 "origine3" : ""
             };
         });
-
+*/
         // Validation du formulaire d'interet
         $scope.postInteret = function () {
 
@@ -175,7 +166,7 @@ angular.module('thinktwiceApp')
             }).then(function successCallback(response){
                 $http({
                     method: 'POST',
-                    url: WEBAPP_CONFIG.api_route + '/interet/' + idUser,
+                    url: WEBAPP_CONFIG.api_route + '/interet/',
                     data : $scope.personne
                 }).then(function successCallback(response){
 

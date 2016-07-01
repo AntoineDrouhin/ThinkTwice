@@ -38,7 +38,7 @@
                 <div class="formTitle">Informations du profil</div>
                 <div class="form-group">
                     <span>Sexe</span>
-                    <select name = "inputSexe" class="form-control" id="inputSexe" ng-model="personne.sexe" required>
+                    <select name = "inputSexe" class="form-control" id="inputSexe" ng-model="personneTmp.sexe" required>
                         <option value="">Choisir une valeur</option>
                         <option value="f">Femme</option>
                         <option value="m">Homme</option>
@@ -46,16 +46,16 @@
                 </div>
                 <div class="form-group">
                     <span>Date de naissance</span>
-                    <input type="date" class="form-control" id="inputDateDeNaissance" placeholder="Date de naissance" ng-model="personne.login" required />
+                    <input type="date" class="form-control" id="inputDateDeNaissance" placeholder="Date de naissance" ng-model="personneTmp.login" required />
                 </div>
                 <div class="form-group">
                     <span>Taille</span>
-                    <input type="number" class="form-control" id="inputTaille" placeholder="Taille" min="90" max="230" ng-model="personne.taille" required />
+                    <input type="number" class="form-control" id="inputTaille" placeholder="Taille" min="90" max="230" ng-model="personneTmp.taille" required />
                 </div>
                 <div class="form-group">
                     <span>Situation amoureuse</span>
-                    <!--<input type="text" class="form-control" id="inputSituation" placeholder="Situation familiale" ng-model="personne.situationFamiliale" />-->
-                    <select name="inputSituation" class="form-control" id="inputSituation" ng-model="personne.situationFamiliale" required >
+                    <!--<input type="text" class="form-control" id="inputSituation" placeholder="Situation familiale" ng-model="personneTmp.situationFamiliale" />-->
+                    <select name="inputSituation" class="form-control" id="inputSituation" ng-model="personneTmp.situationFamiliale" required >
                         <option value="">Choisir une valeur</option>
                         <option value="Célibataire">Célibataire</option>
                         <option value="En Couple">En Couple</option>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group">
                     <span>Niveau d'études</span>
-                    <select name="inputNiveauEtudes" class="form-control" id="inputEtudes" ng-model="personne.niveauEtude" required >
+                    <select name="inputNiveauEtudes" class="form-control" id="inputEtudes" ng-model="personneTmp.niveauEtude" required >
                         <option value="">Choisir une valeur</option>
                         <option value="C'est compliqué">C'est compliqué</option>
                         <option value="Baccalauréat">Baccalauréat</option>
@@ -76,12 +76,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="inputUniversite" placeholder="Etablissement/Université" ng-model="personne.universite" required />
+                    <input type="text" class="form-control" id="inputUniversite" placeholder="Etablissement/Université" ng-model="personneTmp.universite" required />
                 </div>
                 <div class="form-group">
-                    <!--<input type="text" class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personne.origine" />-->
+                    <!--<input type="text" class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personneTmp.origine" />-->
                     <span>Origine ethnique</span>
-                    <select class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personne.origine" required >
+                    <select class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personneTmp.origine" required >
                         <option value="">Choisir une valeur</option>
                         <option value ="Blanc/Caucasien">Blanc/Caucasien</option>
                         <option value ="Noir/Africain">Noir/Africain</option>
@@ -92,11 +92,11 @@
                 </div>
                 <div class="form-group">
                     <span>Profession</span>
-                    <input type="text" class="form-control" id="inputmMetier" placeholder="Profession" ng-model="personne.metier" required />
+                    <input type="text" class="form-control" id="inputmMetier" placeholder="Profession" ng-model="personneTmp.metier" required />
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-10 col-sm-2">
-                        <button id="submitInfos" class="btn btn-success" ng-click="updateProfil()">
+                        <button id="submitInfos" class="btn btn-success" ng-click="postPersonne()">
                             Valider
                         </button>
                     </div>
@@ -147,11 +147,11 @@
                     </select>
                     <select class="form-control" id="interetOrigine3" placeholder="Origine ethnique" ng-model="interet.origine3" required >
                         <option value="">Choisir une valeur</option>
-                        <option value ="Blanc/Caucasien">Blanc/Caucasien</option>
-                        <option value ="Noir/Africain">Noir/Africain</option>
-                        <option value ="Moyen Oriental">Moyen Oriental</option>
-                        <option value ="Asiatique">Asiatique</option>
-                        <option value ="Amérique Latine">Amérique Latine</option>
+                        <option value ="1">Blanc/Caucasien</option>
+                        <option value ="2">Noir/Africain</option>
+                        <option value ="3">Moyen Oriental</option>
+                        <option value ="4">Asiatique</option>
+                        <option value ="5">Amérique Latine</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -168,7 +168,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-10 col-sm-2">
-                        <button id="submitInteret" class="btn btn-success" ng-click="updateInteret()">
+                        <button id="submitInteret" class="btn btn-success" ng-click="postInteret()">
                             Valider
                         </button>
                     </div>
