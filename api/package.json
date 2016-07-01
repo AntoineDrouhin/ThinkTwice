@@ -19,6 +19,7 @@
     "moment": "^2.11.x",
     "mongoose": "^4.0.3",
     "morgan": "^1.5.3",
+    "multer": "^1.1.0",
     "mysql": "^2.11.1",
     "nodemon": "^1.8.1",
     "passport": "^0.2.1",

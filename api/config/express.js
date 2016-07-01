@@ -20,6 +20,8 @@ var compression     = require('compression'),
 // ----- Configuration
 var config          = require('./config');
 
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 
 
