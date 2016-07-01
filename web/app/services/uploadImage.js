@@ -1,7 +1,8 @@
+
 'use strict';
 
 angular.module('thinktwiceApp')
-    .service('uploadImage', function($timeout, Upload){
+    .service('uploadImage', function($timeout, $http){
 
         $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
