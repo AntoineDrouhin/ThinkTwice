@@ -16,6 +16,7 @@ angular.module('thinktwiceApp')
          */
         $scope.changeAvatar = function(file){
             $scope.picFile       = file;
+            //uploadImage(file, WEBAPP_CONFIG.api_route + '/avatar/to/' + idUser)
             $scope.avatarUploaded = true;
         };
 
@@ -29,8 +30,9 @@ angular.module('thinktwiceApp')
          *
          */
         $scope.validAvatar = function() {
+            console.log('hrhrhr')
             // TODO : décommenter la ligne suivante
-            uploadImage(scope.picFile, "place HOLDER"/* INSERER L'adresse de l'uri d'upload que aurélien a créer*/, function (response) {
+            uploadImage($scope.picFile, WEBAPP_CONFIG.api_route + '/avatar/to/' + idUser, function (response) {
                 if (response) {
                     // ---- Remove avatar uplaoder
                     $scope.avatarUploaded = false;

@@ -2,12 +2,12 @@
 'use strict';
 
 angular.module('thinktwiceApp')
-    .service('uploadImage', function($timeout, $http){
+    .service('uploadImage', function($timeout, $http,Upload){
 
         $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
         return function(file, path, callback){
-
+            debugger;
             file.upload = Upload.upload({
                 url     : path,
                 method  : 'POST',
