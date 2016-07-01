@@ -10,6 +10,12 @@ module.exports = function(router) {
         auth              = require('../helpers/auth');
 
     // -------- Retrieve all person from the database
-    router.get('/personne/:id/ttmatch', auth.isAuth, ttmatchController.getMatch);
+    router.get('/personne/:id_p_cur/ttmatch', auth.isAuth, ttmatchController.getMatch);
+
+    router.param('id_p_cur', function(req,res,next,id){
+        console.log(id);
+        req.id_p_cur = id;
+        next();
+    } );
 
 };
