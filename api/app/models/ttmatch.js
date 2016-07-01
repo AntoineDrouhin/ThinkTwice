@@ -18,11 +18,15 @@ Ttmatch.prototype.matching = function () {
 
         }
         var tabPersonneInteret = rows; 
-
-
+        var ageMax = value_age × 15 ÷ 100
+        var ageMin = value_age − value_age × 15/100;
+        var tailleMax = 
+        var tailleMin =
+        SELECT * FROM personne where
 
     })
 
 }
 
+// A CORRIGER AVEC AUREL
 //module.exports = ttmatch;
