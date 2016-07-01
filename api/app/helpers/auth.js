@@ -26,7 +26,7 @@ module.exports.isAuth = function(req, res, next){
                 return;
             }
         }
-        res.status(401).json({message : 'user not found'});
+        res.status(401).json({autherror : true});
 
     });
 
