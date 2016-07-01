@@ -42,3 +42,6 @@ jspm_packages
 
 #Bower / Angular 
 web/bower_components/
+
+# Ignore Images
+api/data/avatar/*

@@ -40,6 +40,7 @@ angular.module('thinktwiceApp')
         $scope.cancelAvatar = function(){
             $scope.avatarUploaded    = false;
         };
+        
         /**
          *
          */
@@ -48,14 +49,14 @@ angular.module('thinktwiceApp')
             uploadImage($scope.picFile, WEBAPP_CONFIG.api_route + '/avatar/to/' + idUser, function (response, data) {
                 if (response) {
                     // ---- Remove avatar uplaoder
-                    //$scope.avatarUploaded = false;
+                    $scope.avatarUploaded = false;
                     // ---- Refresh the link to current avatar
                     //$scope.user.toRefresh = moment().valueOf();
                     // ---- Little message
                     //ToastService('200', "Mise a jour de l'avatar utilisateur");
 
                     $scope.linkSrcImage = data.link;
-                    
+
 
                 } else {
                     // ---- Error
