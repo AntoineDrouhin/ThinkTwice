@@ -186,5 +186,8 @@ angular.module('thinktwiceApp')
 
         };
 
+        //Gestion de l'image
+        
+
     });
 

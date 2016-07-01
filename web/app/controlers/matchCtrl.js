@@ -23,7 +23,6 @@ angular.module('thinktwiceApp')
             id_personne : 0
         };
 
-
         // io.sockets.on('connection', function (socket) {
         //     socket.emit('msg', { msg: msg });
         //     socket.on('msg', function(msg){

@@ -6,7 +6,7 @@ angular.module('thinktwiceApp')
 
         $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
-        return function(file, path,callback){
+        return function(file, path, callback){
 
             file.upload = Upload.upload({
                 url     : path,
