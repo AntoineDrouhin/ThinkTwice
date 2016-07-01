@@ -6,15 +6,14 @@ angular.module('thinktwiceApp')
         var idUser = window.localStorage.getItem("thinktwice_userId");
         $scope.personne = {};
 
-
         //GESTION IMAGE
-        //Télécharger l'avatar
+            //Télécharger l'avatar
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/avatar/from/' + idUser
         }).then(function successCallback(response){
             $scope.linkSrcImage = response.data.link;
-            //$("#avatar-img").attr("src",response.data.link)
+
         }, function errorCallback(response){
             $scope.linkSrcImage = '/images/placeholder.jpg';
         });
@@ -45,7 +44,6 @@ angular.module('thinktwiceApp')
          *
          */
         $scope.validAvatar = function() {
-            console.log('hrhrhr')
 
             uploadImage($scope.picFile, WEBAPP_CONFIG.api_route + '/avatar/to/' + idUser, function (response, data) {
                 if (response) {

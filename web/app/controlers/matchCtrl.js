@@ -1,21 +1,21 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia){
+    .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
 
-
+        // Aller chercher les informations sur la personne
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch',
             data : $scope.interet
         }).then(function successCallback(response){
-            var user
+            //si on a un match
+            
         }, function errorCallback(response){
-
+            // si on a pas de match
         });
-
 
         $scope.personne = {
             dateDeNaissance : "",

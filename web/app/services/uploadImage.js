@@ -7,7 +7,7 @@ angular.module('thinktwiceApp')
         $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
         return function(file, path, callback){
-            
+
             file.upload = Upload.upload({
                 url     : path,
                 method  : 'POST',
@@ -21,7 +21,7 @@ angular.module('thinktwiceApp')
                     return callback(true, response.data);
                 });
             }, function(reason){
-                new ToastService(reason);
+                // new ToastService(reason);
                 return callback(false, response.data);
             });
 
