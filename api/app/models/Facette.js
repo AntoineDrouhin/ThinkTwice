@@ -69,19 +69,21 @@ Facette.prototype.calc = function () {
                 //insert dans personne_facette
                 var j = 0;
                 for (var val in mapFacette) {
-                    if (j < (tabFacette.length)) {
-                    } else {
-                        this.next($this.id_personne, $this.reponses);
-                    }
-                    j++;
+
                     query = "INSERT INTO personne_facette (score,facetteid,personneid) VALUES (?,?,?)";
                     var score = mapFacette[val];
                     con.query(query,[score, val, $this.id_personne],function(err,rows){
-                        var a = 1;
+
                         if(err){
                             Utils.info(err);
 
                         }
+
+                        j++;
+                        if (j >= (tabFacette.length)) {
+                            $this.next($this.id_personne, $this.reponses);
+                        }
+
                     })
 
                 }
