@@ -51,3 +51,24 @@ AvatarController.upload = function (req, res) {
         }); 
     }); 
 };
+
+AvatarController.download = function (req, res) {
+    console.log("Download image");
+    if (req.params.id_src) {
+        var query = "select photoPath from personne where id = ?";
+        var con = global.con();
+        con.query(query, req.params.id_src, function(err, rows) {
+            console.log(rows);
+            if (err || !rows.length) {
+                res.status(404).json({"error": true});
+                return;
+            }
+            res.status(200).json({link : global.config.app.url+ rows[0].photoPath});
+            return;
+
+        })
+    } else {
+        res.status(404).json({"error": true});
+    }
+
+};

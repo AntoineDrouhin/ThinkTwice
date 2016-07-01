@@ -21,7 +21,7 @@ module.exports.isAuth = function(req, res, next){
     con.query(query, [token], function(err, rows) {
         console.log(rows);
         if (!err && rows.length && rows[0].isAuth) {
-            if (new Date().getTime() - token <= 4*3600*1000) {
+            if ((new Date().getTime() - token) <= 4*3600*1000) {
                 next();
                 return;
             }
