@@ -54,10 +54,12 @@ angular.module('thinktwiceApp')
                     // ---- Little message
                     //ToastService('200', "Mise a jour de l'avatar utilisateur");
 
-                    $scope.linkSrcImage = data.link; debugger;
+                    $scope.linkSrcImage = data.link;
+                    
+
                 } else {
                     // ---- Error
-                    ToastService('400', "Erreur durant l'upload de la photo");
+                    //ToastService('400', "Erreur durant l'upload de la photo");
                 }
             });
         };
