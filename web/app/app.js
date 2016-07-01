@@ -5,7 +5,8 @@ angular.module('thinktwiceApp',[
      * Here declaration all external dependencies or
      */
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'ngFileUpload'
 ])
     .constant('WEBAPP_CONFIG', {
         connexion_params: {

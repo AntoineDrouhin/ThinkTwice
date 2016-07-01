@@ -9,8 +9,6 @@
     </div>
 
     <div class="col-md-8 ">
-        <!-- <div class="panel panel-default"> -->
-
 
             <!-- PERSONNE -->
         <div id="infosProfil">
@@ -77,6 +75,31 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+            <!-- Photo -->
+        <div layout="column" flex="auto" layout-align="center center">
+
+
+
+            <md-button ngf-select ngf-change="changeAvatar($file)" aria-label="upload photo" accept="image/png, image/jpg, image/jpeg"
+                       ng-if="!avatarUploaded  && canEdit">
+                <md-icon md-svg-src="angular-material:edit" class="blue-font ic_16px"></md-icon>
+                <span style="font-weight: 200">Changer de photo</span>
+            </md-button>
+
+            <img ngf-src="picFile" style="width: 100px; height: 100px; border-radius: 20px" ng-if="avatarUploaded"/>
+
+            <div layout="row">
+
+                <md-button ng-if="avatarUploaded" ng-click="cancelAvatar()" aria-label="Cancel Avatar">
+                    <md-icon md-svg-src="material-design:reply" class="blue-font ic_16px"></md-icon>
+                </md-button>
+
+                <md-button ng-if="avatarUploaded" ng-click="validAvatar()" aria-label="Valid Avatar">
+                    <md-icon md-svg-src="angular-material:doneLB" class="blue-font ic_16px"></md-icon>
+                </md-button>
             </div>
         </div>
 
@@ -170,8 +193,6 @@
                     </div>
                 </div>
             </form>
-
-        <!-- </div> -->
     </div>
 </div>
 

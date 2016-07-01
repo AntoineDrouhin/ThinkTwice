@@ -1,7 +1,53 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
+    .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
+
+
+        //GESTION IMAGE
+        /**
+         *
+         * @type {boolean}
+         */
+        $scope.avatarUploaded = false;
+
+        /**
+         *
+         * @param file
+         */
+        $scope.changeAvatar = function(file){
+            $scope.picFile       = file;
+            $scope.avatarUploaded = true;
+        };
+
+        /**
+         *
+         */
+        $scope.cancelAvatar = function(){
+            $scope.avatarUploaded    = false;
+        };
+        /**
+         *
+         */
+        $scope.validAvatar = function() {
+            // TODO : décommenter la ligne suivante
+            uploadImage(scope.picFile, "place HOLDER"/* INSERER L'adresse de l'uri d'upload que aurélien a créer*/, function (response) {
+                if (response) {
+                    // ---- Remove avatar uplaoder
+                    $scope.avatarUploaded = false;
+                    // ---- Refresh the link to current avatar
+                    $scope.user.toRefresh = moment().valueOf();
+                    // ---- Little message
+                    ToastService('200', "Mise a jour de l'avatar utilisateur");
+                } else {
+                    // ---- Error
+                    ToastService('400', "Erreur durant l'upload de la photo");
+                }
+            });
+        };
+
+
+        // FIN Gestion image
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
 
@@ -122,7 +168,7 @@ angular.module('thinktwiceApp')
             };
         });
 
-        // Validation du formulaire d'interet
+        // Validation du formulaire d'interet 
         $scope.postInteret = function () {
 
             $http({
@@ -145,3 +191,4 @@ angular.module('thinktwiceApp')
         };
 
     });
+
