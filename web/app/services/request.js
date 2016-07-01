@@ -19,7 +19,8 @@ angular.module('thinktwiceApp')
 
                     if (response.status == 401) {
                         swal('Vous avez été déconnecté','','error');
-                        $injector.get('$state').transitionTo('login');
+                        //TODO : décomenter la ligne suivante
+                        //$injector.get('$state').transitionTo('login');
                     }
                     return $q.reject(response);
                 }

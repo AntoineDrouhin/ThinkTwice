@@ -3,8 +3,6 @@ var current_resume;
 angular.module('thinktwiceApp')
     .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
 
-        $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
-
         //GESTION IMAGE
         /**
          *
