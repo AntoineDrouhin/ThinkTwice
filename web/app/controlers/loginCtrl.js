@@ -1,7 +1,7 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('loginCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
+    .controller('loginCtrl', function($scope, $state, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
         $scope.personne = {
             "login" : "",
@@ -19,7 +19,7 @@ angular.module('thinktwiceApp')
                 window.localStorage.setItem("thinktwice_userId", response.data.id);
                 window.localStorage.setItem("thinktwice_token", response.data.token);
 
-                document.location.href = "#/profil";
+                $state.transitionTo('profil');
 
             }, function errorCallback(response){
                 swal("Oops...", "Combinaison / Mot de passe incorrecte", "error");

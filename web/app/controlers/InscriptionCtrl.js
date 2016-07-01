@@ -2,7 +2,7 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('inscriptionCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
+    .controller('inscriptionCtrl', function($scope, $http, $mdDialog, $mdMedia, sweetAlert, WEBAPP_CONFIG){
 
         $scope.personne = {
             "nom" : "",
@@ -27,7 +27,7 @@ angular.module('thinktwiceApp')
             }, function errorCallback(response){
                 console.log(response)
             });
-        } else { alert("Mots de passes différents")}
+        } else { swal("Mots de passes différents",'','error')}
         };
         
     });
