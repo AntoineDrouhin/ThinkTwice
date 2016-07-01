@@ -14,6 +14,8 @@ module.exports = function(router) {
 
     router.get('/avatar/from/:id_src', auth.isAuth, avatarController.download);
 
+    router.get('/data/avatar/:file',  avatarController.binary);
+
     router.param('id_dst', function(req,res,next,id){
         req.dst = id;
         next();

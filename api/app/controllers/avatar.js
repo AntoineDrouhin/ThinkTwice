@@ -70,5 +70,11 @@ AvatarController.download = function (req, res) {
     } else {
         res.status(404).json({"error": true});
     }
-
 };
+
+AvatarController.binary = function (req, res) {
+    console.log(req.params.file);
+    var img = fs.readFileSync( path.join(__dirname, '/../../data/avatar/', req.params.file));
+    res.writeHead(200, {'Content-Type': 'image/png' });
+    res.end(img, 'binary');
+}
