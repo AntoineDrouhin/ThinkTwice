@@ -12,6 +12,8 @@ module.exports = function(router) {
     // -------- Retrieve all person from the database
     router.get('/personne/:id_p_cur/ttmatch', auth.isAuth, ttmatchController.getMatch);
 
+    router.delete('/ttmatch/:id', auth.isAuth, ttmatchController.deleteMatch);
+
     router.param('id_p_cur', function(req,res,next,id){
         console.log(id);
         req.id_p_cur = id;

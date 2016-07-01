@@ -1,17 +1,15 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('matchCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
+    .controller('matchCtrl', function($scope, $state, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
-
 
         // Aller chercher les informations sur la personne
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
         }).then(function successCallback(response){
-            
             $http({
                 method: 'GET',
                 url: WEBAPP_CONFIG.api_route + '/personne/' + response.data.matchPersonId
@@ -32,16 +30,15 @@ angular.module('thinktwiceApp')
             console.log(response);
         });
 
-        // io.sockets.on('connection', function (socket) {
-        //     socket.emit('msg', { msg: msg });
-        //     socket.on('msg', function(msg){
-        //         msg[msg.msg-1].msg++;
-        //         io.sockets.emit('msg', { msg: msg });
-        //     })
-        // });
+        $scope.zapper = function () {
+            $http({
+                method: 'DELETE',
+                url: WEBAPP_CONFIG.api_route + '/ttmatch/' + idUser
+            }).then(function successCallback(response){
+                $state.transitionTo('match');
+            }, function errorCallback(response){
 
-        $scope.getAge = function(date) {
-            return 2;
-        }
+            });
+        };
 
     });
