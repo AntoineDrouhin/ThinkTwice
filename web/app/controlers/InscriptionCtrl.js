@@ -14,7 +14,6 @@ angular.module('thinktwiceApp')
         
         $scope.mdpconf = "";
 
-
         $scope.inscription = function () {
         if ($scope.mdpconf == $scope.personne.mdp) {
             $http({

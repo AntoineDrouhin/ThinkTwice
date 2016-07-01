@@ -3,7 +3,7 @@
 angular.module('thinktwiceApp')
     .service('uploadImage', function($timeout, Upload){
 
-        //TODO: ajouter sécurité
+        $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
         return function(file, path,callback){
 

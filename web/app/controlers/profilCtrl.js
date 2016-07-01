@@ -3,6 +3,7 @@ var current_resume;
 angular.module('thinktwiceApp')
     .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
 
+        $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
         //GESTION IMAGE
         /**
@@ -46,7 +47,6 @@ angular.module('thinktwiceApp')
             });
         };
 
-
         // FIN Gestion image
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
@@ -57,7 +57,6 @@ angular.module('thinktwiceApp')
             url: WEBAPP_CONFIG.api_route + '/facette/'
         }).then(function successCallback(response){
             $scope.interet = response.data;
-
         }, function errorCallback(response){
             $scope.interet = {error: true};
             //alert("Erreur récupération facettes, reponse = " + response);
@@ -168,7 +167,7 @@ angular.module('thinktwiceApp')
             };
         });
 
-        // Validation du formulaire d'interet 
+        // Validation du formulaire d'interet
         $scope.postInteret = function () {
 
             $http({

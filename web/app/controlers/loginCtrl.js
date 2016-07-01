@@ -16,8 +16,8 @@ angular.module('thinktwiceApp')
                 data: $scope.personne
             }).then(function successCallback(response){
 
-                window.localStorage.setItem("thinktwice_userId", response.id);
-                window.localStorage.setItem("thinktwice_token", response.token);
+                window.localStorage.setItem("thinktwice_userId", response.data.id);
+                window.localStorage.setItem("thinktwice_token", response.data.token);
 
                 document.location.href = "#/match";
 

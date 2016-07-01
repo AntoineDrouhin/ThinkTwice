@@ -5,8 +5,7 @@ angular.module('thinktwiceApp')
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
 
-        
-
+        $http.defaults.headers.common.Authorization = window.localStorage.getItem("thinktwice_token");
 
         $scope.personne = {
             dateDeNaissance : "",
