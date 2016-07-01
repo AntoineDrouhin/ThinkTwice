@@ -6,7 +6,7 @@
 <div class="containter">
     <div class="col-md-4">
         <!-- Photo -->
-        <img class="profileImage" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQAUxslzkT0L6Hv6igUJUfu8JkafRp819ESgNG6b2rQWydxptE5Sw">
+        <img id="avatar-img" class="profileImage" ng-src="{{linkSrcImage}}">
         <div layout="column" flex="auto">
             <md-button id="btnUpload" class="md-raised" ngf-select ngf-change="changeAvatar($file)" aria-label="upload photo" accept="image/png, image/jpg, image/jpeg">
                 <!--ng-if="!avatarUploaded  && canEdit">-->

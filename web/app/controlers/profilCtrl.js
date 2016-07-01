@@ -3,9 +3,22 @@ var current_resume;
 angular.module('thinktwiceApp')
     .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
 
+        var idUser = window.localStorage.getItem("thinktwice_userId");
         $scope.personne = {};
 
+
         //GESTION IMAGE
+        //Télécharger l'avatar
+        $http({
+            method: 'GET',
+            url: WEBAPP_CONFIG.api_route + '/avatar/from/' + idUser
+        }).then(function successCallback(response){
+            $scope.linkSrcImage = response.data.link;
+            //$("#avatar-img").attr("src",response.data.link)
+        }, function errorCallback(response){
+            $scope.linkSrcImage = '/images/placeholder.jpg';
+        });
+
         /**
          *
          * @type {boolean}
@@ -33,15 +46,17 @@ angular.module('thinktwiceApp')
          */
         $scope.validAvatar = function() {
             console.log('hrhrhr')
-            // TODO : décommenter la ligne suivante
-            uploadImage($scope.picFile, WEBAPP_CONFIG.api_route + '/avatar/to/' + idUser, function (response) {
+
+            uploadImage($scope.picFile, WEBAPP_CONFIG.api_route + '/avatar/to/' + idUser, function (response, data) {
                 if (response) {
                     // ---- Remove avatar uplaoder
-                    $scope.avatarUploaded = false;
+                    //$scope.avatarUploaded = false;
                     // ---- Refresh the link to current avatar
-                    $scope.user.toRefresh = moment().valueOf();
+                    //$scope.user.toRefresh = moment().valueOf();
                     // ---- Little message
-                    ToastService('200', "Mise a jour de l'avatar utilisateur");
+                    //ToastService('200', "Mise a jour de l'avatar utilisateur");
+
+                    $scope.linkSrcImage = data.link; debugger;
                 } else {
                     // ---- Error
                     ToastService('400', "Erreur durant l'upload de la photo");
@@ -51,7 +66,7 @@ angular.module('thinktwiceApp')
 
         // FIN Gestion image
 
-        var idUser = window.localStorage.getItem("thinktwice_userId");
+
 
         // Recuperer les interets
         $http({
