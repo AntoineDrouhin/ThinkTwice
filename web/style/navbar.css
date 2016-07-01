@@ -4,13 +4,17 @@ body {
 }
 
 .navbar {
-    background-color: #da12b7;
+    background-color :#da12b7 ;
+}
+
+.dropdown {
+    color: white;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: white;
+    color: White;
 }
 
 .navbar-default .navbar-brand {
-    color: white;
+    color: White;
 }

@@ -7,6 +7,11 @@
 
 }
 
+#questionWrapper {
+    max-height:80%;
+    overflow : scroll;
+}
+
 #photoProfil {
 
 }
@@ -19,7 +24,7 @@
   }
 
 .formTitle {
-    color: #da12b7;
+    color: #3f3f3f;
     font-size:200%;
     text-shadow: #4F4D3F;
 }

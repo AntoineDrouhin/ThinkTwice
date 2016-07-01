@@ -19,7 +19,7 @@ angular.module('thinktwiceApp')
                 window.localStorage.setItem("thinktwice_userId", response.data.id);
                 window.localStorage.setItem("thinktwice_token", response.data.token);
 
-                document.location.href = "#/match";
+                document.location.href = "#/profil";
 
             }, function errorCallback(response){
                 swal("Oops...", "Combinaison / Mot de passe incorrecte", "error");
