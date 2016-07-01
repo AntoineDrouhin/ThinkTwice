@@ -71,7 +71,6 @@ angular.module('thinktwiceApp')
             alert("error Recuperation questions, reponse = " + response);
         });
 
-
         // Pousser les réponses au questionnaire
         $scope.pushData = function(){
             var data = {

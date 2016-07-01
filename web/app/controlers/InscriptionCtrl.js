@@ -2,15 +2,8 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('inscriptionCtrl', function($scope, $http, $mdDialog, $mdMedia, sweetAlert, WEBAPP_CONFIG){
+    .controller('inscriptionCtrl', function($scope, $http, $state, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
-        $scope.personne = {
-            "nom" : "",
-            "prenom" : "",
-            "login" : "",
-            "mdp" : "",
-            "mail" : ""
-        };
         
         $scope.mdpconf = "";
 
@@ -23,6 +16,7 @@ angular.module('thinktwiceApp')
             }).then(function successCallback(response){
                 swal("Success !!!", "L'equipe thinktwice vous souhaite la bienvenue", "success");
                 document.location.href = "#/profil";
+                $state.transitionTo('profil');
 
             }, function errorCallback(response){
                 console.log(response)
