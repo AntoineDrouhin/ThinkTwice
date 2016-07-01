@@ -21,8 +21,8 @@ AvatarController.upload = function (req, res) {
         var extension = filename.split('.');
         extension = extension[extension.length - 1];
 
-        //filename = req.icon_find._id + '_F.' + extension;  
-        filename = req.dst + '_F.' + extension;
+
+        filename = new Date().getTime() + '_F.' + extension;
 
         // --- Create a path to the image 
         var link = path.join(__dirname, '/../../data/avatar/', filename);  
@@ -45,6 +45,7 @@ AvatarController.upload = function (req, res) {
                         res.status(400).json({error : true});
                     }
                     res.status(200).json({link : global.config.app.url+ relPath});
+
                 });
 
             }  
