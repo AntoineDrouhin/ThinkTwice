@@ -6,6 +6,28 @@ angular.module('thinktwiceApp')
         var idUser = window.localStorage.getItem("thinktwice_userId");
         $scope.personne = {};
 
+        $scope.progressBarProfil = 0;
+        $scope.progressBarInterets = 0;
+        $scope.progressBarQuestions = 0;
+        $scope.progressBarMax = 3;
+        $scope.progressBarValue = 0;
+        $scope.progressBarType = "";
+
+        //GESTION PROGRESSBAR
+        $scope.updateProgressBar = function() {
+            $scope.progressBarValue =
+                $scope.progressBarProfil
+            +   $scope.progressBarInterets
+            +   $scope.progressBarQuestions;
+
+            if($scope.progressBarValue < $scope.progressBarMax)
+                $scope.progressBarType = "danger";
+            else
+                $scope.progressBarType = "success";
+
+            $scope.progressBarWidth = ($scope.progressBarValue/$scope.progressBarMax).toFixed(2) *100
+        };
+
         //GESTION IMAGE
             //Télécharger l'avatar
 
@@ -116,6 +138,9 @@ angular.module('thinktwiceApp')
                 data : data
             }).then(function successCallback(response){
 
+                $scope.progressBarQuestions = 1;
+                $scope.updateProgressBar();
+
             }, function errorCallback(response){
                 console.log(response)
             });
@@ -163,6 +188,9 @@ angular.module('thinktwiceApp')
                 url: WEBAPP_CONFIG.api_route + '/personne/',
                 data : p
             }).then(function successCallback(response){
+
+                $scope.progressBarProfil = 1;
+                $scope.updateProgressBar();
 
             }, function errorCallback(response){
                 console.log(response)
@@ -215,7 +243,8 @@ angular.module('thinktwiceApp')
                     url: WEBAPP_CONFIG.api_route + '/interet/',
                     data : $scope.personne
                 }).then(function successCallback(response){
-
+                    $scope.progressBarInterets = 1;
+                    $scope.updateProgressBar();
                 }, function errorCallback(response){
                     console.log(response)
                 });

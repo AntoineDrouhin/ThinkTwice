@@ -32,6 +32,16 @@
 
 
     <div class="col-md-8 ">
+        <span>Niveau de complétion du profil</span>
+        <div class="progress">
+            <!--<small><em>Niveau de complétion du profil</em></small>
+            <uib-progressbar class="progress-striped active" value="progressBarValue" max="{{progressBarMax}}" type="{{progressBarType}}"></uib-progressbar>-->
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                 aria-valuenow="{{progressBarValue}}" aria-valuemin="0" aria-valuemax="{{progressBarMax}}"
+                 ng-style="{width : ( progressBarWidth + '%' ) }">
+
+            </div>
+        </div>
             <!-- PERSONNE -->
         <div id="infosProfil">
             <form name="formProfil" id="formProfil">
