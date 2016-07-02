@@ -64,7 +64,9 @@ AvatarController.download = function (req, res) {
                 res.status(404).json({"error": true});
                 return;
             }
-            res.status(200).json({link : global.config.app.url+ rows[0].photoPath});
+            var datalink = (rows[0].photoPath == null) ? "data/avatar/placeholder.png" : rows[0].photoPath;
+
+            res.status(200).json({link : global.config.app.url+ datalink});
             return;
 
         })
