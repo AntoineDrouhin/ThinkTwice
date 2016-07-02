@@ -95,14 +95,14 @@ angular.module('thinktwiceApp')
         // Pousser les réponses au questionnaire
         $scope.pushData = function(){
             var data = {
-                id_personne : '',
+                id_personne : idUser,
                 reponses : []
             };
 
             $(".radioQuestion:checked").each(function (i,v) {
                 var id = $(this).attr("id");
                 data.reponses.push({
-                    'id':id.substring(11, id.length - 1),
+                    'id': id.substring(11, id.length),
                     'reponse': $(this).val()
                 });
             });
