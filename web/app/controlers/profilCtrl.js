@@ -12,7 +12,6 @@ angular.module('thinktwiceApp')
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/avatar/from/' + idUser
         }).then(function successCallback(response){
-            debugger;
             $scope.linkSrcImage = response.data.link;
 
         }, function errorCallback(response){
