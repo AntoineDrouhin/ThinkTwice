@@ -1,6 +1,7 @@
 
 .profilPicture {
     height: auto;
+    max-height:35%;
     width: 35%;
 }
 
@@ -21,9 +22,12 @@
     float: left;
 }
 
-.profileArea ul{
-    margin-left: 35%;
+.row{
+    width:80%;
+    margin-left : auto;
+    margin-right: auto;
 }
+
 
 .panel-heading {
     background-color:  #da12b7!important;
