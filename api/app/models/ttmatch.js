@@ -160,6 +160,9 @@ Ttmatch.prototype.matching = function () {
                             }
                         }
 
+
+                        /// on arrive jamais ici donc on ne renvoit jamais de match
+                        // et donc on ne fait jamais d'insert de match
                         console.log("Insert matching");
                         var insert = "insert into ttmatch(personneid1, personneid2) values(?,?)";
                         con.query(insert,[this.id_personne,tabRepPersonne[0].id],function(err,rows) {
