@@ -3,7 +3,9 @@ var current_resume;
 angular.module('thinktwiceApp')
     .controller('matchCtrl', function($scope, $state, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG){
 
-        if(window.localStorage.getItem('tt_profil_complete') != 0){
+        var idUser = window.localStorage.getItem("thinktwice_userId");
+
+        if(window.localStorage.getItem("tt_profil_complete_" + idUser) != 0){
             swal(
                 "Votre profil est incomplet",
                 "Merci de completer votre profil pour que nous puissions vous trouver le match parfait",
@@ -11,8 +13,6 @@ angular.module('thinktwiceApp')
             )
             $state.transitionTo('profil');
         }
-
-        var idUser = window.localStorage.getItem("thinktwice_userId");
 
         // Aller chercher les informations sur la personne
         $http({
@@ -25,7 +25,6 @@ angular.module('thinktwiceApp')
             }).then(function successCallback(response){
                 $scope.personne = response.data[0];
             }, function errorCallback(response){
-
             });
             $http({
                 method: 'GET',

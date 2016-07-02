@@ -6,57 +6,6 @@ angular.module('thinktwiceApp')
         var idUser = window.localStorage.getItem("thinktwice_userId");
         $scope.personne = {};
 
-        // c'est moche mais ca marche
-        if(window.localStorage.getItem("tt_profilcomplete")){
-            window.localStorage.setItem("tt_profilcomplete", "0");
-            $scope.progressBarProfil = 0;
-            $scope.progressBarInterets = 0;
-            $scope.progressBarQuestions = 0;
-            $scope.progressBarMax = 3;
-            $scope.progressBarValue = 0;
-            $scope.progressBarType = "danger";
-
-        }
-        else if (window.localStorage.getItem("tt_profilcomplete") == 3){
-            $scope.progressBarProfil = 1;
-            $scope.progressBarInterets = 1;
-            $scope.progressBarQuestions = 1;
-            $scope.progressBarMax = 3;
-            $scope.progressBarValue = 3;
-            $scope.progressBarType = "success";
-        }
-        else if (window.localStorage.getItem("tt_profilcomplete") == 2){
-            $scope.progressBarProfil = 1;
-            $scope.progressBarInterets = 1;
-            $scope.progressBarQuestions = 0;
-            $scope.progressBarMax = 3;
-            $scope.progressBarValue = 2;
-            $scope.progressBarType = "danger";
-        }
-        else if (window.localStorage.getItem("tt_profilcomplete") == 1){
-            $scope.progressBarProfil = 1;
-            $scope.progressBarInterets = 0;
-            $scope.progressBarQuestions = 0;
-            $scope.progressBarMax = 3;
-            $scope.progressBarValue = 1;
-            $scope.progressBarType = "danger";
-        }
-
-        //GESTION PROGRESSBAR
-        $scope.updateProgressBar = function() {
-            $scope.progressBarValue =
-                $scope.progressBarProfil
-            +   $scope.progressBarInterets
-            +   $scope.progressBarQuestions;
-            window.localStorage.setItem("tt_profilcomplete", $scope.progressBarValue);
-            if($scope.progressBarValue < $scope.progressBarMax)
-                $scope.progressBarType = "danger";
-            else
-                $scope.progressBarType = "success";
-
-            $scope.progressBarWidth = ($scope.progressBarValue/$scope.progressBarMax).toFixed(2) *100
-        };
-
         //GESTION IMAGE
             //Télécharger l'avatar
         $http({
@@ -300,6 +249,78 @@ angular.module('thinktwiceApp')
             });
 
         };
+
+        //GESTION PROGRESSBAR
+        console.log("localStorage")
+        console.log(window.localStorage.getItem("tt_profilcomplete_"+idUser));
+        if(window.localStorage.getItem("tt_profilcomplete") == undefined){
+            console.log("profil incomplet (pas de local storage)");
+            window.localStorage.setItem("tt_profilcomplete", "0");
+            $scope.progressBarProfil = 0;
+            $scope.progressBarInterets = 0;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 0;
+            $scope.progressBarType = "danger";
+
+        }
+        else if (window.localStorage.getItem("tt_profilcomplete_"+idUser) == 3){
+            console.log("profil incomplet (3)");
+            $scope.progressBarProfil = 1;
+            $scope.progressBarInterets = 1;
+            $scope.progressBarQuestions = 1;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 0;
+            $scope.progressBarType = "success";
+        }
+        else if (window.localStorage.getItem("tt_profilcomplete_"+idUser) == 2){
+            console.log("profil incomplet (2)");
+
+            $scope.progressBarProfil = 1;
+            $scope.progressBarInterets = 1;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 0;
+            $scope.progressBarType = "danger";
+        }
+        else if (window.localStorage.getItem("tt_profilcomplete_"+idUser) == 1){
+            console.log("profil incomplet (1)");
+
+            $scope.progressBarProfil = 1;
+            $scope.progressBarInterets = 0;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 0;
+            $scope.progressBarType = "danger";
+        }
+        else{
+            console.log("profil incomplet (0)");
+
+            $scope.progressBarProfil = 0;
+            $scope.progressBarInterets = 0;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 0;
+            $scope.progressBarType = "danger";
+
+        }
+
+        $scope.updateProgressBar = function() {
+
+            $scope.progressBarValue =
+                $scope.progressBarProfil
+                +   $scope.progressBarInterets
+                +   $scope.progressBarQuestions;
+            window.localStorage.setItem("tt_profilcomplete_"+idUser, $scope.progressBarValue);
+            if($scope.progressBarValue < $scope.progressBarMax)
+                $scope.progressBarType = "danger";
+            else
+                $scope.progressBarType = "success";
+
+            $scope.progressBarWidth = ($scope.progressBarValue/$scope.progressBarMax).toFixed(2) *100
+        };
+
+        $scope.updateProgressBar();
 
     });
 
