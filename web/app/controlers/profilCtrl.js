@@ -237,7 +237,10 @@ angular.module('thinktwiceApp')
 
             $http({
                 method: 'DELETE',
-                url: WEBAPP_CONFIG.api_route + '/interet/' + idUser
+                url: WEBAPP_CONFIG.api_route + '/interet/',
+                data : {
+                    "personneid" : idUser
+                }
             }).then(function successCallback(response){
                 $http({
                     method: 'POST',
