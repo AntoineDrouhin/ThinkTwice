@@ -16,7 +16,7 @@ Interet.prototype.insert = function (d, ret,  next) {
     con.query(insert,
         [
             d.age,
-            d.taille,
+            d.taille,  
             d.niveauEtude,
             d.sexe,
             d.facetteid1,
@@ -40,9 +40,10 @@ Interet.prototype.insert = function (d, ret,  next) {
 }
 
 Interet.prototype.delete = function (d, ret,  next) {
+    var personneid = d.personneid;
     console.log("delete interet");
     console.log(d);
-
+    console.log(personneid);
     var del = "delete from interet where personneid = ?";
     var con = global.con();
     con.query(del, d.personneid, function(err, res){

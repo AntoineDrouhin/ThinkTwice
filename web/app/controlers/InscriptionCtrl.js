@@ -3,7 +3,6 @@
 var current_resume;
 angular.module('thinktwiceApp')
     .controller('inscriptionCtrl', function($scope, $http, $state, $mdDialog, $mdMedia, WEBAPP_CONFIG){
-
         
         $scope.mdpconf = "";
 
@@ -14,9 +13,26 @@ angular.module('thinktwiceApp')
                 url: WEBAPP_CONFIG.api_route +'/personne',
                 data : $scope.personne
             }).then(function successCallback(response){
+                console.log($scope.personne.personneid);
+                $http({
+                    method: 'POST',
+                    url: WEBAPP_CONFIG.api_route + '/interet',
+                    data : {
+                        age : "",
+                        taille : "",
+                        niveauEtude : "",
+                        sexe : "",
+                        facetteid1 : "A1",
+                        facetteid2 : "A1",
+                        facetteid3 : "A1",
+                        origine1 : "",
+                        origine2 : "",
+                        origine3 : "",
+                        personneid : response.data[0].id
+                    }
+                });
                 swal("Success !!!", "L'equipe thinktwice vous souhaite la bienvenue", "success");
-                document.location.href = "#/profil";
-                $state.transitionTo('profil');
+                $state.transitionTo('login');
 
             }, function errorCallback(response){
                 console.log(response)

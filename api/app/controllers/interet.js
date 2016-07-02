@@ -27,7 +27,7 @@ InteretController.insert = function(req, res){
 };
 
 InteretController.delete = function(req, res){
-
+    
     if (req.body) {
         var p = new Interet();
         p.delete(req.body, res, InteretController.callBack);

@@ -20,7 +20,11 @@ Personne.prototype.insert = function (d, ret,  next) {
             next(ret, true);
             return;
         }
-        next(ret, false);
+        var select = "select id from personne where login = ? ";
+        con.query(select, [d.login], function(err, cb) {
+            next(ret, cb);
+        });
+
 
     });
 }
@@ -40,7 +44,7 @@ Personne.prototype.update = function(d, ret, next) {
                 d.ville,
                 d.situationFamiliale,
                 d.niveauEtude,
-                    d.origine,
+                d.origine,
                 d.universite,
                 d.loisir,
                 d.metier,

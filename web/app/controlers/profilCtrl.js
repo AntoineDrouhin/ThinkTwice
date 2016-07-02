@@ -1,17 +1,46 @@
 'use strict';
 var current_resume;
 angular.module('thinktwiceApp')
-    .controller('profilCtrl', function($scope, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
+    .controller('profilCtrl', function($scope, $state, $http, $mdDialog, $mdMedia, WEBAPP_CONFIG, uploadImage){
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
         $scope.personne = {};
 
-        $scope.progressBarProfil = 0;
-        $scope.progressBarInterets = 0;
-        $scope.progressBarQuestions = 0;
-        $scope.progressBarMax = 3;
-        $scope.progressBarValue = 0;
-        $scope.progressBarType = "";
+        // c'est moche mais ca marche
+        if(window.localStorage.getItem("tt_profilcomplete")){
+            window.localStorage.setItem("tt_profilcomplete", "0");
+            $scope.progressBarProfil = 0;
+            $scope.progressBarInterets = 0;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 0;
+            $scope.progressBarType = "danger";
+
+        }
+        else if (window.localStorage.getItem("tt_profilcomplete") == 3){
+            $scope.progressBarProfil = 1;
+            $scope.progressBarInterets = 1;
+            $scope.progressBarQuestions = 1;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 3;
+            $scope.progressBarType = "success";
+        }
+        else if (window.localStorage.getItem("tt_profilcomplete") == 2){
+            $scope.progressBarProfil = 1;
+            $scope.progressBarInterets = 1;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 2;
+            $scope.progressBarType = "danger";
+        }
+        else if (window.localStorage.getItem("tt_profilcomplete") == 1){
+            $scope.progressBarProfil = 1;
+            $scope.progressBarInterets = 0;
+            $scope.progressBarQuestions = 0;
+            $scope.progressBarMax = 3;
+            $scope.progressBarValue = 1;
+            $scope.progressBarType = "danger";
+        }
 
         //GESTION PROGRESSBAR
         $scope.updateProgressBar = function() {
@@ -19,7 +48,7 @@ angular.module('thinktwiceApp')
                 $scope.progressBarProfil
             +   $scope.progressBarInterets
             +   $scope.progressBarQuestions;
-
+            window.localStorage.setItem("tt_profilcomplete", $scope.progressBarValue);
             if($scope.progressBarValue < $scope.progressBarMax)
                 $scope.progressBarType = "danger";
             else
@@ -30,7 +59,6 @@ angular.module('thinktwiceApp')
 
         //GESTION IMAGE
             //Télécharger l'avatar
-
         $http({
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/avatar/from/' + idUser
@@ -98,9 +126,9 @@ angular.module('thinktwiceApp')
             method: 'GET',
             url: WEBAPP_CONFIG.api_route + '/facette/'
         }).then(function successCallback(response){
-            $scope.interet = response.data;
+            $scope.facette = response.data;
         }, function errorCallback(response){
-            $scope.interet = {error: true};
+            $scope.facette = {error: true};
             // alert("Erreur récupération facettes, reponse = " + response);
         });
 
@@ -235,17 +263,32 @@ angular.module('thinktwiceApp')
         // Validation du formulaire d'interet
         $scope.postInteret = function () {
 
+            var interetTmp = angular.copy($scope.interet);
+            interetTmp.facetteid1 = $scope.interet.facetteid1.id;
+            interetTmp.facetteid2 = $scope.interet.facetteid2.id;
+            interetTmp.facetteid3 = $scope.interet.facetteid3.id;
+            interetTmp.niveauEtude = "3";
+            interetTmp.personneid = idUser;
+
+
+
+
             $http({
                 method: 'DELETE',
                 url: WEBAPP_CONFIG.api_route + '/interet/',
+                dataType: 'json',
                 data : {
-                    "personneid" : idUser
+                    personneid : idUser
+                },
+                headers: {
+                    "Content-Type": "application/json"
                 }
             }).then(function successCallback(response){
+                console.log($scope.interet);
                 $http({
                     method: 'POST',
                     url: WEBAPP_CONFIG.api_route + '/interet/',
-                    data : $scope.personne
+                    data : interetTmp
                 }).then(function successCallback(response){
                     $scope.progressBarInterets = 1;
                     $scope.updateProgressBar();
@@ -257,9 +300,6 @@ angular.module('thinktwiceApp')
             });
 
         };
-
-        //Gestion de l'image
-        
 
     });
 

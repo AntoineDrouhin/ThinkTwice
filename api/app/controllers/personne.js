@@ -18,6 +18,8 @@ var     moment      = require('moment'),
 
 PersonneController.register = function(req, res){
 
+    var con = global.con();
+
     if (req.body) {
         var p = new Personne();
         p.insert(req.body, res, PersonneController.callBack);
@@ -25,7 +27,6 @@ PersonneController.register = function(req, res){
     else {
         res.status(400).json({error: true});
     }
-
 };
 
 PersonneController.update = function(req, res){
@@ -68,6 +69,9 @@ PersonneController.get = function(req, res){
 };
 
 PersonneController.callBack = function(res, bool) {
+    if(typeof bool == 'object'){
+        res.status(200).json(bool);
+    }
     if (!bool) {
         res.status(200).json({error: bool});
     } else {
