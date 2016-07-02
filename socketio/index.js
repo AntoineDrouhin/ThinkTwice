@@ -9,17 +9,16 @@ var con = false;
 var mysql = require("mysql");
 
 
-con = function() {
-  return mysql.createConnection({
+con = mysql.createConnection({
     host: "163.172.150.53",
     user: "ttrw",
     password: "ttRocks123",
     database :"thinktwice"
   });
-}
 
 
-global.con = con;
+
+global.con = function(){return con;};
 
 
 app.get('/', function(req, res){
