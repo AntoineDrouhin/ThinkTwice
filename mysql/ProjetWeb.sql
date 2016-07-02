@@ -30,7 +30,7 @@ CREATE TABLE question (id int(10) NOT NULL AUTO_INCREMENT, libelle varchar(255) 
 FOREIGN KEY (facetteid) REFERENCES facette(id),FOREIGN KEY (typeBaremeid) REFERENCES typeBareme(id));
 CREATE TABLE ttmatch (id int(10) NOT NULL AUTO_INCREMENT, date_debut timestamp default TIMESTAMP NOT NULL, personneid1 int(10) NOT NULL, personneid2 int(10) NOT NULL, PRIMARY KEY (id),
 FOREIGN KEY (personneid1) REFERENCES personne(id), FOREIGN KEY (personneid2) REFERENCES personne(id));
-CREATE TABLE msg (id int(10) NOT NULL AUTO_INCREMENT, txt longtext NOT NULL, date_post date NOT NULL, ttmatchid int(10) NOT NULL, PRIMARY KEY (id),
+CREATE TABLE msg (id int(10) NOT NULL AUTO_INCREMENT, txt longtext NOT NULL, date_post date NOT NULL, ttmatchid int(10) NOT NULL, PRIMARY KEY (id), personneid int(10),
 FOREIGN KEY (ttmatchid) REFERENCES ttmatch(id));
 
 INSERT INTO facette (id,libelle) 

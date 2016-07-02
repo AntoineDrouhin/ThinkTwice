@@ -51,16 +51,17 @@
         margin-bottom: 1%;
       }
 
-      .even {
+      .you {
         background : #e8e8e8;
         padding : 5px;
         border : 2px solid white;
+        text-align: right;
       }
 
-      .odd {
+      .me {
         background : #fcdbf6;
         padding : 5px;
-        text-align: right;
+        border : 2px solid white;
       }
 
       #messages {
@@ -112,24 +113,57 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
-      $('#btn-chat').click(function(){
-        socket.emit('chat message', $('#btn-input').val());
-        $('#btn-input').val('');
-        return false;
+      $(document).ready(function(){
+
+        var arr = document.location.search.replace("?","").split("&");
+        var param = arr[0].replace("token=","");
+        var user = arr[1].replace("user=","");
+
+        $.ajax({
+          method: "GET",
+          url: "http://localhost:9000/msg/" + param
+        })
+        .done(function( res ) {
+          for (var i = 0; i < res.length; i++) {
+            displayMsg(res[i].txt, res[i].personneid);
+          }
+        });
+
+
+        var socket = io();
+
+        socket.emit('create', param);
+
+        $('#btn-chat').click(function(){
+          var json = {
+            room: param,
+            val : $('#btn-input').val(),
+            user : user
+          }
+
+          socket.emit('chat message',json);
+
+
+          $('#btn-input').val('');
+          return false;
+        });
+
+
+        socket.on('chat message', function(msg){
+
+          displayMsg(msg.val, msg.user);
+        });
+
+        function displayMsg(msg, userid) {
+          var cls = user != userid ? "me" : "you";
+          $('#messages').append($('<li class="'+cls+'">').text(msg));
+          $("#messages").animate({ scrollTop: $('#messages').prop("scrollHeight")}, 1000);
+        };
       });
 
-      var odd = false;
-      socket.on('chat message', function(msg){
-          var cls ='even';
-//        if (odd) {
-//            cls = 'odd';
-//            odd = false;
-//        }
-//        odd = true;
-        $('#messages').append($('<li class="'+cls+'">').text(msg));
 
-      });
+
+
     </script>
   </body>
 </html>

@@ -26,6 +26,8 @@ angular.module('thinktwiceApp')
             }, function errorCallback(response){
                 $scope.linkSrcImage = '/images/placeholder.jpg';
             });
+
+            $("#tchat-frame").attr("src", "http://localhost:9000?token=" + response.data.id + "&user=" + idUser);
         }, function errorCallback(response){
             console.log(response);
         });
