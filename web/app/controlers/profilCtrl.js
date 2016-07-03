@@ -110,7 +110,7 @@ angular.module('thinktwiceApp')
                 method: 'POST',
                 url: WEBAPP_CONFIG.api_route + '/reponse',
                 headers: {
-                    'Content-Type': undefined
+                    'Content-Type': 'application/json'
                 },
                 data : data
             }).then(function successCallback(response){
