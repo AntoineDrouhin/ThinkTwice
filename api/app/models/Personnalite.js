@@ -16,6 +16,7 @@ Personnalite.prototype.calc = function () {
     var con = global.con();
     var $this = this;
     con.query(query,[$this.id_personne],function(err,rows){
+        console.log(err);
         if(err){
             Utils.info(err);
 
@@ -23,6 +24,7 @@ Personnalite.prototype.calc = function () {
 
         var query = "select * from personne_facette where personneid=?";
         con.query(query,[$this.id_personne],function(err,rows){
+            console.log(err);
             if(err){
                 Utils.info(err);
 
@@ -33,6 +35,7 @@ Personnalite.prototype.calc = function () {
             var tabPersonne_facette = rows;
             query = "select id from personnalite";
             con.query(query,function(err,rows){
+                console.log(err);
                 if(err){
                     Utils.info(err);
 
@@ -54,6 +57,7 @@ Personnalite.prototype.calc = function () {
                     query = "INSERT INTO personne_personnalite (score,personnaliteid,personneid) VALUES (?,?,?)";
                     var score = mapPerso[val];
                     con.query(query,[score, val, $this.id_personne],function(err,rows){
+                        console.log(err);
                         if(err){
                             Utils.info(err);
 
@@ -64,6 +68,7 @@ Personnalite.prototype.calc = function () {
             })
         })
     })
+    console.log("end");
 }
 
 module.exports = Personnalite;

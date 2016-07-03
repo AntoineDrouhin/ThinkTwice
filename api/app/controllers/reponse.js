@@ -21,6 +21,18 @@ var     moment          = require('moment'),
  * @param req
  * @param res
  */
+/*ReponseController.pushData = function(req, res){
+
+    Utils.info("Form are pushed to the server.");
+
+    if (req.body) {
+        ReponseController.calcFacette(req.body.id_personne, req.body.reponses, ReponseController.calcPersonnalite);
+        //ReponseController.calcPersonnalite(req.body.id_personne, req.body.reponses);
+    } else {
+        Utils.info("No body present in pushed data.");
+    }
+};*/
+
 ReponseController.pushData = function(req, res){
 
     Utils.info("Form are pushed to the server.");
@@ -28,6 +40,7 @@ ReponseController.pushData = function(req, res){
     if (req.body) {
         ReponseController.calcFacette(req.body.id_personne, req.body.reponses, ReponseController.calcPersonnalite);
         //ReponseController.calcPersonnalite(req.body.id_personne, req.body.reponses);
+        res.status(200).json({error : false});
     } else {
         Utils.info("No body present in pushed data.");
     }
