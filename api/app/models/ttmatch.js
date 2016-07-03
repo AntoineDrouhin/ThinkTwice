@@ -159,13 +159,44 @@ Ttmatch.prototype.matching = function () {
                                 }
                             }
                         }
+                        //get current date
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var MM = today.getMonth()+1; //January is 0!
+                        var yyyy = today.getFullYear();
+                        var hh = today.getHours();
+                        var mm = today.getMinutes();
+                        var ss = today.getSeconds();
+                        if(hh<10) {
+                            hh='0'+hh
+                        }
+                        if(mm<10) {
+                            mm='0'+mm
+                        }
+                        if(ss<10) {
+                            ss='0'+ss
+                        }
 
+                        if(dd<10) {
+                            dd='0'+dd
+                        }
+
+                        if(MM<10) {
+                            MM='0'+MM
+                        }
+
+                        today = yyyy+MM+dd+hh+mm+ss;
 
                         /// on arrive jamais ici donc on ne renvoit jamais de match
                         // et donc on ne fait jamais d'insert de match
                         console.log("Insert matching");
-                        var insert = "insert into ttmatch(personneid1, personneid2) values(?,?)";
-                        con.query(insert,[this.id_personne,tabRepPersonne[0].id],function(err,rows) {
+                        var insert = "insert into ttmatch(personneid1, personneid2, date_debut) values(?,?,?)";
+                        con.query(insert,[$this.id_personne,tabRepPersonne[0].id,today],function(err,rows) {
+                            console.log(err);
+                            if(err){
+                                Utils.info(err);
+
+                            }
                             console.log("matching returns");
                             console.log(rows);
                         });
