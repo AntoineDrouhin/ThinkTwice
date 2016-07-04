@@ -83,7 +83,7 @@ TtmatchController.deleteMatch = function(req, res){
                 return;
             }
 
-            res.status(200).json(json);
+            res.status(200).json({error: false});
 
         });
 
