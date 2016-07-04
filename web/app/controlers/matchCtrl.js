@@ -37,8 +37,39 @@ angular.module('thinktwiceApp')
 
             $("#tchat-frame").attr("src", "http://localhost:9000?token=" + response.data.id + "&user=" + idUser);
         }, function errorCallback(response){
-            console.log(response);
+            swal({
+                    title: "Recherche d'un match",
+                    text: "Cliquer pour trouver un nouveau match",
+                    type: "info",
+                    showCancelButton: true,
+                    cancelButtonText: "Annuler",
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                },
+                function(){
+
+                    setTimeout(function(){
+                        swal("");
+                    }, 4500000000);
+
+                    searchMatch();
+
+                });
         });
+
+        function searchMatch(){
+            setTimeout(function(){
+                $http({
+                    method: 'GET',
+                    url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
+                }).then(function successCallback(response){
+                            swal({title: "match trouvé !!!", type: "info"}, function(){$state.reload()});
+                        },
+                        function errorCallback(response){
+                            searchMatch()
+                        });
+                }, 10000);
+        }
 
         $scope.zapper = function () {
             $http({
