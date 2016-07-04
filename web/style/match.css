@@ -21,8 +21,8 @@
     float: left;
 }
 
-.profileArea ul{
-    margin-left: 35%;
+#left-list-group {
+    margin-left: 38%;
 }
 
 .panel-heading {
