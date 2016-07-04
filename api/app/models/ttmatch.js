@@ -83,7 +83,7 @@ Ttmatch.prototype.matching = function () {
 
 
         //AND (age >= ? OR age <= ? )
-        query = 'select * from personne where sexe = ? AND (taille >= ? OR taille <= ? ) AND niveauEtude >= ? ';
+        query = 'select * from personne where sexe = ? AND ( taille >= ? OR taille <= ? ) AND niveauEtude >= ? ';
         query += queryOrigine;
         //Pour pas que la personne match avec sois meme
         paramQuery.push(parseInt($this.id_personne));
@@ -210,9 +210,7 @@ Ttmatch.prototype.matching = function () {
                     // tu peux faire ton bail de match aléatoire sur le sexe choisi ici
                     // mais surtout, si aucun match est encore possible, exemple nombre de personne impaire dans la base
                     query = 'select * from personne where sexe = ? ';
-                    query += queryOrigine;
                     console.log(query);
-                    console.log(paramQuery);
                     con.query(query,tabPersonneInteret[0].sexe,function(err,rows){
                         console.log(err);
                         if(err){
