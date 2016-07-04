@@ -89,10 +89,20 @@ ou aucun match n'est généré par manque de possibilité, l'utilisateur est mis
 
 ####fonction
 
+Le tchat permet l'échange entre les deux personnes d'un match. Il peuvents s'échanger des mots doux pour faire connaissance.
+
 ####technique
+
+Le tchat est une api séparée qui utilise le module socket.io. Le tchat est chargé dans une iframe à l'intérieur du site
+principal. Le token du match et l'id de l'utilisateur est passé à cette seconde api qui s'assure l'échange de messages et l'isolation de ces derniers
+entre les deux seules personnes du match. Aussi chaque message est sauvegardé dans la base par l'intermédiaire de cette seconde api et rechargé dans le tchat quand l'utilisateur souhaite s'en reservir.
  
 ###Le zap
 
 ####fonction
 
+Le zap permet à un utilisateur d'un match de passer à une nouvelle rencontre en arrêtant la discution avec la personne courrante.
+
 ####technique
+
+Permet par l'intermédiaire d'une route de supprimer le match courrant. Un nouveau match devra être généré par le point d'entrée adapté.
