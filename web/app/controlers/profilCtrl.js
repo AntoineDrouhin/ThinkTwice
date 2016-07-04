@@ -108,6 +108,7 @@ angular.module('thinktwiceApp')
 
             $http({
                 method: 'POST',
+                dataType: 'json',
                 url: WEBAPP_CONFIG.api_route + '/reponse',
                 headers: {
                     'Content-Type': 'application/json'
