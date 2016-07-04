@@ -41,13 +41,33 @@ source ProjetWeb.sql
  hashés.
  
  Une fois l'utilisateur connecté, un token est généré et chaque nouvelle 
- requête transmettra ce token pour vérifier l'identité de l'utilisateur.
+ requête transmettra ce token pour vérifier l'identité de l'utilisateur. 
+ C'est donc à chaque nouvelle connection que ce token est généré puis
+ sauvegarder en base de données. Si le token n'est pas reconnu, la requête HTPP est rejetée.
  
 ###Le profil
 
 ####fonction
 
+La gestion du profil permet de saisir toutes les informations propres 
+à l'utlilisateur et à ses attentes en matière de rencontre.
+
+L'utlisateur doit donc répondre à une série de question le concernant
+puis répond à un questionnaire de personnalité.
+
 ####technique
+ 
+ Des routes correspondantes à des mises à jours de la base de données sont
+ mises en places pour enregistrer les données saisies grace à l'interface graphique.
+ 
+ Le questionnaires de personnalité est construit dynamiquement grace aux données
+ stockées en base. c'est le point d'entrée /question qui permet d'aller les chercher.
+ 
+ On peut retrouver :
+    * /personne : finit de mettre à jours les informations de l'utilisateur.
+    * /interet : Insère les centres d'intéret de l'utilisateur
+    * /reponse : Permet de renvoyer les réponses du questionnaire de personnalité
+    qui serviront au calcul de match notemment.
  
 ###Le match
 
