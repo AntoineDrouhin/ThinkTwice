@@ -50,6 +50,10 @@ TtmatchController.getMatch = function(req, res){
                 };
             }
 
+            if(typeof json.nomatch != "undefined" && json.nomatch ) {
+                res.status(400).json(json);
+            };
+            
             res.status(200).json(json);
             return;
 
