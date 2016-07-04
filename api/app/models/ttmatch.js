@@ -199,6 +199,21 @@ Ttmatch.prototype.matching = function () {
                             }
                             console.log("matching returns");
                             console.log(rows);
+
+                            var selectFinal = "select id, personneid2 from ttmatch where date_debut = ? and personneid1 = ? ";
+                            con.query(selectFinal,[today,$this.id_personne],function(err,rows) {
+                                console.log(err);
+                                if(err){
+                                    Utils.info(err);
+
+                                }
+                            json = {
+                                id : rows[0].id,
+                                matchPersonId : rows[0].personneid2
+                            };
+                                return json;
+
+                            })
                         });
 
 
@@ -231,6 +246,20 @@ Ttmatch.prototype.matching = function () {
                                 }
                                 console.log("matching returns");
                                 console.log(rows);
+                                var selectFinal2 = "select id, personneid2 from ttmatch where date_debut = ? and personneid1 = ? ";
+                                con.query(selectFinal2,[today,$this.id_personne],function(err,rows) {
+                                    console.log(err);
+                                    if(err){
+                                        Utils.info(err);
+
+                                    }
+                                    json = {
+                                        id : rows[0].id,
+                                        matchPersonId : rows[0].personneid2
+                                    };
+                                    return json;
+
+                                })
                             });
 
                         }else{
