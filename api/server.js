@@ -132,15 +132,17 @@ if ( cluster.isMaster )
     if(config.db.module == 'mysql') {
 
         // First you need to create a connection to the db
-        con = mysql.createConnection({
+        con =  function() {
+            return mysql.createConnection({
                 host: config.db.url,
                 user: config.db.login,
                 password: config.db.pwd,
-                database :config.db.database
+                database: config.db.database
             });
+        }
     }
 
-    global.con = function(){return con;};
+    global.con = con;
 
 
     // Express settings
