@@ -64,10 +64,12 @@ puis répond à un questionnaire de personnalité.
  stockées en base. c'est le point d'entrée /question qui permet d'aller les chercher.
  
  On peut retrouver :
+ 
     * /personne : finit de mettre à jours les informations de l'utilisateur.
+    
     * /interet : Insère les centres d'intéret de l'utilisateur
-    * /reponse : Permet de renvoyer les réponses du questionnaire de personnalité
-    qui serviront au calcul de match notemment.
+    
+    * /reponse : Permet de renvoyer les réponses du questionnaire de personnalité qui serviront au calcul de match notemment.
  
 ###Le match
 
