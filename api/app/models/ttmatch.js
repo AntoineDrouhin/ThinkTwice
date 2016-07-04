@@ -226,9 +226,9 @@ Ttmatch.prototype.matching = function () {
                 }else{
 
 
-                    query = "select * from personne where sexe = ? and id not in (select personneid1 from ttmatch) and id not in (select personneid2 from ttmatch) "
+                    query = "select * from personne where sexe = ? and id not in (select personneid1 from ttmatch) and id not in (select personneid2 from ttmatch) and id != ?"
                     console.log(query);
-                    con.query(query,tabPersonneInteret[0].sexe,function(err,rows){
+                    con.query(query,[tabPersonneInteret[0].sexe, $this.id_personne],function(err,rows){
                         console.log(err);
                         if(err){
                             Utils.info(err);
