@@ -47,7 +47,7 @@ source ProjetWeb.sql
  
 ###Le profil
 
-####fonction
+####Fonction
 
 La gestion du profil permet de saisir toutes les informations propres 
 à l'utlilisateur et à ses attentes en matière de rencontre.
@@ -55,7 +55,7 @@ La gestion du profil permet de saisir toutes les informations propres
 L'utlisateur doit donc répondre à une série de question le concernant
 puis répond à un questionnaire de personnalité.
 
-####technique
+####Technique
  
  Des routes correspondantes à des mises à jours de la base de données sont
  mises en places pour enregistrer les données saisies grace à l'interface graphique.
@@ -73,9 +73,17 @@ puis répond à un questionnaire de personnalité.
  
 ###Le match
 
-####fonction
+####Fonction
 
-####technique
+Le match se base sur les informations utilisateurs et le score de leur personnalite et de leur facette
+generé grace au questionnaire de personnalité.
+
+####Technique
+
+A chaque ouverture de la page de match dans l'interface graphique, une requête http
+est généré pour obtenir le match courrant afin de pouvoir échangé avec la personne qui nous
+a été attribué par l'api. Si aucun match n'était en cours, un nouveau nous est proposé. Dans le cas
+ou aucun match n'est généré par manque de possibilité, l'utilisateur est mis en attente.
  
 ###le tchat
 
