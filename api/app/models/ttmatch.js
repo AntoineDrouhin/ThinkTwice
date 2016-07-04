@@ -219,7 +219,7 @@ Ttmatch.prototype.matching = function () {
                         }
 
                         if(rows.length > 0){
-                            var idRandom = getRandom(0,rows.length);
+                            var idRandom = Math.round(Math.random()*rows.length);
                             console.log(rows);
                             console.log(idRandom);
                             var insert = "insert into ttmatch(personneid1, personneid2, date_debut) values(?,?,?)";
