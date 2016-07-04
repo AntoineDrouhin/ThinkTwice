@@ -15,71 +15,72 @@ angular.module('thinktwiceApp')
         }
 
         // Aller chercher les informations sur la personne
-        $http({
-            method: 'GET',
-            url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
-        }).then(function successCallback(response){
+        if(window.localStorage.getItem("tt_profilcomplete_" + idUser) >= 3){
             $http({
                 method: 'GET',
-                url: WEBAPP_CONFIG.api_route + '/personne/' + response.data.matchPersonId
+                url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
             }).then(function successCallback(response){
-                $scope.personne = response.data[0];
-            }, function errorCallback(response){
-            });
-            $http({
-                method: 'GET',
-                url: WEBAPP_CONFIG.api_route + '/avatar/from/' + response.data.matchPersonId
-            }).then(function successCallback(response){
-                $scope.linkSrcImage = response.data.link;
-            }, function errorCallback(response){
-                $scope.linkSrcImage = '/images/placeholder.jpg';
-            });
-
-            $("#tchat-frame").attr("src", "http://localhost:9000?token=" + response.data.id + "&user=" + idUser);
-        }, function errorCallback(response){
-            swal({
-                    title: "Recherche d'un match",
-                    text: "Cliquer pour trouver un nouveau match",
-                    type: "info",
-                    showCancelButton: true,
-                    cancelButtonText: "Annuler",
-                    closeOnConfirm: false,
-                    showLoaderOnConfirm: true,
-                },
-                function(){
-
-                    setTimeout(function(){
-                        swal("");
-                    }, 4500000000);
-
-                    searchMatch();
-
-                });
-        });
-
-        function searchMatch(){
-            setTimeout(function(){
                 $http({
                     method: 'GET',
-                    url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
+                    url: WEBAPP_CONFIG.api_route + '/personne/' + response.data.matchPersonId
                 }).then(function successCallback(response){
-                            swal({title: "match trouvé !!!", type: "info"}, function(){$state.reload()});
-                        },
-                        function errorCallback(response){
-                            searchMatch()
-                        });
-                }, 10000);
+                    $scope.personne = response.data[0];
+                }, function errorCallback(response){
+                });
+                $http({
+                    method: 'GET',
+                    url: WEBAPP_CONFIG.api_route + '/avatar/from/' + response.data.matchPersonId
+                }).then(function successCallback(response){
+                    $scope.linkSrcImage = response.data.link;
+                }, function errorCallback(response){
+                    $scope.linkSrcImage = '/images/placeholder.jpg';
+                });
+
+                $("#tchat-frame").attr("src", "http://localhost:9000?token=" + response.data.id + "&user=" + idUser);
+            }, function errorCallback(response){
+                swal({
+                        title: "Recherche d'un match",
+                        text: "Cliquer pour trouver un nouveau match",
+                        type: "info",
+                        showCancelButton: true,
+                        cancelButtonText: "Annuler",
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: true,
+                    },
+                    function(){
+
+                        setTimeout(function(){
+                            swal("");
+                        }, 4500000000);
+
+                        searchMatch();
+                    });
+            });
         }
 
-        $scope.zapper = function () {
-            $http({
-                method: 'DELETE',
-                url: WEBAPP_CONFIG.api_route + '/ttmatch/' + idUser
-            }).then(function successCallback(response){
-                $state.transitionTo('match');
-            }, function errorCallback(response){
+            function searchMatch(){
+                setTimeout(function(){
+                    $http({
+                        method: 'GET',
+                        url: WEBAPP_CONFIG.api_route + '/personne/' + idUser + '/ttmatch'
+                    }).then(function successCallback(response){
+                                swal({title: "match trouvé !!!", type: "info"}, function(){$state.reload()});
+                            },
+                            function errorCallback(response){
+                                searchMatch()
+                            });
+                    }, 10000);
+            }
 
-            });
-        };
+            $scope.zapper = function () {
+                $http({
+                    method: 'DELETE',
+                    url: WEBAPP_CONFIG.api_route + '/ttmatch/' + idUser
+                }).then(function successCallback(response){
+                    $state.transitionTo('match');
+                }, function errorCallback(response){
 
-    });
+                });
+            };
+
+        });

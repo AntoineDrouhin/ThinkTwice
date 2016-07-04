@@ -49,9 +49,9 @@
                 <div class="form-group">
                     <span>Sexe</span>
                     <select name = "inputSexe" class="form-control" id="inputSexe" ng-model="personneTmp.sexe" required>
-                        <option value="">Choisir une valeur</option>
-                        <option value="f">Femme</option>
-                        <option value="m">Homme</option>
+                        <option value="O">Indifferent</option>
+                        <option value="F">Femme</option>
+                        <option value="M">Homme</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -66,7 +66,6 @@
                     <span>Situation amoureuse</span>
                     <!--<input type="text" class="form-control" id="inputSituation" placeholder="Situation familiale" ng-model="personneTmp.situationFamiliale" />-->
                     <select name="inputSituation" class="form-control" id="inputSituation" ng-model="personneTmp.situationFamiliale" required >
-                        <option value="">Choisir une valeur</option>
                         <option value="Célibataire">Célibataire</option>
                         <option value="En Couple">En Couple</option>
                         <option value="Marié">Marié</option>
@@ -77,12 +76,12 @@
                 <div class="form-group">
                     <span>Niveau d'études</span>
                     <select name="inputNiveauEtudes" class="form-control" id="inputEtudes" ng-model="personneTmp.niveauEtude" required >
-                        <option value="">Choisir une valeur</option>
-                        <option value="C'est compliqué">C'est compliqué</option>
-                        <option value="Baccalauréat">Baccalauréat</option>
-                        <option value="Entre Bac+1 et Bac+3">Entre Bac+1 et Bac+3</option>
-                        <option value="Entre Bac+3 et Bac+5">Entre Bac+3 et Bac+5</option>
-                        <option value="Bac+6 et plus">Bac+6 et plus</option>
+                        <option value="1">Aucun</option>
+                        <option value="2">CAP / BEP</option>
+                        <option value="3">Baccalauréat</option>
+                        <option value="4">Bac+2</option>
+                        <option value="5">Bac+3/4</option>
+                        <option value="6">Bac+5 et plus</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -92,12 +91,12 @@
                     <!--<input type="text" class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personneTmp.origine" />-->
                     <span>Origine ethnique</span>
                     <select class="form-control" id="inputOrigine" placeholder="Origine ethnique" ng-model="personneTmp.origine" required >
-                        <option value="">Choisir une valeur</option>
-                        <option value ="Blanc/Caucasien">Blanc/Caucasien</option>
-                        <option value ="Noir/Africain">Noir/Africain</option>
-                        <option value ="Moyen Oriental">Moyen Oriental</option>
-                        <option value ="Asiatique">Asiatique</option>
-                        <option value ="Amérique Latine">Amérique Latine</option>
+                        <option value ="6">Autres</option>
+                        <option value ="1">Européenne</option>
+                        <option value ="2">Africaine</option>
+                        <option value ="3">Asiatique</option>
+                        <option value ="4">Indienne</option>
+                        <option value ="5">Hispanique</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -124,9 +123,9 @@
                 <div class="form-group">
                     <span>Sexe</span>
                     <select class="form-control" id="interetSexe" placeholder="Sexe" ng-model="interet.sexe" required>
-                        <option value="">Choisir une valeur</option>
-                        <option value ="f">Femme</option>
-                        <option value ="m">Homme</option>
+                        <option value="O">Indifferent</option>
+                        <option value="F">Femme</option>
+                        <option value="M">Homme</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -140,28 +139,28 @@
                 <div class="form-group">
                     <span>Sélectionnez 3 Origines</span>
                     <select class="form-control" id="interetOrigine1" placeholder="Origine ethnique" ng-model="interet.origine1" required >
-                        <option value="">Choisir une valeur</option>
-                        <option value ="Blanc/Caucasien">Blanc/Caucasien</option>
-                        <option value ="Noir/Africain">Noir/Africain</option>
-                        <option value ="Moyen Oriental">Moyen Oriental</option>
-                        <option value ="Asiatique">Asiatique</option>
-                        <option value ="Amérique Latine">Amérique Latine</option>
+                        <option value ="6">Autres</option>
+                        <option value ="1">Européenne</option>
+                        <option value ="2">Africaine</option>
+                        <option value ="3">Asiatique</option>
+                        <option value ="4">Indienne</option>
+                        <option value ="5">Hispanique</option>
                     </select>
                     <select class="form-control" id="interetOrigine2" placeholder="Origine ethnique" ng-model="interet.origine2" required >
-                        <option value="">Choisir une valeur</option>
-                        <option value ="Blanc/Caucasien">Blanc/Caucasien</option>
-                        <option value ="Noir/Africain">Noir/Africain</option>
-                        <option value ="Moyen Oriental">Moyen Oriental</option>
-                        <option value ="Asiatique">Asiatique</option>
-                        <option value ="Amérique Latine">Amérique Latine</option>
+                        <option value ="6">Autres</option>
+                        <option value ="1">Européenne</option>
+                        <option value ="2">Africaine</option>
+                        <option value ="3">Asiatique</option>
+                        <option value ="4">Indienne</option>
+                        <option value ="5">Hispanique</option>
                     </select>
                     <select class="form-control" id="interetOrigine3" placeholder="Origine ethnique" ng-model="interet.origine3" required >
-                        <option value="">Choisir une valeur</option>
-                        <option value ="1">Blanc/Caucasien</option>
-                        <option value ="2">Noir/Africain</option>
-                        <option value ="3">Moyen Oriental</option>
-                        <option value ="4">Asiatique</option>
-                        <option value ="5">Amérique Latine</option>
+                        <option value ="6">Autres</option>
+                        <option value ="1">Européenne</option>
+                        <option value ="2">Africaine</option>
+                        <option value ="3">Asiatique</option>
+                        <option value ="4">Indienne</option>
+                        <option value ="5">Hispanique</option>
                     </select>
                 </div>
                 <div class="form-group">
