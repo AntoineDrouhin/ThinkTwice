@@ -209,9 +209,38 @@ Ttmatch.prototype.matching = function () {
                     // Geoffreyninou :
                     // tu peux faire ton bail de match aléatoire sur le sexe choisi ici
                     // mais surtout, si aucun match est encore possible, exemple nombre de personne impaire dans la base
-                    
-                    // renvoi moi toujours ce json pour que je puisse renvoyer un 400
-                    return {"nomatch" : "true"};
+                    query = 'select * from personne where sexe = ? ';
+                    query += queryOrigine;
+                    console.log(query);
+                    console.log(paramQuery);
+                    con.query(query,tabPersonneInteret[0].sexe,function(err,rows){
+                        console.log(err);
+                        if(err){
+                            Utils.info(err);
+
+                        }
+
+                        if(rows.length > 0){
+                            var idRandom = getRandom(0,rows.length);
+                            query = "insert into ttmatch(personneid1, personneid2, date_debut) values(?,?,?)";
+                            con.query(insert,[$this.id_personne,rows[idRandom].id,today],function(err,rows) {
+                                console.log(err);
+                                if(err){
+                                    Utils.info(err);
+
+                                }
+                                console.log("matching returns");
+                                console.log(rows);
+                            });
+
+                        }else{
+                            // renvoi moi toujours ce json pour que je puisse renvoyer un 400
+                            return {"nomatch" : "true"};
+
+                        }
+
+                        })
+
 
                 }
 
@@ -225,11 +254,8 @@ Ttmatch.prototype.matching = function () {
 
 }
 
-//function _calculateAge(birthday) { // birthday is a date
-//    var ageDifMs = Date.now() - birthday.getTime();
-//    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-//    return Math.abs(ageDate.getUTCFullYear() - 1970);
-//}
-
+function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
+}
 
 module.exports = Ttmatch;
