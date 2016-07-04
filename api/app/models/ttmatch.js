@@ -220,6 +220,8 @@ Ttmatch.prototype.matching = function () {
 
                         if(rows.length > 0){
                             var idRandom = getRandom(0,rows.length);
+                            console.log(rows);
+                            console.log(idRandom);
                             var insert = "insert into ttmatch(personneid1, personneid2, date_debut) values(?,?,?)";
                             con.query(insert,[$this.id_personne,rows[idRandom].id,today],function(err,rows) {
                                 console.log(err);
