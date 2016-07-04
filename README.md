@@ -37,13 +37,15 @@ source ProjetWeb.sql
 ####Technique
  
  La fonction de connexion permet une identification de l'utilisateur par 
- un mot de passe hashé en sha1. Tous les mots mots de passe sont conservés
+ un mot de passe hashé en sha1. Tous les mots de passe sont conservés
  hashés.
  
  Une fois l'utilisateur connecté, un token est généré et chaque nouvelle 
  requête transmettra ce token pour vérifier l'identité de l'utilisateur. 
  C'est donc à chaque nouvelle connection que ce token est généré puis
- sauvegarder en base de données. Si le token n'est pas reconnu, la requête HTPP est rejetée.
+ sauvegarder en base de données. Si le token n'est pas reconnu, la requête HTTP est rejetée.
+ 
+ Aussi la connexion expire au bout de 4H.
  
 ###Le profil
 
@@ -89,7 +91,7 @@ ou aucun match n'est généré par manque de possibilité, l'utilisateur est mis
 
 ####fonction
 
-Le tchat permet l'échange entre les deux personnes d'un match. Il peuvents s'échanger des mots doux pour faire connaissance.
+Le tchat permet l'échange entre les deux personnes d'un match. Ils peuvent s'échanger des mots doux pour faire connaissance.
 
 ####technique
 
