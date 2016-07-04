@@ -29,11 +29,13 @@ source ProjetWeb.sql
 
 ###La connexion
 
- * Fonction
+####Fonction
+ 
  La connexion permet à un utilisateur inscrit de pouvoir accéder à 
  l'application.
   
- * Technique
+####Technique
+ 
  La fonction de connexion permet une identification de l'utilisateur par 
  un mot de passe hashé en sha1. Tous les mots mots de passe sont conservés
  hashés.
@@ -42,14 +44,25 @@ source ProjetWeb.sql
  requête transmettra ce token pour vérifier l'identité de l'utilisateur.
  
 ###Le profil
- * fonction
- * technique
+
+####fonction
+
+####technique
+ 
 ###Le match
- * fonction
- * technique
+
+####fonction
+
+####technique
+ 
 ###le tchat
- * fonction
- * technique
+
+####fonction
+
+####technique
+ 
 ###Le zap
- * fonction
- * technique
+
+####fonction
+
+####technique
