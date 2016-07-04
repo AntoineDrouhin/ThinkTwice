@@ -68,11 +68,13 @@ Facette.prototype.calc = function () {
 
                 //insert dans personne_facette
                 var j = 0;
-                for (var val in mapFacette) {
+                //for (var val in mapFacette) {
+
+                for (var k = 0; k<tabFacette.length;k++) {
 
                     query = "INSERT INTO personne_facette (score,facetteid,personneid) VALUES (?,?,?)";
-                    var score = mapFacette[val];
-                    con.query(query,[score, val, $this.id_personne],function(err,rows){
+                    var score = mapFacette[tabFacette[k].id];
+                    con.query(query,[score, tabFacette[k].id, $this.id_personne],function(err,rows){
                         console.log(err);
                         console.log($this.id_personne);
                         console.log(tabFacette.length);
