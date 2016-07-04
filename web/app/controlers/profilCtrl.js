@@ -250,9 +250,9 @@ angular.module('thinktwiceApp')
         };
 
         //GESTION PROGRESSBAR
-        console.log("localStorage")
+        //console.log("localStorage")
         console.log(window.localStorage.getItem("tt_profilcomplete_"+idUser));
-        if(window.localStorage.getItem("tt_profilcomplete") == undefined){
+        if(window.localStorage.getItem("tt_profilcomplete_"+idUser) == undefined){
             console.log("profil incomplet (pas de local storage)");
             window.localStorage.setItem("tt_profilcomplete", "0");
             $scope.progressBarProfil = 0;
@@ -264,7 +264,7 @@ angular.module('thinktwiceApp')
 
         }
         else if (window.localStorage.getItem("tt_profilcomplete_"+idUser) == 3){
-            console.log("profil incomplet (3)");
+            console.log("profil complet (3)");
             $scope.progressBarProfil = 1;
             $scope.progressBarInterets = 1;
             $scope.progressBarQuestions = 1;

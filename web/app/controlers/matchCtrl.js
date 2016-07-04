@@ -5,12 +5,12 @@ angular.module('thinktwiceApp')
 
         var idUser = window.localStorage.getItem("thinktwice_userId");
 
-        if(window.localStorage.getItem("tt_profil_complete_" + idUser) != 0){
+        if(window.localStorage.getItem("tt_profilcomplete_" + idUser) < 3){
             swal(
                 "Votre profil est incomplet",
                 "Merci de completer votre profil pour que nous puissions vous trouver le match parfait",
                 "warning"
-            )
+            );
             $state.transitionTo('profil');
         }
 
