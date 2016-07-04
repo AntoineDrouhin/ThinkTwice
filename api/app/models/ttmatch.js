@@ -225,10 +225,8 @@ Ttmatch.prototype.matching = function () {
 
                 }else{
 
-                    // Geoffreyninou :
-                    // tu peux faire ton bail de match aléatoire sur le sexe choisi ici
-                    // mais surtout, si aucun match est encore possible, exemple nombre de personne impaire dans la base
-                    query = 'select * from personne where sexe = ? ';
+
+                    query = "select * from personne where sexe = ? and id not in (select personneid1 from ttmatch) and id not in (select personneid2 from ttmatch) "
                     console.log(query);
                     con.query(query,tabPersonneInteret[0].sexe,function(err,rows){
                         console.log(err);
@@ -267,7 +265,7 @@ Ttmatch.prototype.matching = function () {
                             });
 
                         }else{
-                            // renvoi moi toujours ce json pour que je puisse renvoyer un 400
+
                             return {"nomatch" : "true"};
 
                         }
