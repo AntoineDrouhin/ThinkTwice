@@ -1,21 +1,26 @@
 # ThinkTwice
-## Back
-* MariaDB
-* Gérer le remplissage des profils
-* Mécanique de tchat 
-* Gérer la mécanique de match
-* Gérer la protection du dévoilage
 
-## Front
-* Faire la carcasse HTML
-* Angulariser la carcasse
-* Pluguer à l'api
-* Navigation dans le remplissage profil (multitab ?)
-* Animation sexy/fenchui
+## Set Up
 
-Rose : 			da12b7
-Rose clair : 	f0ccea
-Gris :			eeeeee
-Blanc :			ffffff
-violet :		9612da
-Police :		Arial
+A la racine du projet :
+```bash
+cd api
+npm install
+node server.js
+```
+
+```bash
+cd socket.io
+npm install
+node index.js
+```
+copier le repertoire `web` dans le dossier de votre serveur (apache ou autre)
+```bash
+cd web
+bower install
+```
+
+Déplacez vous dans le répertoire mysql, lancez mysql puis :
+```bash
+source ProjetWeb.sql
+```
