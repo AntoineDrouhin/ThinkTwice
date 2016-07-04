@@ -1,10 +1,10 @@
 <div ng-controller="matchCtrl">
-    <link rel="stylesheet" href="../style/match.css"/>
+    <link rel="stylesheet" href="../style/match.css" />
     <style>
         #tchat-frame {
-            border: none;
-            width: 100%;
-            height: 400px;
+            border : none;
+            width : 100%;
+            height : 400px;
         }
     </style>
 
@@ -13,50 +13,40 @@
 
     <!-- PROFIL -->
     <div class="container">
-        <h1 class="pageTitle">Mon TT-Match</h1>
-        <h3>Informations sur le profil</h3>
-        <div class="row">
-            <div class="profileArea col-md-4">
-                <img ng-if="linkSrcImage" src="{{linkSrcImage}}" class="profilPicture img-fluid img-circle"
-                     alt="profil picture"/>
-                <img ng-if="personne.sexe=='m' && linkSrcImage == false"
-                     src="https://pixabay.com/static/uploads/photo/2012/04/13/21/07/user-33638_960_720.png"
-                     class="profilPicture img-fluid img-circle" alt="profil picture"/>
-                <img ng-if="personne.sexe=='f' && linkSrcImage == false"
-                     src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej"
-                     class="profilPicture img-fluid img-circle" alt="profil picture"/>
-            </div>
-            <div class="profileArea col-md-4">
-                <ul class="list-group">
-                    <li class="list-group-item" ng-if="personne.prenom">{{personne.prenom}}</li>
-                    <li class="list-group-item" ng-if="personne.ville">Habite à {{personne.ville}}</li>
-                    <li class="list-group-item" ng-if="personne.situationFamiliale">{{personne.situationFamiliale}}</li>
-                    <li class="list-group-item" ng-if="personne.niveauEtude">{{personne.niveauEtude}}</li>
-                    <li class="list-group-item" ng-if="personne.loisir">{{personne.loisir}}</li>
-                </ul>
-            </div>
-            <div class="profileArea col-md-4">
-                <ul class="list-group">
-                    <li ng-if="personne.sexe=='m'" class="list-group-item">Homme</li>
-                    <li ng-if="personne.sexe=='f'" class="list-group-item">Femme</li>
-                    <li class="list-group-item" ng-if="personne.poids">{{personne.poids}} ans</li>
-                    <li class="list-group-item" ng-if="personne.taille">{{personne.taille}} cm</li>
-                    <li class="list-group-item" ng-if="personne.origine">{{personne.origine}}</li>
-                </ul>
-            </div>
+        <div class="profileArea col-md-6">
+                <img ng-if="linkSrcImage" src="{{linkSrcImage}}" class="profilPicture img-fluid img-circle" alt="profil picture" />
+                <img ng-if="personne.sexe=='m' && linkSrcImage == false" src="https://pixabay.com/static/uploads/photo/2012/04/13/21/07/user-33638_960_720.png" class="profilPicture img-fluid img-circle" alt="profil picture" />
+                <img ng-if="personne.sexe=='f' && linkSrcImage == false" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSjIjMB0vEIoltIRIWUNG87hrEpMGcFN9IdPIZJAvjjDCIDx8ej" class="profilPicture img-fluid img-circle" alt="profil picture" />
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-if="personne.prenom">{{personne.prenom}}</li>
+                <li class="list-group-item"ng-if="personne.ville">Habite à {{personne.ville}}</li>
+                <li class="list-group-item" ng-if = "personne.situationFamiliale">{{personne.situationFamiliale}}</li>
+                <li class="list-group-item"ng-if="personne.niveauEtude">{{personne.niveauEtude}}</li>
+                <li class="list-group-item" ng-if="personne.loisir">{{personne.loisir}}</li>
+            </ul>
+        </div>
+        <div class="profileArea col-md-6">
+            <ul class="list-group">
+                <li ng-if="personne.sexe=='m'" class="list-group-item">Homme</li>
+                <li ng-if="personne.sexe=='f'" class="list-group-item">Femme</li>
+                <li class="list-group-item" ng-if="personne.poids">{{personne.poids}} ans</li>
+                <li class="list-group-item" ng-if="personne.taille">{{personne.taille}} cm</li>
+                <li class="list-group-item" ng-if="personne.origine">{{personne.origine}}</li>
+
+            </ul>
         </div>
     </div>
 
     <!-- ZAP -->
     <div id="containerButton" class="container">
-        <div id="zapBtn" class="col-md-3 col-md-offset-10">
+        <div id="zapBtn" class="col-md-3 col-md-offset-5">
             <button class="btn" ng-click="zapper()">ZAPPER COMME JAMAIS</button>
         </div>
     </div>
 
     <!-- CHAT -->
     <div class="container">
-        <h3>Discuter avec mon Match</h3>
         <div class="row">
             <iframe id="tchat-frame"></iframe>
         </div>
