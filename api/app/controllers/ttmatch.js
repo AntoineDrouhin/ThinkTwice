@@ -70,13 +70,13 @@ TtmatchController.deleteMatch = function(req, res){
 
     Utils.info("DELETE Match");
 
-    if (req.id) {
+    if (req.params.id) {
 
         var query = "DELETE from ttmatch where personneid1 = ? or personneid2 = ?";
 
         var con = global.con();
 
-        con.query(query, [req.id, req.id], function(err, rows) {
+        con.query(query, [req.params.id, req.params.id], function(err, rows) {
             if (err) {
                 Utils.info(err);
                 res.status(400).json({error : true});
@@ -88,7 +88,7 @@ TtmatchController.deleteMatch = function(req, res){
         });
 
     } else {
-        Utils.info("Error during get match");
+        Utils.info("Error during delete match");
     }
     
 };
