@@ -10,6 +10,12 @@ angular.module('thinktwiceApp')
                     window.localStorage.removeItem('thinktwice_token');
                     state.transitionTo('login');
                 };
+                scope.goProfil = function () {
+                    state.transitionTo('profil');
+                };
+                scope.goMatch= function () {
+                    state.transitionTo('match');
+                };
             }
         }
     });
