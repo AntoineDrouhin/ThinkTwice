@@ -58,7 +58,7 @@ Ttmatch.prototype.matching = function () {
         //paramQuery.push(ageMax);
         paramQuery.push(tailleMin);
         paramQuery.push(tailleMax);
-        paramQuery.push(niveauEtude);
+        paramQuery.push(parseInt(niveauEtude));
 
         var origine1;
         var origine2;
@@ -67,15 +67,15 @@ Ttmatch.prototype.matching = function () {
         if(tabPersonneInteret[0].origine1 != null){
             origine1 = tabPersonneInteret[0].origine1;
              queryOrigine += ' AND ( origine = ? ';
-             paramQuery.push(origine1);
+             paramQuery.push(parseInt(origine1));
             if(tabPersonneInteret[0].origine2 != null){
                 origine2 = tabPersonneInteret[0].origine2;
                  queryOrigine += ' OR origine = ? ';
-                paramQuery.push(origine2);
+                paramQuery.push(parseInt(origine2));
                 if(tabPersonneInteret[0].origine3 != null){
                     origine3 = tabPersonneInteret[0].origine3;
                     queryOrigine += ' OR origine = ? ';
-                    paramQuery.push(origine3);
+                    paramQuery.push(parseInt(origine3));
                 }
             }
             queryOrigine += ' ) ';
@@ -86,7 +86,7 @@ Ttmatch.prototype.matching = function () {
         query = 'select * from personne where sexe = ? AND (taille >= ? OR taille <= ? ) AND niveauEtude >= ? ';
         query += queryOrigine;
         //Pour pas que la personne match avec sois meme
-        paramQuery.push($this.id_personne);
+        paramQuery.push(parseInt($this.id_personne));
         query += ' AND id != ? '
         console.log(query);
         console.log(paramQuery);
