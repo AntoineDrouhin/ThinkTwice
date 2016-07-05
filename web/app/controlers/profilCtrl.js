@@ -106,6 +106,7 @@ angular.module('thinktwiceApp')
                 });
             });
 
+            console.log(JSON.stringify(data));
             $http({
                 method: 'POST',
                 dataType: 'json',
