@@ -1,8 +1,8 @@
 {
-  "name": "myResume",
+  "name": "ThinkTwice",
   "version": "2",
   "authors": [
-    "Laurent Breda"
+    "Antoine Drouhin, Geoffrey Harrazi, Annas Saker"
   ],
   "dependencies": {
     "socket.io": "^1.4.8"

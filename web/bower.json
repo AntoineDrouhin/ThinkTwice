@@ -1,8 +1,8 @@
 {
-  "name": "myResume",
-  "version": "2",
+  "name": "Thinktwice",
+  "version": "1.0.0",
   "authors": [
-    "Laurent Breda"
+    "Antoine Drouhin, Geoffrey Harrazi, Annas Saker"
   ],
   "description": "Exercice d'apprentissage Techno Web",
   "license": "MIT",

@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
+  "name": "Thinktwice-chat",
+  "version": "1.0.0",
+  "description": "",
   "dependencies": {
     "express": "4.10.2",
     "mysql": "^2.11.1",
